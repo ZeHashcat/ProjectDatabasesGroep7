@@ -1,0 +1,16 @@
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.exe
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.deps.json
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.runtimeconfig.json
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.runtimeconfig.dev.json
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.dll
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\ref\GitHubTestSolution.dll
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\bin\Debug\net5.0\GitHubTestSolution.pdb
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.csproj.AssemblyReference.cache
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.AssemblyInfoInputs.cache
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.AssemblyInfo.cs
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.csproj.CoreCompileInputs.cache
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.dll
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\ref\GitHubTestSolution.dll
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.pdb
+C:\Users\Mylo Bronkhorst\source\repos\GitHubTestOne\GitHubTestSolution\obj\Debug\net5.0\GitHubTestSolution.genruntimeconfig.cache
