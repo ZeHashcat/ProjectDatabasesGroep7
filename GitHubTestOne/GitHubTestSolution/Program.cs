@@ -12,8 +12,8 @@ namespace GitHubTestSolution
 
         void Start()
         {
-            TestClass testClass = new TestClass("Konichiwa worurudo!!!");
-            Console.WriteLine(testClass.HerroWorldu);
+            TestClassSub testClass = new TestClassSub("Konichiwa worurudo!!!", "Here kitty, kitty, kitty. Meaow. Here Jonesy.");
+            Console.WriteLine("{0}, \n{1}",testClass.HerroWorldu, testClass.MeaningfullMessage);
 
             Console.ReadKey();
         }

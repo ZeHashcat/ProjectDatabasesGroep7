@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GitHubTestSolution
 {
-    public class TestClass
+    abstract public class TestClass
     {
         public string HerroWorldu;
 
