@@ -54,17 +54,19 @@ namespace SomerenUI
                     // clear the listview before filling it again
                     listViewStudents.Clear();
 
-                    listViewStudents.Columns.Add("Name", 100, HorizontalAlignment.Center);
-                    listViewStudents.Columns.Add("ID", 100, HorizontalAlignment.Center);
-                    listViewStudents.Columns.Add("Birth Date", 100, HorizontalAlignment.Center);
+                    //adds columns to listview
+                    listViewStudents.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                    listViewStudents.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                    listViewStudents.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
 
+                    //adds data to listview columns
                     foreach (Student s in studentList)
                     {
-                        ListViewItem li = new ListViewItem(s.Name); ;
-                        ListViewItem.ListViewSubItem id = new ListViewItem.ListViewSubItem(li, s.Number.ToString());
-                        ListViewItem.ListViewSubItem dob = new ListViewItem.ListViewSubItem(li, s.BirthDate.ToString());
-                        li.SubItems.Add(id);
-                        li.SubItems.Add(dob);
+                        ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                        ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                        ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                        li.SubItems.Add(fName);
+                        li.SubItems.Add(lName);
                         listViewStudents.Items.Add(li);
 
                     }

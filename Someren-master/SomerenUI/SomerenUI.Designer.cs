@@ -43,9 +43,6 @@
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.pnlStudents = new System.Windows.Forms.Panel();
             this.listViewStudents = new System.Windows.Forms.ListView();
-            this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.studentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Students = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
@@ -164,10 +161,6 @@
             // 
             // listViewStudents
             // 
-            this.listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.studentID,
-            this.studentName,
-            this.studentDOB});
             this.listViewStudents.FullRowSelect = true;
             this.listViewStudents.GridLines = true;
             this.listViewStudents.HideSelection = false;
@@ -177,18 +170,6 @@
             this.listViewStudents.TabIndex = 5;
             this.listViewStudents.UseCompatibleStateImageBehavior = false;
             this.listViewStudents.View = System.Windows.Forms.View.Details;
-            // 
-            // studentID
-            // 
-            this.studentID.Text = "ID";
-            // 
-            // studentName
-            // 
-            this.studentName.Text = "Name";
-            // 
-            // studentDOB
-            // 
-            this.studentDOB.Text = "Date of Birth";
             // 
             // pictureBox1
             // 
@@ -255,9 +236,6 @@
         private System.Windows.Forms.Label lbl_Students;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listViewStudents;
-        private System.Windows.Forms.ColumnHeader studentID;
-        private System.Windows.Forms.ColumnHeader studentName;
-        private System.Windows.Forms.ColumnHeader studentDOB;
     }
 }
 
