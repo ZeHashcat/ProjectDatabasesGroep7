@@ -8,8 +8,11 @@ namespace SomerenModel
 {
     public class Student
     { 
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int Number { get; set; } // StudentNumber, e.g. 474791
-        public DateTime BirthDate { get; set; }
+        
+        //We don't need this according to rubric.
+        //public DateTime BirthDate { get; set; }
     }
 }
