@@ -31,6 +31,7 @@ namespace SomerenUI
             {
                 // hide all other panels
                 pnlStudents.Hide();
+                pnlRooms.Hide();
 
                 // show dashboard
                 pnlDashboard.Show();
@@ -41,9 +42,11 @@ namespace SomerenUI
                 // hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
+                pnlRooms.Hide();
 
                 // show students
                 pnlStudents.Show();
+             
 
                 try
                 {
@@ -76,6 +79,58 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
             }
+            else if (panelName == "Rooms")
+            {
+                // hide all other panels
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlStudents.Hide();
+
+                // show Rooms
+                pnlRooms.Show();
+
+                try
+                {
+                    // fill the rooms listview within the students panel with a list of rooms
+                    RoomService romService = new RoomService(); ;
+                    List<Room> roomList = romService.GetRooms(); ;
+
+                    // clear the listview before filling it again
+                    listViewRooms.Clear();
+
+                    //Adds columns to the listview, took us a while to figure out that we needed this for it to work our way, F the column headers.
+                    listViewRooms.Columns.Add("Room Nr.", 100, HorizontalAlignment.Center);
+                    listViewRooms.Columns.Add("Room Type", 100, HorizontalAlignment.Center);
+                    listViewRooms.Columns.Add("Amount of Beds", 100, HorizontalAlignment.Center);
+
+                    //adds data to listview columns
+                    foreach (Room room in roomList)
+                    {
+                        string roomType;
+
+                        if (room.Type)
+                        {
+                            roomType = "Teacher";
+                        }
+                        else
+                        {
+                            roomType = "Student";
+                        }
+
+                        ListViewItem li = new ListViewItem(room.Number.ToString());
+
+                        li.SubItems.Add(roomType);
+                        li.SubItems.Add(room.Capacity.ToString());
+
+                        listViewRooms.Items.Add(li);
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
+                }
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,7 +150,7 @@ namespace SomerenUI
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            //Wtf is this? I mean I know what this is but why is this here?
         }
 
         private void imgDashboard_Click(object sender, EventArgs e)
@@ -106,6 +161,11 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
+        }
+
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Rooms");
         }
     }
 }
