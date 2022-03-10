@@ -362,7 +362,6 @@
         private System.Windows.Forms.Label lblLecterurs;
         private System.Windows.Forms.Panel pnlRooms;
         private System.Windows.Forms.ListView listViewRooms;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbl_Rooms;
         private System.Windows.Forms.Panel pnlStudents;
     }

@@ -88,7 +88,8 @@ namespace SomerenUI
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
-                
+                pnlRooms.Hide();
+
                 // show students
                 pnlLecturers.Show();
 
@@ -123,7 +124,8 @@ namespace SomerenUI
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
- 
+                pnlLecturers.Hide();
+
                 // show Rooms
                 pnlRooms.Show();
 
