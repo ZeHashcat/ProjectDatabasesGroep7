@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SomerenUI
 {
@@ -22,6 +23,13 @@ namespace SomerenUI
         private void SomerenUI_Load(object sender, EventArgs e)
         {
             showPanel("Dashboard");
+            //Outputs Session start to ErrorLog.txt
+            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
+                writer.Close();
+            }
         }
 
         private void showPanel(string panelName)
