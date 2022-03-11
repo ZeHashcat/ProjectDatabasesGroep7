@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SomerenLogic
 {
+    //Literally copy pasted from StudentService.cs and slightly altered.
     public class LecturerService
     {
         LecturerDao Lecturerdb;

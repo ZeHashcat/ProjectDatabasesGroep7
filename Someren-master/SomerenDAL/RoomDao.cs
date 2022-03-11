@@ -10,12 +10,12 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    //Literally copy pasted from StudentDao.cs and slightly altered.
+    // Literally copy pasted from StudentDao.cs and slightly altered
     public class RoomDao : BaseDao
     {
         public List<Room> GetAllRooms()
         {
-            //Query retrieves all data.
+            // Query retrieves all needed data.
             string query = "SELECT roomID, Beds, Type FROM GuestRoom;";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
@@ -23,18 +23,20 @@ namespace SomerenDAL
 
         private List<Room> ReadTables(DataTable dataTable)
         {
+            // Create rooms list
             List<Room> rooms = new List<Room>();
-            
 
+            // Loop through each row in table
             foreach (DataRow dr in dataTable.Rows)
             {
                 string typeString = (string)(dr["Type"].ToString());
 
+                // Create room and add to list
                 Room room = new Room()
                 {
                     Number = (int)dr["RoomID"],
                     Capacity = (int)(dr["Beds"]),
-                    //if string == Teacher then Type = true.
+                    // If string == Teacher then Type = true
                     Type = (typeString == "Teacher")
                 };
                 rooms.Add(room);
