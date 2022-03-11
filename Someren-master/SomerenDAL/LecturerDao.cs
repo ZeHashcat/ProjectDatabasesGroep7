@@ -11,20 +11,26 @@ using SomerenModel;
 namespace SomerenDAL
 {
     public class LecturerDao : BaseDao
-    {      
+    {
+        // Literally copy pasted from StudentDao.cs and slightly altered
         public List<Teacher> GetAllLecturers()
         {
+            // Query joins 2 tables into 1 and shows id and first name
             string query = "SELECT teacherid, firstname FROM teacher JOIN Person ON Teacher.personid=person.personid;";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-
+        
+        
         private List<Teacher> ReadTables(DataTable dataTable)
         {
+            // Create lecturers list
             List<Teacher> Lecturers = new List<Teacher>();
 
+            // Loop through  each row in table
             foreach (DataRow dr in dataTable.Rows)
             {
+                // Create teacher and add to list
                 Teacher teacher = new Teacher()
                 {
                     Number = (int)dr["teacherid"],

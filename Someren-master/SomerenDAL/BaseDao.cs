@@ -29,7 +29,7 @@ namespace SomerenDAL
                 }
             }
             catch (Exception e)
-            {
+            {                
                 //Print.ErrorLog(e);
                 throw;
             }
