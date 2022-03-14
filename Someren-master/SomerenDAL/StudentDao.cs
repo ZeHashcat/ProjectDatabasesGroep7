@@ -14,7 +14,7 @@ namespace SomerenDAL
     {      
         public List<Student> GetAllStudents()
         {
-            //query joins 2 tables into 1 and shows id and full name
+            // Query joins 2 tables into 1 and shows id and full name
             string query = "SELECT studentid, firstname, lastname FROM student JOIN Person ON Student.personid=person.personid;";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
@@ -22,10 +22,13 @@ namespace SomerenDAL
 
         private List<Student> ReadTables(DataTable dataTable)
         {
+            // Create students list
             List<Student> students = new List<Student>();
 
+            // Loop through each row in table
             foreach (DataRow dr in dataTable.Rows)
             {
+                // Create student and add to list
                 Student student = new Student()
                 {
                     Number = (int)dr["studentid"],
