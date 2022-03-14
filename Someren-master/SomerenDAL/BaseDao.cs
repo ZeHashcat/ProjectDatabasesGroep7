@@ -21,6 +21,7 @@ namespace SomerenDAL
 
         protected SqlConnection OpenConnection()
         {
+            PrintDao Print = new PrintDao();
             try
             {
                 if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
@@ -29,9 +30,9 @@ namespace SomerenDAL
                 }
             }
             catch (Exception e)
-            {
-                //Print.ErrorLog(e);
-                throw;
+            {                
+                Print.ErrorLog(e);
+                throw new Exception("Could not establish a connection with the database! Please contact the programmers involved in this application for support, thank you!");
             }
             return conn;
         }
@@ -45,6 +46,7 @@ namespace SomerenDAL
         protected void ExecuteEditTranQuery(string query, SqlParameter[] sqlParameters, SqlTransaction sqlTransaction)
         {
             SqlCommand command = new SqlCommand(query, conn, sqlTransaction);
+            PrintDao Print = new PrintDao();
             try
             {
                 command.Parameters.AddRange(sqlParameters);
@@ -53,8 +55,8 @@ namespace SomerenDAL
             }
             catch (Exception e)
             {
-                //Print.ErrorLog(e);
-                throw;
+                Print.ErrorLog(e);
+                throw new Exception("Could not alter table with transaction. Please contact the programmers involved in this application for support, thank you!");
             }
         }
 
@@ -62,6 +64,7 @@ namespace SomerenDAL
         protected void ExecuteEditQuery(string query, SqlParameter[] sqlParameters)
         {
             SqlCommand command = new SqlCommand();
+            PrintDao Print = new PrintDao();
 
             try
             {
@@ -73,8 +76,8 @@ namespace SomerenDAL
             }
             catch (SqlException e)
             {
-                // Print.ErrorLog(e);
-                throw;
+                Print.ErrorLog(e);
+                throw new Exception("Could not alter table. Please contact the programmers involved in this application for support, thank you!");
             }
             finally
             {
@@ -88,6 +91,7 @@ namespace SomerenDAL
             SqlCommand command = new SqlCommand();
             DataTable dataTable;
             DataSet dataSet = new DataSet();
+            PrintDao Print = new PrintDao();
 
             try
             {
@@ -101,8 +105,7 @@ namespace SomerenDAL
             }
             catch (SqlException e)
             {
-                // Print.ErrorLog(e);
-                return null;
+                Print.ErrorLog(e);
                 throw;
             }
             finally
@@ -111,5 +114,7 @@ namespace SomerenDAL
             }
             return dataTable;
         }
+
+
     }
 }
