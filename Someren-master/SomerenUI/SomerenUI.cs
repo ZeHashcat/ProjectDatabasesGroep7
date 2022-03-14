@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SomerenUI
 {
@@ -22,50 +23,54 @@ namespace SomerenUI
         private void SomerenUI_Load(object sender, EventArgs e)
         {
             showPanel("Dashboard");
+            //Outputs Session start to ErrorLog.txt
+            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
+                writer.Close();
+            }
         }
 
         private void showPanel(string panelName)
         {
-
             if (panelName == "Dashboard")
             {
-                // hide all other panels
+                // Hide all other panels
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
 
-
-                // show dashboard
+                // Show dashboard
                 pnlDashboard.Show();
                 imgDashboard.Show();
             }
             else if (panelName == "Students")
             {
-                // hide all other panels
+                // Hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
 
-                // show students
-                pnlStudents.Show();
-             
+                // Show students
+                pnlStudents.Show();             
 
                 try
                 {
-                    // fill the students listview within the students panel with a list of students
+                    // Fill the students listview within the students panel with a list of students
                     StudentService studService = new StudentService(); ;
                     List<Student> studentList = studService.GetStudents(); ;
 
-                    // clear the listview before filling it again
+                    // Clear the listview before filling it again
                     listViewStudents.Clear();
 
-                    //adds columns to listview
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewStudents.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
                     listViewStudents.Columns.Add("First Name", 100, HorizontalAlignment.Center);
                     listViewStudents.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
 
-                    //adds data to listview columns
+                    // Adds data to listview columns
                     foreach (Student s in studentList)
                     {
                         ListViewItem li = new ListViewItem(s.Number.ToString()); ;
@@ -74,7 +79,6 @@ namespace SomerenUI
                         li.SubItems.Add(fName);
                         li.SubItems.Add(lName);
                         listViewStudents.Items.Add(li);
-
                     }
                 }
                 catch (Exception e)
@@ -84,26 +88,29 @@ namespace SomerenUI
             }
             else if (panelName == "Lecturers")
             {
-                // hide all other panels
+                // Hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
-                
-                // show students
+                pnlRooms.Hide();
+
+                // Show lecturers
                 pnlLecturers.Show();
 
                 try
                 {
-                    // fill the students listview within the students panel with a list of students
+                    // Fill the lecturers listview within the lecturers panel with a list of lecturers
                     LecturerService lecturerService = new LecturerService(); ;
                     List<Teacher> lecturerList = lecturerService.GetLecturers(); ;
 
-                    // clear the listview before filling it again
+                    // Clear the listview before filling it again
                     listViewLecturers.Clear();
 
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewLecturers.Columns.Add("Name", 100, HorizontalAlignment.Center);
                     listViewLecturers.Columns.Add("ID", 100, HorizontalAlignment.Center);
 
+                    // Adds data to listview columns
                     foreach (Teacher t in lecturerList)
                     {
                         ListViewItem li = new ListViewItem(t.Name); ;
@@ -119,29 +126,30 @@ namespace SomerenUI
             }
             else if (panelName == "Rooms")
             {
-                // hide all other panels
+                // Hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
- 
-                // show Rooms
+                pnlLecturers.Hide();
+
+                // Show Rooms
                 pnlRooms.Show();
 
                 try
                 {
-                    // fill the rooms listview within the students panel with a list of rooms
-                    RoomService romService = new RoomService(); ;
-                    List<Room> roomList = romService.GetRooms(); ;
+                    // Fill the rooms listview within the rooms panel with a list of rooms
+                    RoomService romService = new RoomService();
+                    List<Room> roomList = romService.GetRooms();
 
-                    // clear the listview before filling it again
+                    // Clear the listview before filling it again
                     listViewRooms.Clear();
 
-                    //Adds columns to the listview, took us a while to figure out that we needed this for it to work our way, F the column headers.
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewRooms.Columns.Add("Room Nr.", 100, HorizontalAlignment.Center);
                     listViewRooms.Columns.Add("Room Type", 100, HorizontalAlignment.Center);
                     listViewRooms.Columns.Add("Amount of Beds", 100, HorizontalAlignment.Center);
 
-                    //adds data to listview columns
+                    // Adds data to listview columns
                     foreach (Room room in roomList)
                     {
                         string roomType;
@@ -187,7 +195,7 @@ namespace SomerenUI
 
         private void label1_Click(object sender, EventArgs e)
         {
-            //Wtf is this? I mean I know what this is but why is this here?
+            // What is this? I mean I know what this is but why is this here?
         }
 
         private void imgDashboard_Click(object sender, EventArgs e)
