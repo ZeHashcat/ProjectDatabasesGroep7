@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SomerenModel
 {
-    public class DrinkSupply
+    public class Drink
     {
+        public int DrinkId { get; set; }
         public string DrinkName { get; set; }
         public double SalesPrice { get; set; }
         public int VoucherAmount { get; set; }
