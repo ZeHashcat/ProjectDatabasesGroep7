@@ -32,14 +32,22 @@ namespace SomerenUI
             }
         }
 
+        private void hideAllPanels()
+        {
+            pnlDashboard.Hide();
+            imgDashboard.Hide();
+            pnlStudents.Hide();
+            pnlRooms.Hide();
+            pnlLecturers.Hide();
+            pnlRevenue.Hide();
+        }
+
         private void showPanel(string panelName)
         {
             if (panelName == "Dashboard")
             {
                 // Hide all other panels
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show dashboard
                 pnlDashboard.Show();
@@ -48,10 +56,7 @@ namespace SomerenUI
             else if (panelName == "Students")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show students
                 pnlStudents.Show();             
@@ -89,10 +94,7 @@ namespace SomerenUI
             else if (panelName == "Lecturers")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show lecturers
                 pnlLecturers.Show();
@@ -127,10 +129,7 @@ namespace SomerenUI
             else if (panelName == "Rooms")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
+                hideAllPanels();
 
                 // Show Rooms
                 pnlRooms.Show();
@@ -176,6 +175,22 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
                 }
             }
+            else if (panelName == "RevenueReport")
+            {
+                // Hide all other panels
+                hideAllPanels();
+
+                // Show Rooms
+                pnlRevenue.Show();
+
+                
+            }
+        }
+
+        private void displayRevenue()
+        {
+            DateTime startTime = dateTimePickerStartDate.Value;
+            DateTime endTime = dateTimePickerStartDate.Value;
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,6 +230,21 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
+        }
+
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("RevenueReport");
+        }
+
+        private void dateTimePickerStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            displayRevenue();
+        }
+
+        private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            displayRevenue();
         }
     }
 }
