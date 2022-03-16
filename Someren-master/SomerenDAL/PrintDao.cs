@@ -18,6 +18,11 @@ namespace SomerenDAL
             string message = $"\nDate & Time: {DateTime.Now}\nError Log:\n{ex}";
             string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
 
+            if (!File.Exists(path))
+            {
+                using (StreamWriter CreateFile = File.CreateText(path));
+            }
+
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(message);
