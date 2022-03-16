@@ -8,6 +8,7 @@ namespace SomerenModel
 {
     public class DrinkSupply
     {
+        public int DrinkID { get; set; }
         public string DrinkName { get; set; }
         public double SalesPrice { get; set; }
         public int VoucherAmount { get; set; }

@@ -39,6 +39,10 @@
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drinkSupplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.revenueReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.pnlStudents = new System.Windows.Forms.Panel();
@@ -54,10 +58,11 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.listViewRooms = new System.Windows.Forms.ListView();
             this.lbl_Rooms = new System.Windows.Forms.Label();
-            this.barServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.drinkSupplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cashRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.revenueReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -68,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlRooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // imgDashboard
@@ -92,7 +100,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(778, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(788, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -152,6 +160,35 @@
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
+            // 
+            // barServiceToolStripMenuItem
+            // 
+            this.barServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drinkSupplyToolStripMenuItem,
+            this.cashRegisterToolStripMenuItem,
+            this.revenueReportToolStripMenuItem});
+            this.barServiceToolStripMenuItem.Name = "barServiceToolStripMenuItem";
+            this.barServiceToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.barServiceToolStripMenuItem.Text = "Bar Service";
+            // 
+            // drinkSupplyToolStripMenuItem
+            // 
+            this.drinkSupplyToolStripMenuItem.Name = "drinkSupplyToolStripMenuItem";
+            this.drinkSupplyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drinkSupplyToolStripMenuItem.Text = "Drink Supply";
+            this.drinkSupplyToolStripMenuItem.Click += new System.EventHandler(this.drinkSupplyToolStripMenuItem_Click);
+            // 
+            // cashRegisterToolStripMenuItem
+            // 
+            this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
+            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.cashRegisterToolStripMenuItem.Text = "Cash Register";
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.revenueReportToolStripMenuItem.Text = "Revenue Report";
             // 
             // pnlDashboard
             // 
@@ -317,39 +354,69 @@
             this.lbl_Rooms.TabIndex = 3;
             this.lbl_Rooms.Text = "Rooms";
             // 
-            // barServiceToolStripMenuItem
+            // panel1
             // 
-            this.barServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.drinkSupplyToolStripMenuItem,
-            this.cashRegisterToolStripMenuItem,
-            this.revenueReportToolStripMenuItem});
-            this.barServiceToolStripMenuItem.Name = "barServiceToolStripMenuItem";
-            this.barServiceToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.barServiceToolStripMenuItem.Text = "Bar Service";
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.pictureBox6);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(9, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(765, 379);
+            this.panel1.TabIndex = 7;
             // 
-            // drinkSupplyToolStripMenuItem
+            // pictureBox5
             // 
-            this.drinkSupplyToolStripMenuItem.Name = "drinkSupplyToolStripMenuItem";
-            this.drinkSupplyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.drinkSupplyToolStripMenuItem.Text = "Drink Supply";
+            this.pictureBox5.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
+            this.pictureBox5.Location = new System.Drawing.Point(613, 42);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(129, 117);
+            this.pictureBox5.TabIndex = 6;
+            this.pictureBox5.TabStop = false;
             // 
-            // cashRegisterToolStripMenuItem
+            // listView1
             // 
-            this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
-            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cashRegisterToolStripMenuItem.Text = "Cash Register";
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(16, 42);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(576, 250);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // revenueReportToolStripMenuItem
+            // pictureBox6
             // 
-            this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
-            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.revenueReportToolStripMenuItem.Text = "Revenue Report";
+            this.pictureBox6.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox6.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.InitialImage")));
+            this.pictureBox6.Location = new System.Drawing.Point(805, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(130, 123);
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "DrinkSupply";
             // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 406);
+            this.ClientSize = new System.Drawing.Size(788, 402);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlRooms);
             this.Controls.Add(this.pnlLecturers);
             this.Controls.Add(this.pnlStudents);
@@ -376,6 +443,10 @@
             this.pnlRooms.ResumeLayout(false);
             this.pnlRooms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,6 +483,11 @@
         private System.Windows.Forms.ToolStripMenuItem drinkSupplyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashRegisterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem revenueReportToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label label1;
     }
 }
 

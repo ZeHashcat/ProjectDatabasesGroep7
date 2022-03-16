@@ -24,12 +24,12 @@ namespace SomerenUI
         {
             showPanel("Dashboard");
             //Outputs Session start to ErrorLog.txt
-            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
-            using (StreamWriter writer = new StreamWriter(path, true))
-            {
-                writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
-                writer.Close();
-            }
+            //string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
+            //using (StreamWriter writer = new StreamWriter(path, true))
+            //{
+            //    writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
+            //    writer.Close();
+            //}
         }
 
         private void showPanel(string panelName)
@@ -215,6 +215,11 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
+        }
+
+        private void drinkSupplyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("DrinkSupply");
         }
     }
 }

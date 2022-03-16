@@ -19,6 +19,13 @@ namespace SomerenDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
+        public List<DrinkSupply> GetDrinksWithStockGreaterThenOneAndCostMoreThenOneVoucher()
+        {
+            // Query joins 2 tables into 1 and shows id and full name
+            string query = "SELECT DrinkName, firstname, lastname FROM student JOIN Person ON Student.personid=person.personid;";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+        }
 
         private List<DrinkSupply> ReadTables(DataTable dataTable)
         {
