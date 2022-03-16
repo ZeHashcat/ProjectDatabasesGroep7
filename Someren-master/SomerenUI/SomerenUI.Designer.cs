@@ -63,6 +63,14 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlCashRegister = new System.Windows.Forms.Panel();
+            this.listViewStudents2 = new System.Windows.Forms.ListView();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.listViewDrinkSupply = new System.Windows.Forms.ListView();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.lbl_DrinkSupply = new System.Windows.Forms.Label();
+            this.lbl_Students2 = new System.Windows.Forms.Label();
+            this.CheckOutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -74,6 +82,7 @@
             this.pnlRooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
+            this.pnlCashRegister.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
@@ -183,6 +192,7 @@
             this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
             this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.cashRegisterToolStripMenuItem.Text = "Cash Register";
+            this.cashRegisterToolStripMenuItem.Click += new System.EventHandler(this.cashRegisterToolStripMenuItem_Click);
             // 
             // revenueReportToolStripMenuItem
             // 
@@ -365,6 +375,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(765, 379);
             this.panel1.TabIndex = 7;
+            // pnlCashRegister
+            // 
+            this.pnlCashRegister.Controls.Add(this.CheckOutButton);
+            this.pnlCashRegister.Controls.Add(this.lbl_Students2);
+            this.pnlCashRegister.Controls.Add(this.listViewStudents2);
+            this.pnlCashRegister.Controls.Add(this.pictureBox5);
+            this.pnlCashRegister.Controls.Add(this.listViewDrinkSupply);
+            this.pnlCashRegister.Controls.Add(this.pictureBox6);
+            this.pnlCashRegister.Controls.Add(this.lbl_DrinkSupply);
+            this.pnlCashRegister.Location = new System.Drawing.Point(789, 26);
+            this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlCashRegister.Name = "pnlCashRegister";
+            this.pnlCashRegister.Size = new System.Drawing.Size(765, 379);
+            this.pnlCashRegister.TabIndex = 7;
+            // 
+            // listViewStudents2
+            // 
+            this.listViewStudents2.FullRowSelect = true;
+            this.listViewStudents2.GridLines = true;
+            this.listViewStudents2.HideSelection = false;
+            this.listViewStudents2.Location = new System.Drawing.Point(319, 42);
+            this.listViewStudents2.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewStudents2.MultiSelect = false;
+            this.listViewStudents2.Name = "listViewStudents2";
+            this.listViewStudents2.Size = new System.Drawing.Size(290, 250);
+            this.listViewStudents2.TabIndex = 7;
+            this.listViewStudents2.UseCompatibleStateImageBehavior = false;
+            this.listViewStudents2.View = System.Windows.Forms.View.Details;
             // 
             // pictureBox5
             // 
@@ -389,6 +427,19 @@
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // listViewDrinkSupply
+            // 
+            this.listViewDrinkSupply.FullRowSelect = true;
+            this.listViewDrinkSupply.GridLines = true;
+            this.listViewDrinkSupply.HideSelection = false;
+            this.listViewDrinkSupply.Location = new System.Drawing.Point(16, 42);
+            this.listViewDrinkSupply.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewDrinkSupply.MultiSelect = false;
+            this.listViewDrinkSupply.Name = "listViewDrinkSupply";
+            this.listViewDrinkSupply.Size = new System.Drawing.Size(299, 250);
+            this.listViewDrinkSupply.TabIndex = 5;
+            this.listViewDrinkSupply.UseCompatibleStateImageBehavior = false;
+            this.listViewDrinkSupply.View = System.Windows.Forms.View.Details;
             // 
             // pictureBox6
             // 
@@ -410,6 +461,37 @@
             this.label1.Size = new System.Drawing.Size(143, 29);
             this.label1.TabIndex = 3;
             this.label1.Text = "DrinkSupply";
+            // lbl_DrinkSupply
+            // 
+            this.lbl_DrinkSupply.AutoSize = true;
+            this.lbl_DrinkSupply.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DrinkSupply.Location = new System.Drawing.Point(10, 10);
+            this.lbl_DrinkSupply.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_DrinkSupply.Name = "lbl_DrinkSupply";
+            this.lbl_DrinkSupply.Size = new System.Drawing.Size(149, 29);
+            this.lbl_DrinkSupply.TabIndex = 3;
+            this.lbl_DrinkSupply.Text = "Drink Supply";
+            // 
+            // lbl_Students2
+            // 
+            this.lbl_Students2.AutoSize = true;
+            this.lbl_Students2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Students2.Location = new System.Drawing.Point(314, 11);
+            this.lbl_Students2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_Students2.Name = "lbl_Students2";
+            this.lbl_Students2.Size = new System.Drawing.Size(107, 29);
+            this.lbl_Students2.TabIndex = 8;
+            this.lbl_Students2.Text = "Students";
+            // 
+            // CheckOutButton
+            // 
+            this.CheckOutButton.Location = new System.Drawing.Point(16, 323);
+            this.CheckOutButton.Name = "CheckOutButton";
+            this.CheckOutButton.Size = new System.Drawing.Size(75, 23);
+            this.CheckOutButton.TabIndex = 9;
+            this.CheckOutButton.Text = "Checkout";
+            this.CheckOutButton.UseVisualStyleBackColor = true;
+            this.CheckOutButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // SomerenUI
             // 
@@ -417,6 +499,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 402);
             this.Controls.Add(this.panel1);
+
             this.Controls.Add(this.pnlRooms);
             this.Controls.Add(this.pnlLecturers);
             this.Controls.Add(this.pnlStudents);
@@ -445,6 +528,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlCashRegister.ResumeLayout(false);
+            this.pnlCashRegister.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
@@ -488,6 +573,14 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlCashRegister;
+        private System.Windows.Forms.ListView listViewStudents2;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.ListView listViewDrinkSupply;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Label lbl_DrinkSupply;
+        private System.Windows.Forms.Label lbl_Students2;
+        private System.Windows.Forms.Button CheckOutButton;
     }
 }
 

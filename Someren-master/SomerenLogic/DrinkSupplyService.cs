@@ -18,9 +18,9 @@ namespace SomerenLogic
             DrinkSupplydb = new DrinkSupplyDao();
         }
 
-        public List<DrinkSupply> GetDrinkSupply()
+        public List<Drink> GetDrinkSupply()
         {
-            List<DrinkSupply> drinkSupply = DrinkSupplydb.GetAllDrinkSupply();
+            List<Drink> drinkSupply = DrinkSupplydb.GetAllDrinkSupply();
             return drinkSupply;
         }
     }

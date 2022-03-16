@@ -16,7 +16,7 @@ namespace SomerenDAL
         public void ErrorLog(Exception ex)
         {
             string message = $"\nDate & Time: {DateTime.Now}\nError Log:\n{ex}";
-            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
+            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog.txt");
 
             if (!File.Exists(path))
             {

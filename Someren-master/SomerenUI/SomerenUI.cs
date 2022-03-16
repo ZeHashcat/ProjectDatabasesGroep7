@@ -24,12 +24,12 @@ namespace SomerenUI
         {
             showPanel("Dashboard");
             //Outputs Session start to ErrorLog.txt
-            //string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog\", "ErrorLog.txt");
-            //using (StreamWriter writer = new StreamWriter(path, true))
-            //{
-            //    writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
-            //    writer.Close();
-            //}
+            string path = Path.Combine(Environment.CurrentDirectory, @"ErrorLog.txt");
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
+                writer.Close();
+            }
         }
 
         private void showPanel(string panelName)
@@ -176,6 +176,81 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
                 }
             }
+            else if (panelName == "CashRegister")
+            {
+                // Hide all other panels
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlStudents.Hide();
+                pnlLecturers.Hide();
+                pnlRooms.Hide();
+
+                // Show Cash Register
+                pnlCashRegister.Show();
+                try
+                {
+                    // Get drinks data from SQL server
+                    DrinkSupplyService drinkService = new DrinkSupplyService();
+                    List<Drink> drinkSupplyList = drinkService.GetDrinkSupply();
+
+                    // Clear the listview before filling it again
+                    listViewDrinkSupply.Clear();
+
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    listViewDrinkSupply.Columns.Add("Drink ID", 0, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Voucher Amount", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("VAT", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Drink drink in drinkSupplyList)
+                    {
+                        ListViewItem li = new ListViewItem(drink.DrinkId.ToString());
+                        li.SubItems.Add(drink.DrinkName);
+                        li.SubItems.Add(drink.SalesPrice.ToString());
+                        li.SubItems.Add(drink.VoucherAmount.ToString());
+                        li.SubItems.Add($"{drink.VAT:0}%");
+                        li.SubItems.Add(drink.Quantity.ToString());
+                        listViewDrinkSupply.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
+                }
+                try
+                {
+                    // Fill the students listview within the students panel with a list of students
+                    StudentService studService = new StudentService(); ;
+                    List<Student> studentList = studService.GetStudents(); ;
+
+                    // Clear the listview before filling it again
+                    listViewStudents.Clear();
+
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    listViewStudents2.Columns.Add("Student ID", 0, HorizontalAlignment.Center);
+                    listViewStudents2.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                    listViewStudents2.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Student s in studentList)
+                    {
+                        ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                        ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                        ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                        li.SubItems.Add(fName);
+                        li.SubItems.Add(lName);
+                        listViewStudents2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+                }
+
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,10 +291,17 @@ namespace SomerenUI
         {
             showPanel("Rooms");
         }
-
         private void drinkSupplyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("DrinkSupply");
+		}
+        private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("CashRegister");
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
