@@ -46,23 +46,27 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Students = new System.Windows.Forms.Label();
             this.pnlLecturers = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.listViewLecturers = new System.Windows.Forms.ListView();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblLecterurs = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlRooms = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.listViewRooms = new System.Windows.Forms.ListView();
             this.lbl_Rooms = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.barServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drinkSupplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.revenueReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlLecturers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlRooms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +87,8 @@
             this.studentsToolStripMenuItem,
             this.lecturersToolStripMenuItem,
             this.activitiesToolStripMenuItem,
-            this.roomsToolStripMenuItem});
+            this.roomsToolStripMenuItem,
+            this.barServiceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -173,7 +178,7 @@
             this.pnlStudents.Controls.Add(this.pictureBox1);
             this.pnlStudents.Controls.Add(this.lbl_Students);
             this.pnlStudents.Location = new System.Drawing.Point(9, 20);
-            this.pnlStudents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlStudents.Margin = new System.Windows.Forms.Padding(2);
             this.pnlStudents.Name = "pnlStudents";
             this.pnlStudents.Size = new System.Drawing.Size(765, 379);
             this.pnlStudents.TabIndex = 4;
@@ -195,7 +200,7 @@
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(129, 117);
             this.pictureBox1.TabIndex = 0;
@@ -222,6 +227,17 @@
             this.pnlLecturers.Size = new System.Drawing.Size(765, 379);
             this.pnlLecturers.TabIndex = 6;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(613, 42);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(129, 117);
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            // 
             // listViewLecturers
             // 
             this.listViewLecturers.FullRowSelect = true;
@@ -234,16 +250,6 @@
             this.listViewLecturers.UseCompatibleStateImageBehavior = false;
             this.listViewLecturers.View = System.Windows.Forms.View.Details;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(805, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(130, 123);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // lblLecterurs
             // 
             this.lblLecterurs.AutoSize = true;
@@ -254,6 +260,16 @@
             this.lblLecterurs.TabIndex = 3;
             this.lblLecterurs.Text = "Lecturers";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(805, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(130, 123);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // pnlRooms
             // 
             this.pnlRooms.Controls.Add(this.pictureBox4);
@@ -261,10 +277,21 @@
             this.pnlRooms.Controls.Add(this.pictureBox2);
             this.pnlRooms.Controls.Add(this.lbl_Rooms);
             this.pnlRooms.Location = new System.Drawing.Point(9, 20);
-            this.pnlRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlRooms.Margin = new System.Windows.Forms.Padding(2);
             this.pnlRooms.Name = "pnlRooms";
             this.pnlRooms.Size = new System.Drawing.Size(765, 379);
             this.pnlRooms.TabIndex = 6;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(613, 42);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(129, 117);
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
             // 
             // listViewRooms
             // 
@@ -272,7 +299,7 @@
             this.listViewRooms.GridLines = true;
             this.listViewRooms.HideSelection = false;
             this.listViewRooms.Location = new System.Drawing.Point(16, 42);
-            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2);
             this.listViewRooms.Name = "listViewRooms";
             this.listViewRooms.Size = new System.Drawing.Size(576, 250);
             this.listViewRooms.TabIndex = 5;
@@ -290,27 +317,33 @@
             this.lbl_Rooms.TabIndex = 3;
             this.lbl_Rooms.Text = "Rooms";
             // 
-            // pictureBox3
+            // barServiceToolStripMenuItem
             // 
-            this.pictureBox3.Image = global::SomerenUI.Properties.Resources.someren;
-            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(129, 117);
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
+            this.barServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drinkSupplyToolStripMenuItem,
+            this.cashRegisterToolStripMenuItem,
+            this.revenueReportToolStripMenuItem});
+            this.barServiceToolStripMenuItem.Name = "barServiceToolStripMenuItem";
+            this.barServiceToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.barServiceToolStripMenuItem.Text = "Bar Service";
             // 
-            // pictureBox4
+            // drinkSupplyToolStripMenuItem
             // 
-            this.pictureBox4.Image = global::SomerenUI.Properties.Resources.someren;
-            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(129, 117);
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
+            this.drinkSupplyToolStripMenuItem.Name = "drinkSupplyToolStripMenuItem";
+            this.drinkSupplyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drinkSupplyToolStripMenuItem.Text = "Drink Supply";
+            // 
+            // cashRegisterToolStripMenuItem
+            // 
+            this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
+            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cashRegisterToolStripMenuItem.Text = "Cash Register";
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.revenueReportToolStripMenuItem.Text = "Revenue Report";
             // 
             // SomerenUI
             // 
@@ -338,10 +371,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlLecturers.ResumeLayout(false);
             this.pnlLecturers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlRooms.ResumeLayout(false);
             this.pnlRooms.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -375,6 +408,10 @@
         private System.Windows.Forms.Panel pnlStudents;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.ToolStripMenuItem barServiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drinkSupplyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cashRegisterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem revenueReportToolStripMenuItem;
     }
 }
 
