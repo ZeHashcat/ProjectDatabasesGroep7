@@ -13,6 +13,7 @@ namespace SomerenModel
         public double SalesPrice { get; set; }
         public int VoucherAmount { get; set; }
         public decimal VAT { get; set; }
-        public int Quantity { get; set; }       
+        public int Quantity { get; set; }    
+        public int Sold { get; set; }
     }
 }

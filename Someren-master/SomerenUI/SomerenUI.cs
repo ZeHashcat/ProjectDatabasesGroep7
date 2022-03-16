@@ -32,6 +32,7 @@ namespace SomerenUI
             }
         }
 
+
         private void showPanel(string panelName)
         {
             if (panelName == "Dashboard")
@@ -40,6 +41,7 @@ namespace SomerenUI
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                pnlDrinkSupply.Hide();
 
                 // Show dashboard
                 pnlDashboard.Show();
@@ -52,6 +54,7 @@ namespace SomerenUI
                 imgDashboard.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                pnlDrinkSupply.Hide();
 
                 // Show students
                 pnlStudents.Show();             
@@ -93,6 +96,7 @@ namespace SomerenUI
                 imgDashboard.Hide();
                 pnlStudents.Hide();
                 pnlRooms.Hide();
+                pnlDrinkSupply.Hide();
 
                 // Show lecturers
                 pnlLecturers.Show();
@@ -131,6 +135,7 @@ namespace SomerenUI
                 imgDashboard.Hide();
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
+                pnlDrinkSupply.Hide();
 
                 // Show Rooms
                 pnlRooms.Show();
@@ -184,6 +189,7 @@ namespace SomerenUI
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                pnlDrinkSupply.Hide();
 
                 // Show Cash Register
                 pnlCashRegister.Show();
@@ -191,7 +197,7 @@ namespace SomerenUI
                 {
                     // Get drinks data from SQL server
                     DrinkSupplyService drinkService = new DrinkSupplyService();
-                    List<Drink> drinkSupplyList = drinkService.GetDrinkSupply();
+                    List<Drink> drinkSupplyList = drinkService.GetAllDrinkSupply();
 
                     // Clear the listview before filling it again
                     listViewDrinkSupply.Clear();
@@ -237,6 +243,7 @@ namespace SomerenUI
                     // Adds data to listview columns
                     foreach (Student s in studentList)
                     {
+
                         ListViewItem li = new ListViewItem(s.Number.ToString()); ;
                         ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
                         ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
@@ -249,6 +256,49 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
+
+            }
+            else if (panelName == "DrinkSupply")
+            {
+                // Hide all other panels
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlStudents.Hide();
+                pnlLecturers.Hide();
+                pnlRooms.Hide();
+                pnlCashRegister.Hide();
+                
+                // Show Drink supply
+                pnlDrinkSupply.Show();
+
+                try
+                {
+
+                    // Get drinks data from SQL server
+                    DrinkSupplyService drinkService = new DrinkSupplyService();
+                    List<Drink> drinkSupplyList = drinkService.GetDrinkSupply();
+
+                    // Clear the listview before filling it again
+                    listViewDrinkSupply2.Clear();
+
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    listViewDrinkSupply2.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply2.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply2.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Drink drink in drinkSupplyList)
+                    {
+                        ListViewItem li = new ListViewItem(drink.DrinkName);
+                        li.SubItems.Add(drink.SalesPrice.ToString());
+                        li.SubItems.Add(drink.Quantity.ToString());
+                        listViewDrinkSupply2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the drink supply: " + e.Message);
+                }                
 
             }
         }
@@ -300,6 +350,41 @@ namespace SomerenUI
             showPanel("CashRegister");
         }
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            DrinkSupplyService drinkService = new DrinkSupplyService();            
+            Drink drink = new Drink();
+            drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
+            drink.DrinkName = textBoxDrinkName.Text;
+            drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
+            drink.Quantity = int.Parse(textBoxQuantity.Text);
+            drink.VAT = 9m;
+            if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
+                drink.VoucherAmount = 1;
+            else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
+                drink.VoucherAmount = 2;
+            else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
+                drink.VoucherAmount = 3;
+            else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
+                drink.VoucherAmount = 4;
+            drink.Sold = 0;
+            drinkService.AddDrink(drink);
+            ListViewItem li = new ListViewItem(drink.DrinkName);
+            li.SubItems.Add(drink.SalesPrice.ToString());
+            li.SubItems.Add(drink.Quantity.ToString());
+            listViewDrinkSupply2.Items.Add(li);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
         {
 
         }

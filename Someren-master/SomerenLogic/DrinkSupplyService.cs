@@ -18,10 +18,24 @@ namespace SomerenLogic
             DrinkSupplydb = new DrinkSupplyDao();
         }
 
-        public List<Drink> GetDrinkSupply()
+        public List<Drink> GetAllDrinkSupply()
         {
             List<Drink> drinkSupply = DrinkSupplydb.GetAllDrinkSupply();
             return drinkSupply;
+        }
+        public List<Drink> GetDrinkSupply()
+        {
+            List<Drink> drinkSupply = DrinkSupplydb.GetDrinkSupply();
+            return drinkSupply;
+        }
+        public void AddDrink(Drink drink)
+        {
+            DrinkSupplydb.AddDrink(drink);
+        }
+        public int GetHighestDrinkID()
+        {
+            int highestDrinkID = DrinkSupplydb.GetHighestDrinkID();
+            return highestDrinkID;
         }
     }
 }
