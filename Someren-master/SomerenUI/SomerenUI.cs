@@ -57,7 +57,7 @@ namespace SomerenUI
                 pnlDrinkSupply.Hide();
 
                 // Show students
-                pnlStudents.Show();             
+                pnlStudents.Show();
 
                 try
                 {
@@ -267,7 +267,7 @@ namespace SomerenUI
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
                 pnlCashRegister.Hide();
-                
+
                 // Show Drink supply
                 pnlDrinkSupply.Show();
 
@@ -280,6 +280,11 @@ namespace SomerenUI
 
                     // Clear the listview before filling it again
                     listViewDrinkSupply2.Clear();
+
+                    ImageList imageList = new ImageList();
+                    imageList.Images.Add("ThumbsUp", Image.FromFile(Environment.CurrentDirectory + @"\Resources\Thumbsup.png"));
+                    imageList.Images.Add("ThumbsUp", Image.FromFile(@"\Resources\Thumps down.png"));
+                    listViewDrinkSupply2.SmallImageList = imageList;
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewDrinkSupply2.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
@@ -298,7 +303,7 @@ namespace SomerenUI
                 catch (Exception e)
                 {
                     MessageBox.Show("Something went wrong while loading the drink supply: " + e.Message);
-                }                
+                }
 
             }
         }
@@ -402,6 +407,10 @@ namespace SomerenUI
 
             DrinkSupplyService drinkService = new DrinkSupplyService();
             drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+
+            textBoxDrinkName.Text = "";
+            textBoxQuantity.Text = "";
+            textBoxSalePrice.Text = "";
         }
 
         private void listViewDrinkSupply2_MouseClick(object sender, MouseEventArgs e)
