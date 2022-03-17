@@ -196,7 +196,7 @@ namespace SomerenUI
 
                 ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
-                li.SubItems.Add(revenue.Turnover.ToString());
+                li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
                 li.SubItems.Add(revenue.AmountOfCustomers.ToString());
 
                 listViewRevenueReport.Items.Add(li);
@@ -226,7 +226,7 @@ namespace SomerenUI
 
                     ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
-                    li.SubItems.Add(revenue.Turnover.ToString());
+                    li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
                     li.SubItems.Add(revenue.AmountOfCustomers.ToString());
 
                     listViewRevenueReport.Items.Add(li);

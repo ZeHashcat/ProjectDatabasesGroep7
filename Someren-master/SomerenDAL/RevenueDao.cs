@@ -15,10 +15,19 @@ namespace SomerenDAL
         // Get the revenue of a specified time frame
         public Revenue GetRevenue(DateTime startDate, DateTime endDate)
         {
-            // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
-            string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID WHERE TransactionTime >= '{startDate}' AND TransactionTime < '{endDate}'; ");
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            try
+            {
+                // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
+                string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID WHERE TransactionTime >= '{startDate}' AND TransactionTime < '{endDate}'; ");
+                SqlParameter[] sqlParameters = new SqlParameter[0];
+                return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            }
+            catch(Exception e)
+            {
+                PrintDao Print = new PrintDao();
+                Print.ErrorLog(e);
+                throw new Exception("No sales found in this time");
+            }
         }
 
         // Get the revenue of all time
