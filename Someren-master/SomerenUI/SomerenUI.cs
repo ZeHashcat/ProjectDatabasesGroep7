@@ -281,22 +281,33 @@ namespace SomerenUI
                     // Clear the listview before filling it again
                     listViewDrinkSupply2.Clear();
 
-                    ImageList imageList = new ImageList();
-                    imageList.Images.Add("ThumbsUp", Image.FromFile(Environment.CurrentDirectory + @"\Resources\Thumbsup.png"));
-                    imageList.Images.Add("ThumbsUp", Image.FromFile(@"\Resources\Thumps down.png"));
-                    listViewDrinkSupply2.SmallImageList = imageList;
-
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewDrinkSupply2.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply2.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply2.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
 
+                    // Store DrinkId in listview with invisible column
+                    listViewDrinkSupply2.Columns.Add("ID", 0, HorizontalAlignment.Center);
+
+
+                    ImageList imageList = new ImageList();
+                    imageList.ImageSize = new Size(16, 16);
+                    imageList.Images.Add("ThumbsUp", Image.FromFile("thumbsup.png"));
+                    imageList.Images.Add("ThumbsDown", Image.FromFile("thumbsdown.png"));
+                    listViewDrinkSupply2.SmallImageList = imageList;
+
                     // Adds data to listview columns
                     foreach (Drink drink in drinkSupplyList)
                     {
-                        ListViewItem li = new ListViewItem(drink.DrinkName);
+                        ListViewItem li = new ListViewItem();
+                        li.Text = drink.DrinkName;
                         li.SubItems.Add(drink.SalesPrice.ToString());
                         li.SubItems.Add(drink.Quantity.ToString());
+                        li.SubItems.Add(drink.DrinkId.ToString());
+                        if (drink.Quantity < 10)
+                            li.ImageKey = "ThumbsDown";
+                        else
+                            li.ImageKey = "ThumbsUp";
                         listViewDrinkSupply2.Items.Add(li);
                     }
                 }
@@ -367,7 +378,7 @@ namespace SomerenUI
             drink.DrinkName = textBoxDrinkName.Text;
             drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
             drink.Quantity = int.Parse(textBoxQuantity.Text);
-            drink.VAT = 9m;
+            drink.VAT = 21m;
             if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
                 drink.VoucherAmount = 1;
             else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
@@ -378,29 +389,21 @@ namespace SomerenUI
                 drink.VoucherAmount = 4;
             drink.Sold = 0;
             drinkService.AddDrink(drink);
-            ListViewItem li = new ListViewItem(drink.DrinkName);
-            li.SubItems.Add(drink.SalesPrice.ToString());
-            li.SubItems.Add(drink.Quantity.ToString());
-            listViewDrinkSupply2.Items.Add(li);
 
-            textBoxDrinkName.Text = "";
-            textBoxQuantity.Text = "";
-            textBoxSalePrice.Text = "";
+            showPanel("DrinkSupply");
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int DrinkID = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text);
-            listViewDrinkSupply2.SelectedItems[0].SubItems.Clear();
+            int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
+            DrinkSupplyService drinkService = new DrinkSupplyService();
+            drinkService.DeleteDrink(drinkId);
+            showPanel("DrinkSupply");
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
-            listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text = textBoxDrinkName.Text;
-            listViewDrinkSupply2.SelectedItems[0].SubItems[1].Text = textBoxSalePrice.Text;
-            listViewDrinkSupply2.SelectedItems[0].SubItems[2].Text = textBoxQuantity.Text;
-
             string newDrinkName = textBoxDrinkName.Text;
             double salePrice = double.Parse(textBoxSalePrice.Text);
             int quantity = int.Parse(textBoxQuantity.Text);
@@ -408,9 +411,7 @@ namespace SomerenUI
             DrinkSupplyService drinkService = new DrinkSupplyService();
             drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
 
-            textBoxDrinkName.Text = "";
-            textBoxQuantity.Text = "";
-            textBoxSalePrice.Text = "";
+            showPanel("DrinkSupply");
         }
 
         private void listViewDrinkSupply2_MouseClick(object sender, MouseEventArgs e)

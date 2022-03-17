@@ -50,6 +50,13 @@ namespace SomerenDAL
             sqlParameters[3] = new SqlParameter("@originalDrinkName", originalDrinkName);
             ExecuteEditQuery(query, sqlParameters);
         }
+        public void DeleteDrink(int DrinkId)
+        {
+            string query = "DELETE FROM [Order] WHERE DrinkId = @DrinkId; DELETE FROM Drinks WHERE DrinkId = @DrinkId; ";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@DrinkId", DrinkId);
+            ExecuteEditQuery(query, sqlParameters);
+        }
         public int GetHighestDrinkID()
         {
             // Query joins 2 tables into 1 and shows id and full name
