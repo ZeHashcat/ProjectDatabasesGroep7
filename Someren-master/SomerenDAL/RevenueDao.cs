@@ -12,23 +12,34 @@ namespace SomerenDAL
 {
     public class RevenueDao : BaseDao
     {
+        // Get the revenue of a specified time frame
         public Revenue GetRevenue(DateTime startDate, DateTime endDate)
         {
             // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
-            string query = "SELECT COUNT(TransactionID), SUM(SalePrice), COUNT(DISTINCT PersonID) FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID; ";
+            string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID WHERE TransactionTime >= '{startDate}' AND TransactionTime < '{endDate}'; ");
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+        }
+
+        // Get the revenue of all time
+        public Revenue GetRevenue()
+        {
+            // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
+            string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID; ");
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
         private Revenue ReadTables(DataTable dataTable)
         {
-            // Create lecturers list
+            // Create revenue
             Revenue revenue = new Revenue();
-            revenue.Sales = (int)dataTable.Rows[0][0];
 
-            // Loop through  each row in table
+            // Get attributes for revenue
             foreach (DataRow dr in dataTable.Rows)
             {
-
+                revenue.Sales = (int)dr["Sales"];
+                revenue.Turnover = (double)dr["Turnover"];
+                revenue.AmountOfCustomers = (int)dr["Customers"];
             }
             return revenue;
         }

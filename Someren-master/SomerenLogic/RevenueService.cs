@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace SomerenLogic
 {
-    class RevenueService
+    public class RevenueService
     {
         RevenueDao Revenuedb;
 
@@ -17,9 +17,17 @@ namespace SomerenLogic
             Revenuedb = new RevenueDao();
         }
 
-        public Revenue GetLecturers(DateTime startDate, DateTime endDate)
+        // Get the revenue of a specified time frame
+        public Revenue GetRevenue(DateTime startDate, DateTime endDate)
         {
             Revenue revenue = Revenuedb.GetRevenue(startDate, endDate);
+            return revenue;
+        }
+
+        // Get the revenue of all time
+        public Revenue GetRevenue()
+        {
+            Revenue revenue = Revenuedb.GetRevenue();
             return revenue;
         }
     }
