@@ -126,7 +126,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(2244, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(1175, 35);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -394,7 +394,7 @@
             this.pnlDrinkSupply.Controls.Add(this.pictureBox9);
             this.pnlDrinkSupply.Controls.Add(this.listViewDrinkSupply2);
             this.pnlDrinkSupply.Controls.Add(this.label1);
-            this.pnlDrinkSupply.Location = new System.Drawing.Point(285, 658);
+            this.pnlDrinkSupply.Location = new System.Drawing.Point(14, 31);
             this.pnlDrinkSupply.Name = "pnlDrinkSupply";
             this.pnlDrinkSupply.Size = new System.Drawing.Size(1148, 583);
             this.pnlDrinkSupply.TabIndex = 7;
@@ -644,7 +644,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2244, 1258);
+            this.ClientSize = new System.Drawing.Size(1175, 625);
             this.Controls.Add(this.pnlDrinkSupply);
             this.Controls.Add(this.pnlRooms);
             this.Controls.Add(this.pnlLecturers);
