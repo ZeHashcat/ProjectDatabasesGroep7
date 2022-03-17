@@ -356,7 +356,7 @@ namespace SomerenUI
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            DrinkSupplyService drinkService = new DrinkSupplyService();            
+            DrinkSupplyService drinkService = new DrinkSupplyService();
             Drink drink = new Drink();
             drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
             drink.DrinkName = textBoxDrinkName.Text;
@@ -377,16 +377,38 @@ namespace SomerenUI
             li.SubItems.Add(drink.SalesPrice.ToString());
             li.SubItems.Add(drink.Quantity.ToString());
             listViewDrinkSupply2.Items.Add(li);
+
+            textBoxDrinkName.Text = "";
+            textBoxQuantity.Text = "";
+            textBoxSalePrice.Text = "";
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-
+            int DrinkID = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text);
+            listViewDrinkSupply2.SelectedItems[0].SubItems.Clear();
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+            listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text = textBoxDrinkName.Text;
+            listViewDrinkSupply2.SelectedItems[0].SubItems[1].Text = textBoxSalePrice.Text;
+            listViewDrinkSupply2.SelectedItems[0].SubItems[2].Text = textBoxQuantity.Text;
 
+            string newDrinkName = textBoxDrinkName.Text;
+            double salePrice = double.Parse(textBoxSalePrice.Text);
+            int quantity = int.Parse(textBoxQuantity.Text);
+
+            DrinkSupplyService drinkService = new DrinkSupplyService();
+            drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+        }
+
+        private void listViewDrinkSupply2_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBoxDrinkName.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+            textBoxSalePrice.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[1].Text;
+            textBoxQuantity.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[2].Text;
         }
     }
 }

@@ -37,5 +37,9 @@ namespace SomerenLogic
             int highestDrinkID = DrinkSupplydb.GetHighestDrinkID();
             return highestDrinkID;
         }
+        public void UpdateDrink(string originalDrinkName, string newDrinkName, double salePrice, int quantity)
+        {
+            DrinkSupplydb.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+        }
     }
 }
