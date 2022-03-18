@@ -32,14 +32,22 @@ namespace SomerenUI
             }
         }
 
+        private void hideAllPanels()
+        {
+            pnlDashboard.Hide();
+            imgDashboard.Hide();
+            pnlStudents.Hide();
+            pnlRooms.Hide();
+            pnlLecturers.Hide();
+            pnlRevenue.Hide();
+        }
+
         private void showPanel(string panelName)
         {
             if (panelName == "Dashboard")
             {
                 // Hide all other panels
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show dashboard
                 pnlDashboard.Show();
@@ -48,10 +56,7 @@ namespace SomerenUI
             else if (panelName == "Students")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show students
                 pnlStudents.Show();             
@@ -89,10 +94,7 @@ namespace SomerenUI
             else if (panelName == "Lecturers")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlRooms.Hide();
+                hideAllPanels();
 
                 // Show lecturers
                 pnlLecturers.Show();
@@ -127,10 +129,7 @@ namespace SomerenUI
             else if (panelName == "Rooms")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
+                hideAllPanels();
 
                 // Show Rooms
                 pnlRooms.Show();
@@ -245,9 +244,72 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
+            else if (panelName == "RevenueReport")
+            {
+                // Hide all other panels
+                hideAllPanels();
 
+                // Show Rooms
+                pnlRevenue.Show();
+
+                // Get the revenue of all time
+                RevenueService revenuService = new RevenueService();
+                Revenue revenue = revenuService.GetRevenue();
+                // Clear the listview before filling it again
+                listViewRevenueReport.Clear();
+
+                // Adds columns to the listview
+                listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
+                listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
+                listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
+
+                ListViewItem li = new ListViewItem(revenue.Sales.ToString());
+
+                li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
+                li.SubItems.Add(revenue.AmountOfCustomers.ToString());
+
+                listViewRevenueReport.Items.Add(li);
             }
         }
+
+        // Displays the revenue report whenever a new date is selected
+        private void displayRevenue()
+        {
+            DateTime startTime = dateTimePickerStartDate.Value;
+            DateTime endTime = dateTimePickerEndDate.Value;
+            listViewRevenueReport.Clear();
+            if (startTime < endTime && endTime < DateTime.Now)
+            {
+                try
+                {
+                    // Get the revenue of the specified time frame
+                    RevenueService revenuService = new RevenueService();
+                    Revenue revenue = revenuService.GetRevenue(startTime, endTime);
+                    // Clear the listview before filling it again
+                    
+
+                    // Adds columns to the listview
+                    listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
+
+                    ListViewItem li = new ListViewItem(revenue.Sales.ToString());
+
+                    li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
+                    li.SubItems.Add(revenue.AmountOfCustomers.ToString());
+
+                    listViewRevenueReport.Items.Add(li);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the revenue: " + e.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"{startTime.Date} till {endTime.Date} is an Invalid date!");
+            }
+        }            
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -287,6 +349,20 @@ namespace SomerenUI
         {
             showPanel("Rooms");
         }
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("RevenueReport");
+        }
+
+        private void dateTimePickerStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            displayRevenue();
+        }
+
+        private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            displayRevenue();
+
         private void drinkSupplyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("DrinkSupply");
