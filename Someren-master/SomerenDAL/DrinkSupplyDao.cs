@@ -21,7 +21,7 @@ namespace SomerenDAL
         }
         public List<Drink> GetDrinkSupply()
         {
-            // Query selects needed columns and sorts them
+            // Query selects needed columns and sorts them then return this list
             string query = "SELECT DrinkID, DrinkName, SalePrice, Quantity, VoucherAmount, VAT, Sold FROM Drinks WHERE Quantity > 1 AND VoucherAmount > 1 AND VAT > 9.00 ORDER BY Quantity DESC, SalePrice DESC, Sold DESC; ";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
@@ -29,7 +29,7 @@ namespace SomerenDAL
 
         public void AddDrink(Drink drink)
         {
-            // Query joins 2 tables into 1 and shows id and full name
+            // Query adds drink to database
             string query = "INSERT INTO Drinks (DrinkID, DrinkName, SalePrice, Quantity, VAT, VoucherAmount, Sold) VALUES(@DrinkID, @DrinkName, @SalesPrice, @Quantity, @VAT, @VoucherAmount, @Sold);";
             SqlParameter[] sqlParameters = new SqlParameter[7];
             sqlParameters[0] = new SqlParameter("@DrinkID", drink.DrinkId);
@@ -44,6 +44,7 @@ namespace SomerenDAL
         
         public void UpdateDrink(string originalDrinkName, string newDrinkName, double salePrice, int quantity)
         {
+            // Query update the drink name, sale price and quantity
             string query = "UPDATE Drinks SET DrinkName = @newDrinkName, salePrice = @salePrice, quantity = @quantity WHERE DrinkName = @originalDrinkName; ";
             SqlParameter[] sqlParameters = new SqlParameter[4];
             sqlParameters[0] = new SqlParameter("@newDrinkName", newDrinkName);
@@ -55,6 +56,7 @@ namespace SomerenDAL
         
         public void DeleteDrink(int DrinkId)
         {
+            // Query deletes drink and its past transactions
             string query = "DELETE FROM Drinks WHERE DrinkId = @DrinkId; ";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@DrinkId", DrinkId);
@@ -63,7 +65,7 @@ namespace SomerenDAL
         
         public int GetHighestDrinkID()
         {
-            // Query joins 2 tables into 1 and shows id and full name
+            // Query return highest drinkID
             string query = "SELECT MAX(DrinkID) AS HighestDrinkID FROM Drinks; ";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return readNumber(ExecuteSelectQuery(query, sqlParameters));
@@ -116,6 +118,7 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParametersTwo);
         }
 
+        // Query get transactionsID from order and orders them
         public List<int> GetTransactionIds(int argument)
         {
             List<int> transactionIds = new List<int>();
@@ -131,6 +134,7 @@ namespace SomerenDAL
             return transactionIds;
         }
 
+        // Query writes voucher to database
         public void WriteVoucher(string argument, string argumentTwo)
         {
             string query = "INSERT INTO [Voucher] (TransactionID, PersonID, TransactionTime) VALUES (@TransactionID, @PersonID, CURRENT_TIMESTAMP)";

@@ -507,6 +507,8 @@ namespace SomerenUI
             }
 
             //Refreshes the panel.
+            lbl_totalMoney.Text = $"Total Price:";
+            lbl_TotalVoucher.Text = $"Amount of Vouchers:";
             showPanel("CashRegister");
         }
 
@@ -530,21 +532,36 @@ namespace SomerenUI
         {
             DrinkSupplyService drinkService = new DrinkSupplyService();
             Drink drink = new Drink();
-            drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
-            drink.DrinkName = textBoxDrinkName.Text;
-            drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
-            drink.Quantity = int.Parse(textBoxQuantity.Text);
-            drink.VAT = 21m;
-            if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
-                drink.VoucherAmount = 1;
-            else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
-                drink.VoucherAmount = 2;
-            else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
-                drink.VoucherAmount = 3;
-            else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
-                drink.VoucherAmount = 4;
-            drink.Sold = 0;
-            drinkService.AddDrink(drink);
+            PrintService printService = new PrintService();
+            try
+            {
+                try
+                {
+                    drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
+                    drink.DrinkName = textBoxDrinkName.Text;
+                    drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
+                    drink.Quantity = int.Parse(textBoxQuantity.Text);
+                    drink.VAT = 21m;
+                    if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
+                        drink.VoucherAmount = 1;
+                    else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
+                        drink.VoucherAmount = 2;
+                    else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
+                        drink.VoucherAmount = 3;
+                    else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
+                        drink.VoucherAmount = 4;
+                    drink.Sold = 0;
+                }   
+                catch (Exception ex)
+                {
+                    throw new Exception("Enter valid value");
+                }
+                drinkService.AddDrink(drink);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Could not add drink: " + ex.Message);
+            }            
 
             showPanel("DrinkSupply");
         }
@@ -552,23 +569,58 @@ namespace SomerenUI
         // If clicked, selected drink will be deleted from the the database including its past transactions and update listview
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
-            DrinkSupplyService drinkService = new DrinkSupplyService();
-            drinkService.DeleteDrink(drinkId);
+            PrintService printService = new PrintService();
+            try
+            {
+                if (!(listViewDrinkSupply2.SelectedItems.Count > 0))
+                    throw new Exception("Select a row again");
+                int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
+                DrinkSupplyService drinkService = new DrinkSupplyService();
+                drinkService.DeleteDrink(drinkId);
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong trying to delete the drink: " + ex.Message);
+            }
+            textBoxDrinkName.Text = "";
+            textBoxSalePrice.Text = "";
+            textBoxQuantity.Text = "";
+
             showPanel("DrinkSupply");
         }
 
         // If clicked, alter a drink (name, quantity, sale price) in the database with textbox values
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
-            string newDrinkName = textBoxDrinkName.Text;
-            double salePrice = double.Parse(textBoxSalePrice.Text);
-            int quantity = int.Parse(textBoxQuantity.Text);
-
-            DrinkSupplyService drinkService = new DrinkSupplyService();
-            drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
-
+            PrintService printService = new PrintService();
+            string newDrinkName;
+            double salePrice;
+            int quantity;
+            try
+            {
+                if (!(listViewDrinkSupply2.SelectedItems.Count > 0))
+                    throw new Exception("Select a row again");
+                string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+                try
+                {
+                    salePrice = double.Parse(textBoxSalePrice.Text);
+                    newDrinkName = textBoxDrinkName.Text;
+                    quantity = int.Parse(textBoxQuantity.Text);
+                }
+                catch(Exception ex)
+                {
+                    printService.Print(ex);
+                    throw new Exception("Enter valid value");
+                }                
+                DrinkSupplyService drinkService = new DrinkSupplyService();
+                drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong updating: " + ex.Message);
+            }
+            
             showPanel("DrinkSupply");
         }
 
