@@ -79,6 +79,7 @@
             this.lbl_DrinkSupply = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -94,6 +95,7 @@
             this.pnlCashRegister.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // imgDashboard
@@ -118,7 +120,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1183, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1433, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -235,7 +237,7 @@
             this.pnlStudents.Controls.Add(this.pictureBox1);
             this.pnlStudents.Controls.Add(this.lbl_Students);
             this.pnlStudents.Location = new System.Drawing.Point(9, 20);
-            this.pnlStudents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlStudents.Margin = new System.Windows.Forms.Padding(2);
             this.pnlStudents.Name = "pnlStudents";
             this.pnlStudents.Size = new System.Drawing.Size(765, 379);
             this.pnlStudents.TabIndex = 4;
@@ -257,7 +259,7 @@
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(129, 117);
             this.pictureBox1.TabIndex = 0;
@@ -289,7 +291,7 @@
             this.pictureBox3.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
             this.pictureBox3.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(129, 117);
             this.pictureBox3.TabIndex = 6;
@@ -334,7 +336,7 @@
             this.pnlRooms.Controls.Add(this.pictureBox2);
             this.pnlRooms.Controls.Add(this.lbl_Rooms);
             this.pnlRooms.Location = new System.Drawing.Point(9, 20);
-            this.pnlRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlRooms.Margin = new System.Windows.Forms.Padding(2);
             this.pnlRooms.Name = "pnlRooms";
             this.pnlRooms.Size = new System.Drawing.Size(765, 379);
             this.pnlRooms.TabIndex = 6;
@@ -344,7 +346,7 @@
             this.pictureBox4.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
             this.pictureBox4.Location = new System.Drawing.Point(613, 42);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(129, 117);
             this.pictureBox4.TabIndex = 6;
@@ -356,7 +358,7 @@
             this.listViewRooms.GridLines = true;
             this.listViewRooms.HideSelection = false;
             this.listViewRooms.Location = new System.Drawing.Point(16, 42);
-            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2);
             this.listViewRooms.Name = "listViewRooms";
             this.listViewRooms.Size = new System.Drawing.Size(576, 250);
             this.listViewRooms.TabIndex = 5;
@@ -383,7 +385,7 @@
             this.pnlRevenue.Controls.Add(this.listViewRevenueReport);
             this.pnlRevenue.Controls.Add(this.lblRevenueReport);
             this.pnlRevenue.Location = new System.Drawing.Point(9, 20);
-            this.pnlRevenue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlRevenue.Margin = new System.Windows.Forms.Padding(2);
             this.pnlRevenue.Name = "pnlRevenue";
             this.pnlRevenue.Size = new System.Drawing.Size(765, 379);
             this.pnlRevenue.TabIndex = 7;
@@ -411,7 +413,7 @@
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.Location = new System.Drawing.Point(293, 51);
-            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(151, 20);
             this.dateTimePickerEndDate.TabIndex = 8;
@@ -420,7 +422,7 @@
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(74, 51);
-            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(151, 20);
             this.dateTimePickerStartDate.TabIndex = 7;
@@ -432,7 +434,7 @@
             this.listViewRevenueReport.GridLines = true;
             this.listViewRevenueReport.HideSelection = false;
             this.listViewRevenueReport.Location = new System.Drawing.Point(16, 72);
-            this.listViewRevenueReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewRevenueReport.Margin = new System.Windows.Forms.Padding(2);
             this.listViewRevenueReport.Name = "listViewRevenueReport";
             this.listViewRevenueReport.Size = new System.Drawing.Size(576, 220);
             this.listViewRevenueReport.TabIndex = 5;
@@ -454,7 +456,7 @@
             // 
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(890, 105);
+            this.panel1.Location = new System.Drawing.Point(814, 422);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 308);
@@ -486,6 +488,7 @@
             // 
             // pnlCashRegister
             // 
+            this.pnlCashRegister.Controls.Add(this.pictureBox9);
             this.pnlCashRegister.Controls.Add(this.checkBoxVoucher);
             this.pnlCashRegister.Controls.Add(this.lbl_TotalVoucher);
             this.pnlCashRegister.Controls.Add(this.lbl_totalMoney);
@@ -494,17 +497,17 @@
             this.pnlCashRegister.Controls.Add(this.listViewStudents2);
             this.pnlCashRegister.Controls.Add(this.listViewDrinkSupply);
             this.pnlCashRegister.Controls.Add(this.lbl_DrinkSupply);
-            this.pnlCashRegister.Location = new System.Drawing.Point(7, 16);
+            this.pnlCashRegister.Location = new System.Drawing.Point(9, 20);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCashRegister.Name = "pnlCashRegister";
-            this.pnlCashRegister.Size = new System.Drawing.Size(574, 308);
+            this.pnlCashRegister.Size = new System.Drawing.Size(765, 379);
             this.pnlCashRegister.TabIndex = 8;
             // 
             // checkBoxVoucher
             // 
             this.checkBoxVoucher.AutoSize = true;
-            this.checkBoxVoucher.Location = new System.Drawing.Point(12, 286);
-            this.checkBoxVoucher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxVoucher.Location = new System.Drawing.Point(12, 333);
+            this.checkBoxVoucher.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxVoucher.Name = "checkBoxVoucher";
             this.checkBoxVoucher.Size = new System.Drawing.Size(99, 17);
             this.checkBoxVoucher.TabIndex = 12;
@@ -514,7 +517,7 @@
             // lbl_TotalVoucher
             // 
             this.lbl_TotalVoucher.AutoSize = true;
-            this.lbl_TotalVoucher.Location = new System.Drawing.Point(145, 266);
+            this.lbl_TotalVoucher.Location = new System.Drawing.Point(181, 313);
             this.lbl_TotalVoucher.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_TotalVoucher.Name = "lbl_TotalVoucher";
             this.lbl_TotalVoucher.Size = new System.Drawing.Size(106, 13);
@@ -524,7 +527,7 @@
             // lbl_totalMoney
             // 
             this.lbl_totalMoney.AutoSize = true;
-            this.lbl_totalMoney.Location = new System.Drawing.Point(73, 266);
+            this.lbl_totalMoney.Location = new System.Drawing.Point(82, 313);
             this.lbl_totalMoney.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_totalMoney.Name = "lbl_totalMoney";
             this.lbl_totalMoney.Size = new System.Drawing.Size(61, 13);
@@ -533,10 +536,10 @@
             // 
             // CheckOutButton
             // 
-            this.CheckOutButton.Location = new System.Drawing.Point(12, 262);
-            this.CheckOutButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CheckOutButton.Location = new System.Drawing.Point(12, 310);
+            this.CheckOutButton.Margin = new System.Windows.Forms.Padding(2);
             this.CheckOutButton.Name = "CheckOutButton";
-            this.CheckOutButton.Size = new System.Drawing.Size(56, 19);
+            this.CheckOutButton.Size = new System.Drawing.Size(66, 19);
             this.CheckOutButton.TabIndex = 9;
             this.CheckOutButton.Text = "Checkout";
             this.CheckOutButton.UseVisualStyleBackColor = true;
@@ -546,7 +549,7 @@
             // 
             this.lbl_Students2.AutoSize = true;
             this.lbl_Students2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Students2.Location = new System.Drawing.Point(236, 9);
+            this.lbl_Students2.Location = new System.Drawing.Point(374, 4);
             this.lbl_Students2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Students2.Name = "lbl_Students2";
             this.lbl_Students2.Size = new System.Drawing.Size(107, 29);
@@ -558,11 +561,11 @@
             this.listViewStudents2.FullRowSelect = true;
             this.listViewStudents2.GridLines = true;
             this.listViewStudents2.HideSelection = false;
-            this.listViewStudents2.Location = new System.Drawing.Point(239, 34);
+            this.listViewStudents2.Location = new System.Drawing.Point(379, 35);
             this.listViewStudents2.Margin = new System.Windows.Forms.Padding(2);
             this.listViewStudents2.MultiSelect = false;
             this.listViewStudents2.Name = "listViewStudents2";
-            this.listViewStudents2.Size = new System.Drawing.Size(218, 204);
+            this.listViewStudents2.Size = new System.Drawing.Size(218, 257);
             this.listViewStudents2.TabIndex = 7;
             this.listViewStudents2.UseCompatibleStateImageBehavior = false;
             this.listViewStudents2.View = System.Windows.Forms.View.Details;
@@ -575,7 +578,7 @@
             this.listViewDrinkSupply.Location = new System.Drawing.Point(12, 34);
             this.listViewDrinkSupply.Margin = new System.Windows.Forms.Padding(2);
             this.listViewDrinkSupply.Name = "listViewDrinkSupply";
-            this.listViewDrinkSupply.Size = new System.Drawing.Size(225, 204);
+            this.listViewDrinkSupply.Size = new System.Drawing.Size(363, 258);
             this.listViewDrinkSupply.TabIndex = 5;
             this.listViewDrinkSupply.UseCompatibleStateImageBehavior = false;
             this.listViewDrinkSupply.View = System.Windows.Forms.View.Details;
@@ -585,7 +588,7 @@
             // 
             this.lbl_DrinkSupply.AutoSize = true;
             this.lbl_DrinkSupply.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DrinkSupply.Location = new System.Drawing.Point(8, 8);
+            this.lbl_DrinkSupply.Location = new System.Drawing.Point(7, 3);
             this.lbl_DrinkSupply.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_DrinkSupply.Name = "lbl_DrinkSupply";
             this.lbl_DrinkSupply.Size = new System.Drawing.Size(149, 29);
@@ -608,11 +611,22 @@
             this.pictureBox8.TabIndex = 0;
             this.pictureBox8.TabStop = false;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox9.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.InitialImage")));
+            this.pictureBox9.Location = new System.Drawing.Point(613, 42);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(129, 117);
+            this.pictureBox9.TabIndex = 13;
+            this.pictureBox9.TabStop = false;
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1183, 588);
+            this.ClientSize = new System.Drawing.Size(1433, 588);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlRooms);
             this.Controls.Add(this.pnlRevenue);
@@ -650,6 +664,7 @@
             this.pnlCashRegister.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -709,6 +724,7 @@
         private System.Windows.Forms.Label lbl_TotalVoucher;
         private System.Windows.Forms.Label lbl_totalMoney;
         private System.Windows.Forms.CheckBox checkBoxVoucher;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }
 

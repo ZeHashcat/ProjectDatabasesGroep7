@@ -40,6 +40,7 @@ namespace SomerenUI
             pnlRooms.Hide();
             pnlLecturers.Hide();
             pnlRevenue.Hide();
+            pnlCashRegister.Hide();
         }
 
         private void showPanel(string panelName)
@@ -178,12 +179,7 @@ namespace SomerenUI
             else if (panelName == "CashRegister")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
-                panel1.Hide();
+                hideAllPanels();
 
                 // Show Cash Register
                 pnlCashRegister.Show();
@@ -225,7 +221,7 @@ namespace SomerenUI
                     List<Student> studentList = studService.GetStudents(); ;
 
                     // Clear the listview before filling it again
-                    listViewStudents.Clear();
+                    listViewStudents2.Clear();
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
                     listViewStudents2.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
