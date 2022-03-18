@@ -356,7 +356,7 @@ namespace SomerenUI
                     catch (Exception ex)
                     {
                         printService.Print(ex);
-                        throw new Exception("Failed to add vouchers to database!" + ex.Message);
+                        throw new Exception("Failed to add vouchers to database!");
                     }
                 }
 
