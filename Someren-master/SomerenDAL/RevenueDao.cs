@@ -26,7 +26,7 @@ namespace SomerenDAL
             {
                 PrintDao Print = new PrintDao();
                 Print.ErrorLog(e);
-                throw new Exception($"No sales found in this time");
+                throw new Exception($"No sales found at this time");
             }
         }
 
