@@ -193,7 +193,7 @@ namespace SomerenUI
                     listViewDrinkSupply.Clear();
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
-                    listViewDrinkSupply.Columns.Add("Drink ID", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Drink ID", 59, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Voucher Amount", 0, HorizontalAlignment.Center);
@@ -204,7 +204,7 @@ namespace SomerenUI
                     {
                         ListViewItem li = new ListViewItem(drink.DrinkId.ToString());
                         li.SubItems.Add(drink.DrinkName);
-                        li.SubItems.Add(drink.SalesPrice.ToString());
+                        li.SubItems.Add($"€{drink.SalesPrice:0.00}");
                         li.SubItems.Add(drink.VoucherAmount.ToString());
                         li.SubItems.Add(drink.Quantity.ToString());
                         listViewDrinkSupply.Items.Add(li);
@@ -460,7 +460,7 @@ namespace SomerenUI
             //Sums up all the prices in both munnies and vouchers, then outputs those to the text labels.
             foreach (ListViewItem Drink in listViewDrinkSupply.SelectedItems)
             {
-                totalMoney += double.Parse(Drink.SubItems[2].Text);
+                totalMoney += double.Parse(Drink.SubItems[2].Text.Split('€')[1]);
                 totalVouchers += int.Parse(Drink.SubItems[3].Text);
             }
             lbl_totalMoney.Text = $"Total Price: €{totalMoney:0.00}";
