@@ -59,7 +59,7 @@ namespace SomerenUI
                 hideAllPanels();
 
                 // Show students
-                pnlStudents.Show();             
+                pnlStudents.Show();
 
                 try
                 {
@@ -123,7 +123,7 @@ namespace SomerenUI
                 }
                 catch (Exception e)
                 {
-                MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
                 }
             }
             else if (panelName == "Rooms")
@@ -244,6 +244,7 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
+            }
             else if (panelName == "RevenueReport")
             {
                 // Hide all other panels
@@ -251,24 +252,31 @@ namespace SomerenUI
 
                 // Show Rooms
                 pnlRevenue.Show();
+                try
+                {
+                    // Get the revenue of all time
+                    RevenueService revenuService = new RevenueService();
+                    Revenue revenue = revenuService.GetRevenue();
 
-                // Get the revenue of all time
-                RevenueService revenuService = new RevenueService();
-                Revenue revenue = revenuService.GetRevenue();
-                // Clear the listview before filling it again
-                listViewRevenueReport.Clear();
+                    // Clear the listview before filling it again
+                    listViewRevenueReport.Clear();
 
-                // Adds columns to the listview
-                listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
-                listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
-                listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
+                    // Adds columns to the listview
+                    listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
 
-                ListViewItem li = new ListViewItem(revenue.Sales.ToString());
+                    ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
-                li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
-                li.SubItems.Add(revenue.AmountOfCustomers.ToString());
+                    li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
+                    li.SubItems.Add(revenue.AmountOfCustomers.ToString());
 
-                listViewRevenueReport.Items.Add(li);
+                    listViewRevenueReport.Items.Add(li);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong with getting the revenue report!" + ex.Message.ToString());
+                }  
             }
         }
 
@@ -362,7 +370,7 @@ namespace SomerenUI
         private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
         {
             displayRevenue();
-
+        }
         private void drinkSupplyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("DrinkSupply");
