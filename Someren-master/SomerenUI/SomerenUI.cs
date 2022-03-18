@@ -59,7 +59,7 @@ namespace SomerenUI
                 hideAllPanels();
 
                 // Show students
-                pnlStudents.Show();             
+                pnlStudents.Show();
 
                 try
                 {
@@ -123,7 +123,7 @@ namespace SomerenUI
                 }
                 catch (Exception e)
                 {
-                MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
                 }
             }
             else if (panelName == "Rooms")
@@ -244,6 +244,7 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
+            }
             else if (panelName == "RevenueReport")
             {
                 // Hide all other panels
@@ -362,7 +363,7 @@ namespace SomerenUI
         private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
         {
             displayRevenue();
-
+        }
         private void drinkSupplyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("DrinkSupply");
