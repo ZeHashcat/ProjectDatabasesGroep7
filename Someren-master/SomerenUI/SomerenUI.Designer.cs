@@ -64,6 +64,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pnlCashRegister = new System.Windows.Forms.Panel();
+            this.checkBoxVoucher = new System.Windows.Forms.CheckBox();
             this.lbl_TotalVoucher = new System.Windows.Forms.Label();
             this.lbl_totalMoney = new System.Windows.Forms.Label();
             this.CheckOutButton = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.lbl_DrinkSupply = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.checkBoxVoucher = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -114,7 +114,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1583, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(775, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -436,11 +436,21 @@
             this.pnlCashRegister.Controls.Add(this.listViewDrinkSupply);
             this.pnlCashRegister.Controls.Add(this.pictureBox6);
             this.pnlCashRegister.Controls.Add(this.lbl_DrinkSupply);
-            this.pnlCashRegister.Location = new System.Drawing.Point(800, 20);
+            this.pnlCashRegister.Location = new System.Drawing.Point(9, 20);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCashRegister.Name = "pnlCashRegister";
             this.pnlCashRegister.Size = new System.Drawing.Size(765, 379);
             this.pnlCashRegister.TabIndex = 8;
+            // 
+            // checkBoxVoucher
+            // 
+            this.checkBoxVoucher.AutoSize = true;
+            this.checkBoxVoucher.Location = new System.Drawing.Point(16, 352);
+            this.checkBoxVoucher.Name = "checkBoxVoucher";
+            this.checkBoxVoucher.Size = new System.Drawing.Size(99, 17);
+            this.checkBoxVoucher.TabIndex = 12;
+            this.checkBoxVoucher.Text = "Use Vouchers?";
+            this.checkBoxVoucher.UseVisualStyleBackColor = true;
             // 
             // lbl_TotalVoucher
             // 
@@ -536,21 +546,11 @@
             this.pictureBox8.TabIndex = 0;
             this.pictureBox8.TabStop = false;
             // 
-            // checkBoxVoucher
-            // 
-            this.checkBoxVoucher.AutoSize = true;
-            this.checkBoxVoucher.Location = new System.Drawing.Point(16, 352);
-            this.checkBoxVoucher.Name = "checkBoxVoucher";
-            this.checkBoxVoucher.Size = new System.Drawing.Size(99, 17);
-            this.checkBoxVoucher.TabIndex = 12;
-            this.checkBoxVoucher.Text = "Use Vouchers?";
-            this.checkBoxVoucher.UseVisualStyleBackColor = true;
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1583, 642);
+            this.ClientSize = new System.Drawing.Size(775, 402);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlRooms);
             this.Controls.Add(this.pnlLecturers);
