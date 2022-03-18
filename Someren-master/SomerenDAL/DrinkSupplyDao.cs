@@ -54,6 +54,12 @@ namespace SomerenDAL
             sqlParameters[0] = new SqlParameter("@DrinkID", argument);
             sqlParameters[1] = new SqlParameter("@PersonID", argumentTwo);            
             ExecuteEditQuery(query, sqlParameters);
+            //Had to add another SqlParameter[] because otherwise it gives an error along the lines of parameter is already contained withing other SqlParameter collection.
+            SqlParameter[] sqlParametersTwo = new SqlParameter[1];
+            //Had to change @DrinkID to @DrinkIDTwo, otherwise same error.
+            sqlParametersTwo[0] = new SqlParameter("@DrinkIDTwo", argument);
+            query = "UPDATE [Drinks] SET Quantity = Quantity - 1, Sold = Sold + 1 WHERE DrinkID = @DrinkIDTwo";
+            ExecuteEditQuery(query, sqlParametersTwo);
         }
 
         public List<int> GetTransactionIds(int argument)
