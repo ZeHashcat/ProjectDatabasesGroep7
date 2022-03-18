@@ -50,11 +50,12 @@ namespace SomerenLogic
         {
             DrinkSupplydb.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
         }
-      
+
         //Baton passing method between UI and DAL.
         public void DeleteDrink(int drinkId)
         {
             DrinkSupplydb.DeleteDrink(drinkId);
+        }
 
         //Baton passing method between UI and DAL.
         public int GetPersonId(string argument)

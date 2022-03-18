@@ -32,7 +32,7 @@ namespace SomerenUI
             }
         }
 
-        private void hideAllPanels()
+        private void HideAllPanels()
         {
             pnlDashboard.Hide();
             imgDashboard.Hide();
@@ -41,6 +41,7 @@ namespace SomerenUI
             pnlLecturers.Hide();
             pnlRevenue.Hide();
             pnlCashRegister.Hide();
+            pnlDrinkSupply.Hide();
         }
         
         private void showPanel(string panelName)
@@ -48,7 +49,7 @@ namespace SomerenUI
             if (panelName == "Dashboard")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show dashboard
                 pnlDashboard.Show();
@@ -57,7 +58,7 @@ namespace SomerenUI
             else if (panelName == "Students")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show students
                 pnlStudents.Show();
@@ -95,7 +96,7 @@ namespace SomerenUI
             else if (panelName == "Lecturers")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show lecturers
                 pnlLecturers.Show();
@@ -130,7 +131,7 @@ namespace SomerenUI
             else if (panelName == "Rooms")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Rooms
                 pnlRooms.Show();
@@ -179,7 +180,7 @@ namespace SomerenUI
             else if (panelName == "CashRegister")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Cash Register
                 pnlCashRegister.Show();
@@ -245,7 +246,7 @@ namespace SomerenUI
             else if (panelName == "RevenueReport")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Rooms
                 pnlRevenue.Show();
@@ -261,7 +262,7 @@ namespace SomerenUI
                     // Adds columns to the listview
                     listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
                     listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
-                    listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Amount of customers", 120, HorizontalAlignment.Center);
 
                     ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
@@ -278,12 +279,7 @@ namespace SomerenUI
             else if (panelName == "DrinkSupply")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
-                pnlCashRegister.Hide();
+                HideAllPanels();
 
                 // Show Drink supply
                 pnlDrinkSupply.Show();
@@ -511,7 +507,7 @@ namespace SomerenUI
             }
 
             //Refreshes the panel.
-            showPanel("DrinkSupply");
+            showPanel("CashRegister");
         }
 
         private void listViewDrinkSupply_SelectedIndexChanged(object sender, EventArgs e)

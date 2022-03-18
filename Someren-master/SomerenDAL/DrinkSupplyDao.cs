@@ -15,7 +15,7 @@ namespace SomerenDAL
         public List<Drink> GetAllDrinkSupply()
         {
             // Query gets all required data for making objects of class Drink, then gives it to ReadTables to make a List<Drink>, which then gets returned.
-            string query = "SELECT DrinkID, DrinkName, SalePrice, VoucherAmount, VAT, Quantity FROM Drinks";
+            string query = "SELECT DrinkID, DrinkName, SalePrice, VoucherAmount, VAT, Quantity, Sold FROM Drinks";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
