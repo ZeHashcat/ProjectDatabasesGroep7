@@ -41,9 +41,9 @@ namespace SomerenLogic
         {
             DrinkSupplydb.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
         }
-        public void DeleteDrink(int DrinkId)
+        public void DeleteDrink(int drinkId)
         {
-            DrinkSupplydb.DeleteDrink(DrinkId);
+            DrinkSupplydb.DeleteDrink(drinkId);
         }
     }
 }

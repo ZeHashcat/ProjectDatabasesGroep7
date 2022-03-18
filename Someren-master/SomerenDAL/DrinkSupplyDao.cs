@@ -21,7 +21,7 @@ namespace SomerenDAL
         }
         public List<Drink> GetDrinkSupply()
         {
-            // Query joins 2 tables into 1 and shows id and full name
+            // Query selects needed columns and sorts them
             string query = "SELECT DrinkID, DrinkName, SalePrice, Quantity, VoucherAmount, VAT, Sold FROM Drinks WHERE Quantity > 1 AND VoucherAmount > 1 AND VAT > 9.00 ORDER BY Quantity DESC, SalePrice DESC, Sold DESC; ";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
@@ -52,7 +52,7 @@ namespace SomerenDAL
         }
         public void DeleteDrink(int DrinkId)
         {
-            string query = "DELETE FROM [Order] WHERE DrinkId = @DrinkId; DELETE FROM Drinks WHERE DrinkId = @DrinkId; ";
+            string query = "DELETE FROM Drinks WHERE DrinkId = @DrinkId; ";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@DrinkId", DrinkId);
             ExecuteEditQuery(query, sqlParameters);

@@ -281,7 +281,7 @@ namespace SomerenUI
                     // Clear the listview before filling it again
                     listViewDrinkSupply2.Clear();
 
-                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    // Adds columns to the listview
                     listViewDrinkSupply2.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply2.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply2.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
@@ -289,11 +289,13 @@ namespace SomerenUI
                     // Store DrinkId in listview with invisible column
                     listViewDrinkSupply2.Columns.Add("ID", 0, HorizontalAlignment.Center);
 
-
+                    // Create image list and add images
                     ImageList imageList = new ImageList();
                     imageList.ImageSize = new Size(16, 16);
-                    imageList.Images.Add("ThumbsUp", Image.FromFile("thumbsup.png"));
-                    imageList.Images.Add("ThumbsDown", Image.FromFile("thumbsdown.png"));
+                    imageList.Images.Add("ThumbsUp", Properties.Resources.thumbsup);
+                    imageList.Images.Add("ThumbsDown", Properties.Resources.thumbsdown);
+
+                    // Add imagelist to liestview
                     listViewDrinkSupply2.SmallImageList = imageList;
 
                     // Adds data to listview columns
@@ -304,6 +306,8 @@ namespace SomerenUI
                         li.SubItems.Add(drink.SalesPrice.ToString());
                         li.SubItems.Add(drink.Quantity.ToString());
                         li.SubItems.Add(drink.DrinkId.ToString());
+                        
+                        // Check stock to show wich image from the image list has to be used
                         if (drink.Quantity < 10)
                             li.ImageKey = "ThumbsDown";
                         else
@@ -370,6 +374,7 @@ namespace SomerenUI
 
         }
 
+        // If clicked, add a alcoholic drink to database and update listview
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             DrinkSupplyService drinkService = new DrinkSupplyService();
@@ -393,6 +398,7 @@ namespace SomerenUI
             showPanel("DrinkSupply");
         }
 
+        // If clicked, selected drink will be deleted from the the database including its past transactions and update listview
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
@@ -401,6 +407,7 @@ namespace SomerenUI
             showPanel("DrinkSupply");
         }
 
+        // If clicked, alter a drink (name, quantity, sale price) in the database with textbox values
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
@@ -414,6 +421,7 @@ namespace SomerenUI
             showPanel("DrinkSupply");
         }
 
+        // Show selected listview item in textboxes for ease of use
         private void listViewDrinkSupply2_MouseClick(object sender, MouseEventArgs e)
         {
             textBoxDrinkName.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
