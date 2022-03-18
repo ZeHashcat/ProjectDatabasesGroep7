@@ -42,7 +42,7 @@ namespace SomerenUI
             pnlRevenue.Hide();
             pnlCashRegister.Hide();
         }
-
+        
         private void showPanel(string panelName)
         {
             if (panelName == "Dashboard")
@@ -187,7 +187,7 @@ namespace SomerenUI
                 {
                     // Get drinks data from SQL server
                     DrinkSupplyService drinkService = new DrinkSupplyService();
-                    List<Drink> drinkSupplyList = drinkService.GetDrinkSupply();
+                    List<Drink> drinkSupplyList = drinkService.GetAllDrinkSupply();
 
                     // Clear the listview before filling it again
                     listViewDrinkSupply.Clear();
@@ -231,6 +231,7 @@ namespace SomerenUI
                     // Adds data to listview columns
                     foreach (Student s in studentList)
                     {
+
                         ListViewItem li = new ListViewItem(s.Number.ToString()); ;
                         li.SubItems.Add($"{s.FirstName} {s.LastName}");
                         listViewStudents2.Items.Add(li);
@@ -273,6 +274,69 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong with getting the revenue report!" + ex.Message.ToString());
                 }  
+            }
+            else if (panelName == "DrinkSupply")
+            {
+                // Hide all other panels
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlStudents.Hide();
+                pnlLecturers.Hide();
+                pnlRooms.Hide();
+                pnlCashRegister.Hide();
+
+                // Show Drink supply
+                pnlDrinkSupply.Show();
+
+                try
+                {
+
+                    // Get drinks data from SQL server
+                    DrinkSupplyService drinkService = new DrinkSupplyService();
+                    List<Drink> drinkSupplyList = drinkService.GetDrinkSupply();
+
+                    // Clear the listview before filling it again
+                    listViewDrinkSupply2.Clear();
+
+                    // Adds columns to the listview
+                    listViewDrinkSupply2.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply2.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply2.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
+
+                    // Store DrinkId in listview with invisible column
+                    listViewDrinkSupply2.Columns.Add("ID", 0, HorizontalAlignment.Center);
+
+                    // Create image list and add images
+                    ImageList imageList = new ImageList();
+                    imageList.ImageSize = new Size(16, 16);
+                    imageList.Images.Add("ThumbsUp", Properties.Resources.thumbsup);
+                    imageList.Images.Add("ThumbsDown", Properties.Resources.thumbsdown);
+
+                    // Add imagelist to liestview
+                    listViewDrinkSupply2.SmallImageList = imageList;
+
+                    // Adds data to listview columns
+                    foreach (Drink drink in drinkSupplyList)
+                    {
+                        ListViewItem li = new ListViewItem();
+                        li.Text = drink.DrinkName;
+                        li.SubItems.Add(drink.SalesPrice.ToString());
+                        li.SubItems.Add(drink.Quantity.ToString());
+                        li.SubItems.Add(drink.DrinkId.ToString());
+                        
+                        // Check stock to show wich image from the image list has to be used
+                        if (drink.Quantity < 10)
+                            li.ImageKey = "ThumbsDown";
+                        else
+                            li.ImageKey = "ThumbsUp";
+                        listViewDrinkSupply2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the drink supply: " + e.Message);
+                }
+
             }
         }
 
@@ -465,6 +529,61 @@ namespace SomerenUI
             }
             lbl_totalMoney.Text = $"Total Price: €{totalMoney:0.00}";
             lbl_TotalVoucher.Text = $"Amount of Vouchers: {totalVouchers}";
+        }
+
+        // If clicked, add a alcoholic drink to database and update listview
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            DrinkSupplyService drinkService = new DrinkSupplyService();
+            Drink drink = new Drink();
+            drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
+            drink.DrinkName = textBoxDrinkName.Text;
+            drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
+            drink.Quantity = int.Parse(textBoxQuantity.Text);
+            drink.VAT = 21m;
+            if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
+                drink.VoucherAmount = 1;
+            else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
+                drink.VoucherAmount = 2;
+            else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
+                drink.VoucherAmount = 3;
+            else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
+                drink.VoucherAmount = 4;
+            drink.Sold = 0;
+            drinkService.AddDrink(drink);
+
+            showPanel("DrinkSupply");
+        }
+
+        // If clicked, selected drink will be deleted from the the database including its past transactions and update listview
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
+            DrinkSupplyService drinkService = new DrinkSupplyService();
+            drinkService.DeleteDrink(drinkId);
+            showPanel("DrinkSupply");
+        }
+
+        // If clicked, alter a drink (name, quantity, sale price) in the database with textbox values
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+            string newDrinkName = textBoxDrinkName.Text;
+            double salePrice = double.Parse(textBoxSalePrice.Text);
+            int quantity = int.Parse(textBoxQuantity.Text);
+
+            DrinkSupplyService drinkService = new DrinkSupplyService();
+            drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+
+            showPanel("DrinkSupply");
+        }
+
+        // Show selected listview item in textboxes for ease of use
+        private void listViewDrinkSupply2_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBoxDrinkName.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+            textBoxSalePrice.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[1].Text;
+            textBoxQuantity.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[2].Text;
         }
     }
 }
