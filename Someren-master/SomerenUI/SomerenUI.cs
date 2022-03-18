@@ -183,6 +183,7 @@ namespace SomerenUI
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                panel1.Hide();
 
                 // Show Cash Register
                 pnlCashRegister.Show();
@@ -196,11 +197,10 @@ namespace SomerenUI
                     listViewDrinkSupply.Clear();
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
-                    listViewDrinkSupply.Columns.Add("Drink ID", 0, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Drink ID", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Drink Name", 100, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Sales Price", 100, HorizontalAlignment.Center);
-                    listViewDrinkSupply.Columns.Add("Voucher Amount", 100, HorizontalAlignment.Center);
-                    listViewDrinkSupply.Columns.Add("VAT", 100, HorizontalAlignment.Center);
+                    listViewDrinkSupply.Columns.Add("Voucher Amount", 0, HorizontalAlignment.Center);
                     listViewDrinkSupply.Columns.Add("Quantity", 100, HorizontalAlignment.Center);
 
                     // Adds data to listview columns
@@ -210,7 +210,6 @@ namespace SomerenUI
                         li.SubItems.Add(drink.DrinkName);
                         li.SubItems.Add(drink.SalesPrice.ToString());
                         li.SubItems.Add(drink.VoucherAmount.ToString());
-                        li.SubItems.Add($"{drink.VAT:0}%");
                         li.SubItems.Add(drink.Quantity.ToString());
                         listViewDrinkSupply.Items.Add(li);
                     }
@@ -221,7 +220,7 @@ namespace SomerenUI
                 }
                 try
                 {
-                    // Fill the students listview within the students panel with a list of students
+                    // Get student data from SQL server
                     StudentService studService = new StudentService(); ;
                     List<Student> studentList = studService.GetStudents(); ;
 
@@ -229,18 +228,15 @@ namespace SomerenUI
                     listViewStudents.Clear();
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
-                    listViewStudents2.Columns.Add("Student ID", 0, HorizontalAlignment.Center);
-                    listViewStudents2.Columns.Add("First Name", 100, HorizontalAlignment.Center);
-                    listViewStudents2.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+                    listViewStudents2.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                    listViewStudents2.Columns.Add("Name", 100, HorizontalAlignment.Center);
+
 
                     // Adds data to listview columns
                     foreach (Student s in studentList)
                     {
                         ListViewItem li = new ListViewItem(s.Number.ToString()); ;
-                        ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
-                        ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
-                        li.SubItems.Add(fName);
-                        li.SubItems.Add(lName);
+                        li.SubItems.Add($"{s.FirstName} {s.LastName}");
                         listViewStudents2.Items.Add(li);
                     }
                 }
@@ -377,7 +373,94 @@ namespace SomerenUI
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            DrinkSupplyService drinkSupplyService = new DrinkSupplyService();
+            PrintService printService = new PrintService();
+            int personId;
+            string argument;
+            List<string> drinksList = new List<string>();
 
+            try
+            {
+                try
+                {
+                    //Adds all selected DrinkID's to drinksList in string format for use in query, also converts value from StudentID column to string.
+                    foreach (ListViewItem drink in listViewDrinkSupply.SelectedItems)
+                    {
+                        drinksList.Add(drink.SubItems[0].Text);
+                    }
+                    argument = listViewStudents2.SelectedItems[0].Text;
+                }
+                catch (Exception ex)
+                {
+                    printService.Print(ex);
+                    throw new Exception("Please select rows from both columns!");
+                }
+
+                //Retrieves PersonID by passing on the StudentID.
+                personId = drinkSupplyService.GetPersonId(argument);
+
+                //Writes a transaction to the database for every selected drink and student.
+                foreach(string drink in drinksList)
+                {
+                    drinkSupplyService.WriteTransaction(drink, personId);
+                    try
+                    {
+                        //If checkBoxVoucher is checked vouchers will be used to pay, thus vouchers will be needed to be added to database table Voucher.
+                        if (checkBoxVoucher.Checked)
+                        {
+                            int totalVouchers = 0;
+
+                            //Sums up the price in vouchers.
+                            foreach (ListViewItem drinkItem in listViewDrinkSupply.SelectedItems)
+                            {
+                                if(drinkItem.SubItems[0].Text == drink)
+                                {
+                                    totalVouchers = int.Parse(drinkItem.SubItems[3].Text);
+                                }
+                            }
+
+                            //For each voucher needed add one to database along with a PersonID and TransactionID
+                            List<int> transactionIds = drinkSupplyService.GetTransactionIds(totalVouchers);
+
+                            foreach (int transactionId in transactionIds)
+                            {
+                                drinkSupplyService.WriteVoucher(transactionId.ToString(), personId.ToString());
+                            }
+                            
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        printService.Print(ex);
+                        throw new Exception("Failed to add vouchers to database!");
+                    }
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show($"Something went wrong with checkout! {ex.Message}");
+            }
+
+            //Refreshes the panel.
+            showPanel("DrinkSupply");
+        }
+
+        private void listViewDrinkSupply_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            double totalMoney = 0;
+            int totalVouchers = 0;
+
+            //Sums up all the prices in both munnies and vouchers, then outputs those to the text labels.
+            foreach (ListViewItem Drink in listViewDrinkSupply.SelectedItems)
+            {
+                totalMoney += double.Parse(Drink.SubItems[2].Text);
+                totalVouchers += int.Parse(Drink.SubItems[3].Text);
+            }
+            lbl_totalMoney.Text = $"Total Price: €{totalMoney:0.00}";
+            lbl_TotalVoucher.Text = $"Amount of Vouchers: {totalVouchers}";
         }
     }
 }
