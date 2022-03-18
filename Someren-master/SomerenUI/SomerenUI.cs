@@ -339,7 +339,7 @@ namespace SomerenUI
                             {
                                 if(drinkItem.SubItems[0].Text == drink)
                                 {
-                                    totalVouchers += int.Parse(drinkItem.SubItems[3].Text);
+                                    totalVouchers = int.Parse(drinkItem.SubItems[3].Text);
                                 }
                             }
 
