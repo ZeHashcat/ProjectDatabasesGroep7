@@ -56,7 +56,7 @@ namespace SomerenDAL
             catch (Exception e)
             {
                 Print.ErrorLog(e);
-                throw new Exception("Could not alter table with transaction. Please contact the programmers involved in this application for support, thank you!");
+                throw new Exception("Transaction failed, changes rolled back. Please contact the programmers involved in this application for support, thank you!");
             }
         }
 
