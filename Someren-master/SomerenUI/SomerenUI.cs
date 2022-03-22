@@ -709,11 +709,13 @@ namespace SomerenUI
 
             try
             {
+                //Checks if description textbox is empty or not.
                 if (textBoxDescription.Text == string.Empty)
                 {
                     throw new Exception("Description cannot be empty!");
                 }
 
+                //tries to convert calender date and textbox time to DateTime in order to see if it's valid.
                 try
                 {
                     startDate = Convert.ToDateTime($"{dateTimePickerActStart.Text.Split(' ')[0]} {textBoxTimeStart.Text}:00");
@@ -725,6 +727,7 @@ namespace SomerenUI
                     throw new Exception("Enter a valid time!");
                 }
 
+                //Checks if there is already an activity with the same name in the database because every activity may only occur once. (Apparently...)
                 foreach (Activity activity in activities)
                 {
                     if (activity.ActivityName == textBoxDescription.Text)
@@ -733,21 +736,25 @@ namespace SomerenUI
                     }
                 }
 
+                //Checks if start date is later then end date.
                 if (startDate > endDate)
                 {
                     throw new Exception("Starting date and time can't be later then the end date and time!");
                 }
 
+                //writes row to database.
                 activityService.AddActivity(textBoxDescription.Text, startDate, endDate);
 
-                showPanel("Activities");
+                
             }
             catch (Exception ex)
             {
                 errorControl.Print(ex);
                 MessageBox.Show("Oh noes, something went wrong:\n\n" + ex.Message);
-                showPanel("Activities");
             }
+
+            //refreshes panel.
+            showPanel("Activities");
         }
 
         //Deletes row from the database.
@@ -758,13 +765,16 @@ namespace SomerenUI
 
             try
             {
+                //Checks if there are no rows selected.
                 if (listViewActivities.SelectedItems.Count == 0)
                 {
                     throw new Exception("Select a row to delete!");
                 }
 
+                //Pops a dialogue box in your face because you don't know what you're doing.
                 DialogResult dialogResult = MessageBox.Show("Are you sure that you wish to remove this activity?’", "Delete Activity", MessageBoxButtons.YesNo);
 
+                //If you click Yes in the dialogue box then the selected row will be deleted.
                 if (dialogResult == DialogResult.Yes)
                 {
                     activityService.DeleteActivity(int.Parse(listViewActivities.SelectedItems[0].SubItems[1].Text));
