@@ -32,7 +32,7 @@ namespace SomerenUI
             }
         }
 
-        private void hideAllPanels()
+        private void HideAllPanels()
         {
             pnlDashboard.Hide();
             imgDashboard.Hide();
@@ -41,6 +41,7 @@ namespace SomerenUI
             pnlLecturers.Hide();
             pnlRevenue.Hide();
             pnlCashRegister.Hide();
+            pnlDrinkSupply.Hide();
         }
         
         private void showPanel(string panelName)
@@ -48,7 +49,7 @@ namespace SomerenUI
             if (panelName == "Dashboard")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show dashboard
                 pnlDashboard.Show();
@@ -57,7 +58,7 @@ namespace SomerenUI
             else if (panelName == "Students")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show students
                 pnlStudents.Show();
@@ -95,7 +96,7 @@ namespace SomerenUI
             else if (panelName == "Lecturers")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show lecturers
                 pnlLecturers.Show();
@@ -130,7 +131,7 @@ namespace SomerenUI
             else if (panelName == "Rooms")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Rooms
                 pnlRooms.Show();
@@ -179,7 +180,7 @@ namespace SomerenUI
             else if (panelName == "CashRegister")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Cash Register
                 pnlCashRegister.Show();
@@ -245,7 +246,7 @@ namespace SomerenUI
             else if (panelName == "RevenueReport")
             {
                 // Hide all other panels
-                hideAllPanels();
+                HideAllPanels();
 
                 // Show Rooms
                 pnlRevenue.Show();
@@ -261,11 +262,11 @@ namespace SomerenUI
                     // Adds columns to the listview
                     listViewRevenueReport.Columns.Add("Sales", 100, HorizontalAlignment.Center);
                     listViewRevenueReport.Columns.Add("Turnover", 100, HorizontalAlignment.Center);
-                    listViewRevenueReport.Columns.Add("Amount of customers", 100, HorizontalAlignment.Center);
+                    listViewRevenueReport.Columns.Add("Amount of customers", 120, HorizontalAlignment.Center);
 
                     ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
-                    li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
+                    li.SubItems.Add($"€{revenue.Turnover:0.00}");
                     li.SubItems.Add(revenue.AmountOfCustomers.ToString());
 
                     listViewRevenueReport.Items.Add(li);
@@ -278,12 +279,7 @@ namespace SomerenUI
             else if (panelName == "DrinkSupply")
             {
                 // Hide all other panels
-                pnlDashboard.Hide();
-                imgDashboard.Hide();
-                pnlStudents.Hide();
-                pnlLecturers.Hide();
-                pnlRooms.Hide();
-                pnlCashRegister.Hide();
+                HideAllPanels();
 
                 // Show Drink supply
                 pnlDrinkSupply.Show();
@@ -363,7 +359,7 @@ namespace SomerenUI
 
                     ListViewItem li = new ListViewItem(revenue.Sales.ToString());
 
-                    li.SubItems.Add($"€{ revenue.Turnover.ToString("0.00")}");
+                    li.SubItems.Add($"€{revenue.Turnover:0.00}");
                     li.SubItems.Add(revenue.AmountOfCustomers.ToString());
 
                     listViewRevenueReport.Items.Add(li);
@@ -502,9 +498,7 @@ namespace SomerenUI
                         printService.Print(ex);
                         throw new Exception("Failed to add vouchers to database!");
                     }
-                }
-
-                
+                }   
             }
             catch (Exception ex)
             {
@@ -513,7 +507,9 @@ namespace SomerenUI
             }
 
             //Refreshes the panel.
-            showPanel("DrinkSupply");
+            lbl_totalMoney.Text = $"Total Price:";
+            lbl_TotalVoucher.Text = $"Amount of Vouchers:";
+            showPanel("CashRegister");
         }
 
         private void listViewDrinkSupply_SelectedIndexChanged(object sender, EventArgs e)
@@ -536,21 +532,36 @@ namespace SomerenUI
         {
             DrinkSupplyService drinkService = new DrinkSupplyService();
             Drink drink = new Drink();
-            drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
-            drink.DrinkName = textBoxDrinkName.Text;
-            drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
-            drink.Quantity = int.Parse(textBoxQuantity.Text);
-            drink.VAT = 21m;
-            if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
-                drink.VoucherAmount = 1;
-            else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
-                drink.VoucherAmount = 2;
-            else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
-                drink.VoucherAmount = 3;
-            else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
-                drink.VoucherAmount = 4;
-            drink.Sold = 0;
-            drinkService.AddDrink(drink);
+            PrintService printService = new PrintService();
+            try
+            {
+                try
+                {
+                    drink.DrinkId = drinkService.GetHighestDrinkID() + 1;
+                    drink.DrinkName = textBoxDrinkName.Text;
+                    drink.SalesPrice = double.Parse(textBoxSalePrice.Text);
+                    drink.Quantity = int.Parse(textBoxQuantity.Text);
+                    drink.VAT = 21m;
+                    if (drink.SalesPrice > 0 && drink.SalesPrice <= 5)
+                        drink.VoucherAmount = 1;
+                    else if (drink.SalesPrice > 5 && drink.SalesPrice <= 10)
+                        drink.VoucherAmount = 2;
+                    else if (drink.SalesPrice > 10 && drink.SalesPrice <= 15)
+                        drink.VoucherAmount = 3;
+                    else if (drink.SalesPrice > 15 && drink.SalesPrice <= 20)
+                        drink.VoucherAmount = 4;
+                    drink.Sold = 0;
+                }   
+                catch (Exception ex)
+                {
+                    throw new Exception("Enter valid value");
+                }
+                drinkService.AddDrink(drink);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Could not add drink: " + ex.Message);
+            }            
 
             showPanel("DrinkSupply");
         }
@@ -558,23 +569,58 @@ namespace SomerenUI
         // If clicked, selected drink will be deleted from the the database including its past transactions and update listview
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
-            DrinkSupplyService drinkService = new DrinkSupplyService();
-            drinkService.DeleteDrink(drinkId);
+            PrintService printService = new PrintService();
+            try
+            {
+                if (!(listViewDrinkSupply2.SelectedItems.Count > 0))
+                    throw new Exception("Select a row again");
+                int drinkId = int.Parse(listViewDrinkSupply2.SelectedItems[0].SubItems[3].Text);
+                DrinkSupplyService drinkService = new DrinkSupplyService();
+                drinkService.DeleteDrink(drinkId);
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong trying to delete the drink: " + ex.Message);
+            }
+            textBoxDrinkName.Text = "";
+            textBoxSalePrice.Text = "";
+            textBoxQuantity.Text = "";
+
             showPanel("DrinkSupply");
         }
 
         // If clicked, alter a drink (name, quantity, sale price) in the database with textbox values
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
-            string newDrinkName = textBoxDrinkName.Text;
-            double salePrice = double.Parse(textBoxSalePrice.Text);
-            int quantity = int.Parse(textBoxQuantity.Text);
-
-            DrinkSupplyService drinkService = new DrinkSupplyService();
-            drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
-
+            PrintService printService = new PrintService();
+            string newDrinkName;
+            double salePrice;
+            int quantity;
+            try
+            {
+                if (!(listViewDrinkSupply2.SelectedItems.Count > 0))
+                    throw new Exception("Select a row again");
+                string originalDrinkName = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
+                try
+                {
+                    salePrice = double.Parse(textBoxSalePrice.Text);
+                    newDrinkName = textBoxDrinkName.Text;
+                    quantity = int.Parse(textBoxQuantity.Text);
+                }
+                catch(Exception ex)
+                {
+                    printService.Print(ex);
+                    throw new Exception("Enter valid value");
+                }                
+                DrinkSupplyService drinkService = new DrinkSupplyService();
+                drinkService.UpdateDrink(originalDrinkName, newDrinkName, salePrice, quantity);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong updating: " + ex.Message);
+            }
+            
             showPanel("DrinkSupply");
         }
 

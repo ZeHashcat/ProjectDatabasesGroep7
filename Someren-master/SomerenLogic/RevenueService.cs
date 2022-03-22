@@ -20,7 +20,7 @@ namespace SomerenLogic
         // Get the revenue of a specified time frame
         public Revenue GetRevenue(DateTime startDate, DateTime endDate)
         {
-            Revenue revenue = Revenuedb.GetRevenue(startDate, endDate);
+            Revenue revenue = Revenuedb.GetRevenue(startDate, endDate.AddDays(1));
             return revenue;
         }
 
