@@ -674,5 +674,22 @@ namespace SomerenUI
         {
             showPanel("Activities");
         }
+
+        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActivityListToText();
+        }
+
+        private void ActivityListToText()
+        {
+            foreach (ListViewItem activity in listViewActivities.SelectedItems)
+            {
+                textBoxDescription.Text = activity.SubItems[1].Text;
+                dateTimePickerActStart.Text = activity.SubItems[2].Text;
+                textBoxTimeStart.Text = $"{Convert.ToDateTime(activity.SubItems[2].Text):t}";
+                dateTimePickerActEnd.Text = activity.SubItems[3].Text;
+                textBoxTimeEnd.Text = $"{Convert.ToDateTime(activity.SubItems[3].Text):t}";
+            }
+        }
     }
 }
