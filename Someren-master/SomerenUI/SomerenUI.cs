@@ -372,8 +372,73 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
             }
-        }
+            else if (panelName == "Suporvisors")
+            {
+                // Hide all other panels
+                HideAllPanels();
 
+                // Show Supervisors
+                pnlSupervisors.Show();
+
+                try
+                {
+                    // Get Activities data from SQL server
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> activitiesList = activityService.GetAllActivities();
+
+                    // Clear the listview before filling it again
+                    listViewActivities2.Clear();
+
+                    // Adds columns to the listview
+                    listViewActivities2.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("Description", 100, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("Start Time", 150, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("End Time", 150, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Activity activity in activitiesList)
+                    {
+                        ListViewItem li = new ListViewItem(activity.ActivityId.ToString());
+                        li.SubItems.Add(activity.ActivityName);
+                        li.SubItems.Add(activity.StartDate.ToString());
+                        li.SubItems.Add(activity.EndDate.ToString());
+                        listViewActivities2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                }                
+
+                try
+                {
+                    // Fill the lecturers listview within the lecturers panel with a list of lecturers
+                    LecturerService lecturerService = new LecturerService(); ;
+                    List<Teacher> lecturerList = lecturerService.GetLecturers(); ;
+
+                    // Clear the listview before filling it again
+                    listViewLecturers.Clear();
+
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    listViewLecturers.Columns.Add("Name", 100, HorizontalAlignment.Center);
+                    listViewLecturers.Columns.Add("ID", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Teacher t in lecturerList)
+                    {
+                        ListViewItem li = new ListViewItem(t.Name); ;
+                        ListViewItem.ListViewSubItem id = new ListViewItem.ListViewSubItem(li, t.Number.ToString());
+                        li.SubItems.Add(id);
+                        listViewLecturers.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                }
+                
+            }
+        }
         // Displays the revenue report whenever a new date is selected
         private void displayRevenue()
         {
@@ -673,6 +738,42 @@ namespace SomerenUI
         private void activitiesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Activities");
+        }
+
+        private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Suporvisors");
+        }
+
+        private void listViewActivities2_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+
+                // Get Activities data from SQL server
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                List<Supervisor> activitySupervisorList = activitySupervisorService.GetActivitySupervisors(activityId);
+
+                // Clear the listview before filling it again
+                listViewActivitySupervisors.Clear();
+
+                // Adds columns to the listview
+                listViewActivitySupervisors.Columns.Add("Teacher ID", 100, HorizontalAlignment.Center);
+                listViewActivitySupervisors.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Supervisor supervisor in activitySupervisorList)
+                {
+                    ListViewItem li = new ListViewItem(supervisor.TeacherId.ToString());
+                    li.SubItems.Add(supervisor.ActivityId.ToString());
+                    listViewActivitySupervisors.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not load supervisors for selected activity.\n" + ex.Message);
+            }
         }
     }
 }

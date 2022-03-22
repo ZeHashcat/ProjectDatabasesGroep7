@@ -98,6 +98,8 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlActivities = new System.Windows.Forms.Panel();
+            this.dateTimePickerActEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerActStart = new System.Windows.Forms.DateTimePicker();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.lblActivities = new System.Windows.Forms.Label();
             this.buttonActDelete = new System.Windows.Forms.Button();
@@ -109,18 +111,13 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.listViewActivities = new System.Windows.Forms.ListView();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewActivities2 = new System.Windows.Forms.ListView();
             this.pnlParticants = new System.Windows.Forms.Panel();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -134,8 +131,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.dateTimePickerActStart = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerActEnd = new System.Windows.Forms.DateTimePicker();
+            this.listViewActivitySupervisors = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -185,7 +181,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1509, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1599, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -246,7 +242,7 @@
             // activitiesToolStripMenuItem1
             // 
             this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
-            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
             this.activitiesToolStripMenuItem1.Text = "Activities";
             this.activitiesToolStripMenuItem1.Click += new System.EventHandler(this.activitiesToolStripMenuItem1_Click);
             // 
@@ -255,6 +251,7 @@
             this.supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
             this.supervisorsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.supervisorsToolStripMenuItem.Text = "Supervisors";
+            this.supervisorsToolStripMenuItem.Click += new System.EventHandler(this.supervisorsToolStripMenuItem_Click);
             // 
             // studentsToolStripMenuItem1
             // 
@@ -710,7 +707,7 @@
             this.pnlCashRegister.Controls.Add(this.listViewStudents2);
             this.pnlCashRegister.Controls.Add(this.listViewDrinkSupply);
             this.pnlCashRegister.Controls.Add(this.lbl_DrinkSupply);
-            this.pnlCashRegister.Location = new System.Drawing.Point(9, 25);
+            this.pnlCashRegister.Location = new System.Drawing.Point(798, 426);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCashRegister.Name = "pnlCashRegister";
             this.pnlCashRegister.Size = new System.Drawing.Size(765, 379);
@@ -860,6 +857,20 @@
             this.pnlActivities.Size = new System.Drawing.Size(765, 379);
             this.pnlActivities.TabIndex = 9;
             // 
+            // dateTimePickerActEnd
+            // 
+            this.dateTimePickerActEnd.Location = new System.Drawing.Point(328, 330);
+            this.dateTimePickerActEnd.Name = "dateTimePickerActEnd";
+            this.dateTimePickerActEnd.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActEnd.TabIndex = 15;
+            // 
+            // dateTimePickerActStart
+            // 
+            this.dateTimePickerActStart.Location = new System.Drawing.Point(122, 330);
+            this.dateTimePickerActStart.Name = "dateTimePickerActStart";
+            this.dateTimePickerActStart.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActStart.TabIndex = 14;
+            // 
             // pictureBox12
             // 
             this.pictureBox12.Image = global::SomerenUI.Properties.Resources.someren;
@@ -961,23 +972,29 @@
             // 
             // pnlSupervisors
             // 
+            this.pnlSupervisors.Controls.Add(this.listViewActivitySupervisors);
+            this.pnlSupervisors.Controls.Add(this.label5);
             this.pnlSupervisors.Controls.Add(this.pictureBox13);
             this.pnlSupervisors.Controls.Add(this.label9);
             this.pnlSupervisors.Controls.Add(this.button4);
             this.pnlSupervisors.Controls.Add(this.button5);
             this.pnlSupervisors.Controls.Add(this.button6);
-            this.pnlSupervisors.Controls.Add(this.label10);
-            this.pnlSupervisors.Controls.Add(this.label11);
-            this.pnlSupervisors.Controls.Add(this.label12);
-            this.pnlSupervisors.Controls.Add(this.textBox4);
-            this.pnlSupervisors.Controls.Add(this.textBox5);
-            this.pnlSupervisors.Controls.Add(this.textBox6);
-            this.pnlSupervisors.Controls.Add(this.listView2);
+            this.pnlSupervisors.Controls.Add(this.listViewActivities2);
             this.pnlSupervisors.Location = new System.Drawing.Point(11, 407);
             this.pnlSupervisors.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSupervisors.Name = "pnlSupervisors";
             this.pnlSupervisors.Size = new System.Drawing.Size(765, 379);
             this.pnlSupervisors.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.label5.Location = new System.Drawing.Point(10, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 29);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Activities";
             // 
             // pictureBox13
             // 
@@ -994,7 +1011,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.label9.Location = new System.Drawing.Point(10, 10);
+            this.label9.Location = new System.Drawing.Point(286, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(141, 29);
             this.label9.TabIndex = 13;
@@ -1002,7 +1019,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(460, 304);
+            this.button4.Location = new System.Drawing.Point(667, 230);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 12;
@@ -1011,7 +1028,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(402, 333);
+            this.button5.Location = new System.Drawing.Point(592, 327);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 11;
@@ -1020,77 +1037,27 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(354, 304);
+            this.button6.Location = new System.Drawing.Point(543, 176);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 10;
             this.button6.Text = "Add";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // listViewActivities2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(225, 304);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 15);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Quantity:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(119, 304);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 15);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "Sale price:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(13, 304);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 15);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Drink name:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(122, 330);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 9;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(228, 330);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(16, 330);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 9;
-            // 
-            // listView2
-            // 
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(16, 42);
-            this.listView2.Margin = new System.Windows.Forms.Padding(2);
-            this.listView2.MultiSelect = false;
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(576, 250);
-            this.listView2.TabIndex = 5;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listViewActivities2.FullRowSelect = true;
+            this.listViewActivities2.GridLines = true;
+            this.listViewActivities2.HideSelection = false;
+            this.listViewActivities2.Location = new System.Drawing.Point(16, 42);
+            this.listViewActivities2.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewActivities2.MultiSelect = false;
+            this.listViewActivities2.Name = "listViewActivities2";
+            this.listViewActivities2.Size = new System.Drawing.Size(230, 250);
+            this.listViewActivities2.TabIndex = 5;
+            this.listViewActivities2.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities2.View = System.Windows.Forms.View.Details;
+            this.listViewActivities2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewActivities2_MouseClick);
             // 
             // pnlParticants
             // 
@@ -1106,7 +1073,7 @@
             this.pnlParticants.Controls.Add(this.textBox8);
             this.pnlParticants.Controls.Add(this.textBox9);
             this.pnlParticants.Controls.Add(this.listView3);
-            this.pnlParticants.Location = new System.Drawing.Point(11, 409);
+            this.pnlParticants.Location = new System.Drawing.Point(481, 823);
             this.pnlParticants.Margin = new System.Windows.Forms.Padding(2);
             this.pnlParticants.Name = "pnlParticants";
             this.pnlParticants.Size = new System.Drawing.Size(765, 379);
@@ -1225,25 +1192,25 @@
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // dateTimePickerActStart
+            // listViewActivitySupervisors
             // 
-            this.dateTimePickerActStart.Location = new System.Drawing.Point(122, 330);
-            this.dateTimePickerActStart.Name = "dateTimePickerActStart";
-            this.dateTimePickerActStart.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerActStart.TabIndex = 14;
-            // 
-            // dateTimePickerActEnd
-            // 
-            this.dateTimePickerActEnd.Location = new System.Drawing.Point(328, 330);
-            this.dateTimePickerActEnd.Name = "dateTimePickerActEnd";
-            this.dateTimePickerActEnd.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerActEnd.TabIndex = 15;
+            this.listViewActivitySupervisors.FullRowSelect = true;
+            this.listViewActivitySupervisors.GridLines = true;
+            this.listViewActivitySupervisors.HideSelection = false;
+            this.listViewActivitySupervisors.Location = new System.Drawing.Point(291, 41);
+            this.listViewActivitySupervisors.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewActivitySupervisors.MultiSelect = false;
+            this.listViewActivitySupervisors.Name = "listViewActivitySupervisors";
+            this.listViewActivitySupervisors.Size = new System.Drawing.Size(230, 250);
+            this.listViewActivitySupervisors.TabIndex = 15;
+            this.listViewActivitySupervisors.UseCompatibleStateImageBehavior = false;
+            this.listViewActivitySupervisors.View = System.Windows.Forms.View.Details;
             // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1509, 693);
+            this.ClientSize = new System.Drawing.Size(1599, 951);
             this.Controls.Add(this.pnlParticants);
             this.Controls.Add(this.pnlSupervisors);
             this.Controls.Add(this.pnlActivities);
@@ -1386,13 +1353,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewActivities2;
         private System.Windows.Forms.Panel pnlParticants;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Label label13;
@@ -1411,6 +1372,8 @@
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem1;
         private System.Windows.Forms.DateTimePicker dateTimePickerActEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerActStart;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListView listViewActivitySupervisors;
     }
 }
 
