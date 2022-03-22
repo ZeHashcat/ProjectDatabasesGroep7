@@ -677,11 +677,6 @@ namespace SomerenUI
 
         private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActivityListToText();
-        }
-
-        private void ActivityListToText()
-        {
             foreach (ListViewItem activity in listViewActivities.SelectedItems)
             {
                 textBoxDescription.Text = activity.SubItems[1].Text;
