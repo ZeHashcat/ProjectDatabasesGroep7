@@ -16,15 +16,23 @@ namespace SomerenLogic
         {
             Supervisordb = new ActivitySupervisorDao();
         }
-        public List<Supervisor> GetAllSupervisors(d)
-        {
-            List<Supervisor> supervisor = Supervisordb.GetALLSupervisors();
-            return supervisor;
-        }
         public List<Supervisor> GetActivitySupervisors(int activityId)
         {
             List<Supervisor> supervisor = Supervisordb.GetActivitySupervisors(activityId);
             return supervisor;
+        }
+        public List<Supervisor> GetAllActivitySupervisors()
+        {
+            List<Supervisor> supervisor = Supervisordb.GetAllActivitySupervisors();
+            return supervisor;
+        }        
+        public void AddActivitySupervisor(int lecturerId, int activityId)
+        {
+            Supervisordb.AddActivitySupervisor(lecturerId, activityId);
+        }
+        public void DeleteActivitySupervisor(int lecturerId, int activityId)
+        {
+            Supervisordb.DeleteActivitySupervisor(lecturerId, activityId);
         }
     }
 }

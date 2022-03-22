@@ -12,6 +12,13 @@ namespace SomerenDAL
 {
     public class ActivitySupervisorDao : BaseDao
     {
+        public List<Supervisor> GetAllActivitySupervisors()
+        {
+            // 
+            string query = "SELECT teacherid, ActivityId FROM ActivitySupervisor";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+        }
         public List<Supervisor> GetActivitySupervisors(int activityId)
         {
             // 
@@ -20,7 +27,22 @@ namespace SomerenDAL
             sqlParameters[0] = new SqlParameter("@ID", activityId);
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-
+        public void AddActivitySupervisor(int lecturerId, int activityId)
+        {
+            string query = "INSERT INTO ActivitySupervisor VALUES (@lecturerId, @activityId)";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@lecturerId", lecturerId);
+            sqlParameters[1] = new SqlParameter("@activityId", activityId);
+            ExecuteEditQuery(query, sqlParameters);
+        }
+        public void DeleteActivitySupervisor(int lecturerId, int activityId)
+        {
+            string query = "DELETE FROM ActivitySupervisor WHERE TeacherId = @LecturerId AND ActivityId = @activityId";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@lecturerId", lecturerId);
+            sqlParameters[1] = new SqlParameter("@activityId", activityId);
+            ExecuteEditQuery(query, sqlParameters);
+        }
         private List<Supervisor> ReadTables(DataTable dataTable)
         {
             // Create supervisors list

@@ -372,7 +372,7 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
             }
-            else if (panelName == "Suporvisors")
+            else if (panelName == "Supervisors")
             {
                 // Hide all other panels
                 HideAllPanels();
@@ -388,6 +388,8 @@ namespace SomerenUI
 
                     // Clear the listview before filling it again
                     listViewActivities2.Clear();
+
+                    listViewActivitySupervisors.Clear();
 
                     // Adds columns to the listview
                     listViewActivities2.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
@@ -408,28 +410,22 @@ namespace SomerenUI
                 catch (Exception e)
                 {
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
-                }                
+                } 
+
 
                 try
                 {
                     // Fill the lecturers listview within the lecturers panel with a list of lecturers
-                    LecturerService lecturerService = new LecturerService(); ;
-                    List<Teacher> lecturerList = lecturerService.GetLecturers(); ;
+                    LecturerService lecturerService = new LecturerService();
+                    List<Teacher> lecturerList = lecturerService.GetLecturers();
 
-                    // Clear the listview before filling it again
-                    listViewLecturers.Clear();
-
-                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
-                    listViewLecturers.Columns.Add("Name", 100, HorizontalAlignment.Center);
-                    listViewLecturers.Columns.Add("ID", 100, HorizontalAlignment.Center);
+                    comboBoxLecturers.ResetText();
+                    comboBoxLecturers.Items.Clear();
 
                     // Adds data to listview columns
                     foreach (Teacher t in lecturerList)
                     {
-                        ListViewItem li = new ListViewItem(t.Name); ;
-                        ListViewItem.ListViewSubItem id = new ListViewItem.ListViewSubItem(li, t.Number.ToString());
-                        li.SubItems.Add(id);
-                        listViewLecturers.Items.Add(li);
+                        comboBoxLecturers.Items.Add(t.Name + " " + t.Number.ToString());
                     }
                 }
                 catch (Exception e)
@@ -742,10 +738,64 @@ namespace SomerenUI
 
         private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Suporvisors");
+            showPanel("Supervisors");
         }
 
         private void listViewActivities2_MouseClick(object sender, MouseEventArgs e)
+        {
+            fillListviewSupervisor();
+        }
+
+        private void buttonAddSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                List<Supervisor> supervisors = activitySupervisorService.GetAllActivitySupervisors();
+                if (listViewActivities2.SelectedItems.Count <= 0)
+                    throw new Exception("select the activity where you want to add a supervisor");
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+                if (comboBoxLecturers.SelectedIndex == -1)
+                    throw new Exception("Select a lecturer to add.");
+                string lecturer = comboBoxLecturers.SelectedItem.ToString();
+
+                string[] lecid = lecturer.Split(' ');
+                int lecturerid = int.Parse(lecid[1]);
+
+                foreach (Supervisor supervisor in supervisors)
+                {
+                    if (lecturerid == supervisor.TeacherId && activityId == supervisor.ActivityId)
+                        throw new Exception("You cannot add a lecturer that is already a supervisor for this activity.");
+                }
+                activitySupervisorService.AddActivitySupervisor(lecturerid, activityId);
+                fillListviewSupervisor();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Could not add supervisor: \n" + ex.Message);
+            }
+        }
+
+        private void buttonDeleteSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listViewActivities2.SelectedItems.Count <= 0)
+                    throw new Exception("select the activity where you want to delete a supervisor");
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+                if (listViewActivitySupervisors.SelectedItems.Count == 0)
+                    throw new Exception("Select a supervisor to delete.");
+                int lecturerId = int.Parse(listViewActivitySupervisors.SelectedItems[0].SubItems[0].Text);
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                activitySupervisorService.DeleteActivitySupervisor(lecturerId, activityId);
+                fillListviewSupervisor();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not delete supervisor: \n" + ex.Message);
+            }
+        }
+        public void fillListviewSupervisor()
         {
             try
             {

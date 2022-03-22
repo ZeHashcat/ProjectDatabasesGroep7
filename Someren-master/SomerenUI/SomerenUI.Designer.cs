@@ -111,12 +111,13 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.listViewActivities = new System.Windows.Forms.ListView();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.comboBoxLecturers = new System.Windows.Forms.ComboBox();
+            this.listViewActivitySupervisors = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonDeleteSupervisor = new System.Windows.Forms.Button();
+            this.buttonAddSupervisor = new System.Windows.Forms.Button();
             this.listViewActivities2 = new System.Windows.Forms.ListView();
             this.pnlParticants = new System.Windows.Forms.Panel();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
@@ -131,7 +132,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.listViewActivitySupervisors = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -972,19 +972,41 @@
             // 
             // pnlSupervisors
             // 
+            this.pnlSupervisors.Controls.Add(this.comboBoxLecturers);
             this.pnlSupervisors.Controls.Add(this.listViewActivitySupervisors);
             this.pnlSupervisors.Controls.Add(this.label5);
             this.pnlSupervisors.Controls.Add(this.pictureBox13);
             this.pnlSupervisors.Controls.Add(this.label9);
-            this.pnlSupervisors.Controls.Add(this.button4);
-            this.pnlSupervisors.Controls.Add(this.button5);
-            this.pnlSupervisors.Controls.Add(this.button6);
+            this.pnlSupervisors.Controls.Add(this.buttonDeleteSupervisor);
+            this.pnlSupervisors.Controls.Add(this.buttonAddSupervisor);
             this.pnlSupervisors.Controls.Add(this.listViewActivities2);
             this.pnlSupervisors.Location = new System.Drawing.Point(11, 407);
             this.pnlSupervisors.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSupervisors.Name = "pnlSupervisors";
             this.pnlSupervisors.Size = new System.Drawing.Size(765, 379);
             this.pnlSupervisors.TabIndex = 10;
+            // 
+            // comboBoxLecturers
+            // 
+            this.comboBoxLecturers.FormattingEnabled = true;
+            this.comboBoxLecturers.Location = new System.Drawing.Point(362, 311);
+            this.comboBoxLecturers.Name = "comboBoxLecturers";
+            this.comboBoxLecturers.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxLecturers.TabIndex = 16;
+            // 
+            // listViewActivitySupervisors
+            // 
+            this.listViewActivitySupervisors.FullRowSelect = true;
+            this.listViewActivitySupervisors.GridLines = true;
+            this.listViewActivitySupervisors.HideSelection = false;
+            this.listViewActivitySupervisors.Location = new System.Drawing.Point(291, 41);
+            this.listViewActivitySupervisors.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewActivitySupervisors.MultiSelect = false;
+            this.listViewActivitySupervisors.Name = "listViewActivitySupervisors";
+            this.listViewActivitySupervisors.Size = new System.Drawing.Size(230, 250);
+            this.listViewActivitySupervisors.TabIndex = 15;
+            this.listViewActivitySupervisors.UseCompatibleStateImageBehavior = false;
+            this.listViewActivitySupervisors.View = System.Windows.Forms.View.Details;
             // 
             // label5
             // 
@@ -1017,32 +1039,25 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "Supervisors";
             // 
-            // button4
+            // buttonDeleteSupervisor
             // 
-            this.button4.Location = new System.Drawing.Point(667, 230);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonDeleteSupervisor.Location = new System.Drawing.Point(543, 211);
+            this.buttonDeleteSupervisor.Name = "buttonDeleteSupervisor";
+            this.buttonDeleteSupervisor.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteSupervisor.TabIndex = 12;
+            this.buttonDeleteSupervisor.Text = "Delete";
+            this.buttonDeleteSupervisor.UseVisualStyleBackColor = true;
+            this.buttonDeleteSupervisor.Click += new System.EventHandler(this.buttonDeleteSupervisor_Click);
             // 
-            // button5
+            // buttonAddSupervisor
             // 
-            this.button5.Location = new System.Drawing.Point(592, 327);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(543, 176);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "Add";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonAddSupervisor.Location = new System.Drawing.Point(281, 309);
+            this.buttonAddSupervisor.Name = "buttonAddSupervisor";
+            this.buttonAddSupervisor.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddSupervisor.TabIndex = 10;
+            this.buttonAddSupervisor.Text = "Add";
+            this.buttonAddSupervisor.UseVisualStyleBackColor = true;
+            this.buttonAddSupervisor.Click += new System.EventHandler(this.buttonAddSupervisor_Click);
             // 
             // listViewActivities2
             // 
@@ -1192,20 +1207,6 @@
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // listViewActivitySupervisors
-            // 
-            this.listViewActivitySupervisors.FullRowSelect = true;
-            this.listViewActivitySupervisors.GridLines = true;
-            this.listViewActivitySupervisors.HideSelection = false;
-            this.listViewActivitySupervisors.Location = new System.Drawing.Point(291, 41);
-            this.listViewActivitySupervisors.Margin = new System.Windows.Forms.Padding(2);
-            this.listViewActivitySupervisors.MultiSelect = false;
-            this.listViewActivitySupervisors.Name = "listViewActivitySupervisors";
-            this.listViewActivitySupervisors.Size = new System.Drawing.Size(230, 250);
-            this.listViewActivitySupervisors.TabIndex = 15;
-            this.listViewActivitySupervisors.UseCompatibleStateImageBehavior = false;
-            this.listViewActivitySupervisors.View = System.Windows.Forms.View.Details;
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1350,9 +1351,8 @@
         private System.Windows.Forms.Panel pnlSupervisors;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonDeleteSupervisor;
+        private System.Windows.Forms.Button buttonAddSupervisor;
         private System.Windows.Forms.ListView listViewActivities2;
         private System.Windows.Forms.Panel pnlParticants;
         private System.Windows.Forms.PictureBox pictureBox14;
@@ -1374,6 +1374,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerActStart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView listViewActivitySupervisors;
+        private System.Windows.Forms.ComboBox comboBoxLecturers;
     }
 }
 
