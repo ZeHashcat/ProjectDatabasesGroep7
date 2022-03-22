@@ -39,6 +39,9 @@
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activitiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.supervisorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.studentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drinkSupplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,17 +99,15 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlActivities = new System.Windows.Forms.Panel();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lblActivities = new System.Windows.Forms.Label();
+            this.buttonActDelete = new System.Windows.Forms.Button();
+            this.buttonActChange = new System.Windows.Forms.Button();
+            this.buttonActAdd = new System.Windows.Forms.Button();
+            this.lblEndDate2 = new System.Windows.Forms.Label();
+            this.lblStartDate2 = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.listViewActivities = new System.Windows.Forms.ListView();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -133,9 +134,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.activitiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.supervisorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.studentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimePickerActStart = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerActEnd = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -242,6 +242,25 @@
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.activitiesToolStripMenuItem.Text = "Activities";
+            // 
+            // activitiesToolStripMenuItem1
+            // 
+            this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
+            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.activitiesToolStripMenuItem1.Text = "Activities";
+            this.activitiesToolStripMenuItem1.Click += new System.EventHandler(this.activitiesToolStripMenuItem1_Click);
+            // 
+            // supervisorsToolStripMenuItem
+            // 
+            this.supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
+            this.supervisorsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.supervisorsToolStripMenuItem.Text = "Supervisors";
+            // 
+            // studentsToolStripMenuItem1
+            // 
+            this.studentsToolStripMenuItem1.Name = "studentsToolStripMenuItem1";
+            this.studentsToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
+            this.studentsToolStripMenuItem1.Text = "Students";
             // 
             // roomsToolStripMenuItem
             // 
@@ -823,18 +842,18 @@
             // 
             // pnlActivities
             // 
+            this.pnlActivities.Controls.Add(this.dateTimePickerActEnd);
+            this.pnlActivities.Controls.Add(this.dateTimePickerActStart);
             this.pnlActivities.Controls.Add(this.pictureBox12);
-            this.pnlActivities.Controls.Add(this.label5);
-            this.pnlActivities.Controls.Add(this.button1);
-            this.pnlActivities.Controls.Add(this.button2);
-            this.pnlActivities.Controls.Add(this.button3);
-            this.pnlActivities.Controls.Add(this.label6);
-            this.pnlActivities.Controls.Add(this.label7);
-            this.pnlActivities.Controls.Add(this.label8);
-            this.pnlActivities.Controls.Add(this.textBox1);
-            this.pnlActivities.Controls.Add(this.textBox2);
-            this.pnlActivities.Controls.Add(this.textBox3);
-            this.pnlActivities.Controls.Add(this.listView1);
+            this.pnlActivities.Controls.Add(this.lblActivities);
+            this.pnlActivities.Controls.Add(this.buttonActDelete);
+            this.pnlActivities.Controls.Add(this.buttonActChange);
+            this.pnlActivities.Controls.Add(this.buttonActAdd);
+            this.pnlActivities.Controls.Add(this.lblEndDate2);
+            this.pnlActivities.Controls.Add(this.lblStartDate2);
+            this.pnlActivities.Controls.Add(this.lblDescription);
+            this.pnlActivities.Controls.Add(this.textBoxDescription);
+            this.pnlActivities.Controls.Add(this.listViewActivities);
             this.pnlActivities.Location = new System.Drawing.Point(798, 25);
             this.pnlActivities.Margin = new System.Windows.Forms.Padding(2);
             this.pnlActivities.Name = "pnlActivities";
@@ -852,107 +871,93 @@
             this.pictureBox12.TabIndex = 9;
             this.pictureBox12.TabStop = false;
             // 
-            // label5
+            // lblActivities
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.label5.Location = new System.Drawing.Point(10, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 29);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Activities";
+            this.lblActivities.AutoSize = true;
+            this.lblActivities.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.lblActivities.Location = new System.Drawing.Point(10, 10);
+            this.lblActivities.Name = "lblActivities";
+            this.lblActivities.Size = new System.Drawing.Size(107, 29);
+            this.lblActivities.TabIndex = 13;
+            this.lblActivities.Text = "Activities";
             // 
-            // button1
+            // buttonActDelete
             // 
-            this.button1.Location = new System.Drawing.Point(460, 304);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonActDelete.Location = new System.Drawing.Point(613, 305);
+            this.buttonActDelete.Name = "buttonActDelete";
+            this.buttonActDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonActDelete.TabIndex = 12;
+            this.buttonActDelete.Text = "Delete";
+            this.buttonActDelete.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonActChange
             // 
-            this.button2.Location = new System.Drawing.Point(402, 333);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonActChange.Location = new System.Drawing.Point(613, 276);
+            this.buttonActChange.Name = "buttonActChange";
+            this.buttonActChange.Size = new System.Drawing.Size(75, 23);
+            this.buttonActChange.TabIndex = 11;
+            this.buttonActChange.Text = "Change";
+            this.buttonActChange.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonActAdd
             // 
-            this.button3.Location = new System.Drawing.Point(354, 304);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonActAdd.Location = new System.Drawing.Point(613, 247);
+            this.buttonActAdd.Name = "buttonActAdd";
+            this.buttonActAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonActAdd.TabIndex = 10;
+            this.buttonActAdd.Text = "Add";
+            this.buttonActAdd.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // lblEndDate2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(225, 304);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 15);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Quantity:";
+            this.lblEndDate2.AutoSize = true;
+            this.lblEndDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEndDate2.Location = new System.Drawing.Point(325, 304);
+            this.lblEndDate2.Name = "lblEndDate2";
+            this.lblEndDate2.Size = new System.Drawing.Size(59, 15);
+            this.lblEndDate2.TabIndex = 9;
+            this.lblEndDate2.Text = "End date:";
             // 
-            // label7
+            // lblStartDate2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(119, 304);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 15);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Sale price:";
+            this.lblStartDate2.AutoSize = true;
+            this.lblStartDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartDate2.Location = new System.Drawing.Point(119, 304);
+            this.lblStartDate2.Name = "lblStartDate2";
+            this.lblStartDate2.Size = new System.Drawing.Size(62, 15);
+            this.lblStartDate2.TabIndex = 9;
+            this.lblStartDate2.Text = "Start date:";
             // 
-            // label8
+            // lblDescription
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(13, 304);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 15);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Drink name:";
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(13, 304);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(72, 15);
+            this.lblDescription.TabIndex = 9;
+            this.lblDescription.Text = "Description:";
             // 
-            // textBox1
+            // textBoxDescription
             // 
-            this.textBox1.Location = new System.Drawing.Point(122, 330);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.textBoxDescription.Location = new System.Drawing.Point(16, 330);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDescription.TabIndex = 9;
             // 
-            // textBox2
+            // listViewActivities
             // 
-            this.textBox2.Location = new System.Drawing.Point(228, 330);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(16, 330);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 9;
-            // 
-            // listView1
-            // 
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 42);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(576, 250);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewActivities.FullRowSelect = true;
+            this.listViewActivities.GridLines = true;
+            this.listViewActivities.HideSelection = false;
+            this.listViewActivities.Location = new System.Drawing.Point(16, 42);
+            this.listViewActivities.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewActivities.MultiSelect = false;
+            this.listViewActivities.Name = "listViewActivities";
+            this.listViewActivities.Size = new System.Drawing.Size(576, 250);
+            this.listViewActivities.TabIndex = 5;
+            this.listViewActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities.View = System.Windows.Forms.View.Details;
             // 
             // pnlSupervisors
             // 
@@ -1220,23 +1225,19 @@
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // activitiesToolStripMenuItem1
+            // dateTimePickerActStart
             // 
-            this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
-            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.activitiesToolStripMenuItem1.Text = "Activities";
+            this.dateTimePickerActStart.Location = new System.Drawing.Point(122, 330);
+            this.dateTimePickerActStart.Name = "dateTimePickerActStart";
+            this.dateTimePickerActStart.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActStart.TabIndex = 14;
             // 
-            // supervisorsToolStripMenuItem
+            // dateTimePickerActEnd
             // 
-            this.supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
-            this.supervisorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.supervisorsToolStripMenuItem.Text = "Supervisors";
-            // 
-            // studentsToolStripMenuItem1
-            // 
-            this.studentsToolStripMenuItem1.Name = "studentsToolStripMenuItem1";
-            this.studentsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.studentsToolStripMenuItem1.Text = "Students";
+            this.dateTimePickerActEnd.Location = new System.Drawing.Point(328, 330);
+            this.dateTimePickerActEnd.Name = "dateTimePickerActEnd";
+            this.dateTimePickerActEnd.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActEnd.TabIndex = 15;
             // 
             // SomerenUI
             // 
@@ -1370,17 +1371,15 @@
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Panel pnlActivities;
         private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label lblActivities;
+        private System.Windows.Forms.Button buttonActDelete;
+        private System.Windows.Forms.Button buttonActChange;
+        private System.Windows.Forms.Button buttonActAdd;
+        private System.Windows.Forms.Label lblEndDate2;
+        private System.Windows.Forms.Label lblStartDate2;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.ListView listViewActivities;
         private System.Windows.Forms.Panel pnlSupervisors;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label9;
@@ -1410,6 +1409,8 @@
         private System.Windows.Forms.ToolStripMenuItem activitiesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem supervisorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerActEnd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerActStart;
     }
 }
 
