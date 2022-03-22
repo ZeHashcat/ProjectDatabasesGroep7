@@ -340,11 +340,20 @@ namespace SomerenUI
                 // Hide all other panels
                 HideAllPanels();
 
-                // Show Cash Register
+                // Show Activities panel
                 pnlActivities.Show();
+
+                //Reset input/output boxes.
+                lblActId.Text = "Activity ID number:           ...";
+                textBoxDescription.Text = string.Empty;
+                textBoxTimeStart.Text = string.Empty;
+                textBoxTimeEnd.Text = string.Empty;
+                dateTimePickerActStart.Text = DateTime.Now.ToString();
+                dateTimePickerActEnd.Text = DateTime.Now.ToString();
+
                 try
                 {
-                    // Get drinks data from SQL server
+                    // Get activities data from SQL server
                     ActivityService activityService = new ActivityService();
                     List<Activity> activitiesList = activityService.GetAllActivities();
 
@@ -352,16 +361,16 @@ namespace SomerenUI
                     listViewActivities.Clear();
 
                     // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
-                    listViewActivities.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
-                    listViewActivities.Columns.Add("Description", 100, HorizontalAlignment.Center);
-                    listViewActivities.Columns.Add("Start Time", 150, HorizontalAlignment.Center);
-                    listViewActivities.Columns.Add("End Time", 150, HorizontalAlignment.Center);
+                    //listViewActivities.Columns.Add("Description", 100, HorizontalAlignment.Center);
+                    //listViewActivities.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+                    //listViewActivities.Columns.Add("Start Time", 150, HorizontalAlignment.Center);
+                    //listViewActivities.Columns.Add("End Time", 150, HorizontalAlignment.Center);
 
                     // Adds data to listview columns
                     foreach (Activity activity in activitiesList)
                     {
-                        ListViewItem li = new ListViewItem(activity.ActivityId.ToString());
-                        li.SubItems.Add(activity.ActivityName);
+                        ListViewItem li = new ListViewItem(activity.ActivityName);
+                        li.SubItems.Add(activity.ActivityId.ToString());
                         li.SubItems.Add(activity.StartDate.ToString());
                         li.SubItems.Add(activity.EndDate.ToString());
                         listViewActivities.Items.Add(li);
@@ -435,7 +444,7 @@ namespace SomerenUI
 
         private void imgDashboard_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("What happens in Someren, stays in Someren!");
+            MessageBox.Show("What happens in Someren, stays in Someren! ;)");
         }
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -675,16 +684,99 @@ namespace SomerenUI
             showPanel("Activities");
         }
 
+        //Adds relevant data to textboxes and calander when selecting a row, foreach was used to avoid headaches with index not valid exceptions.
         private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (ListViewItem activity in listViewActivities.SelectedItems)
             {
-                textBoxDescription.Text = activity.SubItems[1].Text;
+                textBoxDescription.Text = activity.SubItems[0].Text;
+                lblActId.Text = $"Activity ID number:           {activity.SubItems[1].Text}";
                 dateTimePickerActStart.Text = activity.SubItems[2].Text;
-                textBoxTimeStart.Text = $"{Convert.ToDateTime(activity.SubItems[2].Text):t}";
+                textBoxTimeStart.Text = $"{Convert.ToDateTime(activity.SubItems[2].Text):HH:mm}";
                 dateTimePickerActEnd.Text = activity.SubItems[3].Text;
-                textBoxTimeEnd.Text = $"{Convert.ToDateTime(activity.SubItems[3].Text):t}";
+                textBoxTimeEnd.Text = $"{Convert.ToDateTime(activity.SubItems[3].Text):HH:mm}";
             }
+        }
+
+        //Adds activity to the database.
+        private void buttonActAdd_Click(object sender, EventArgs e)
+        {
+            PrintService errorControl = new PrintService();
+            ActivityService activityService = new ActivityService();
+            List<Activity> activities = activityService.GetAllActivities();
+            DateTime startDate;
+            DateTime endDate;
+
+            try
+            {
+                if (textBoxDescription.Text == string.Empty)
+                {
+                    throw new Exception("Description cannot be empty!");
+                }
+
+                try
+                {
+                    startDate = Convert.ToDateTime($"{dateTimePickerActStart.Text.Split(' ')[0]} {textBoxTimeStart.Text}:00");
+                    endDate = Convert.ToDateTime($"{dateTimePickerActEnd.Text.Split(' ')[0]} {textBoxTimeEnd.Text}:00");
+                }
+                catch (Exception ex)
+                {
+                    errorControl.Print(ex);
+                    throw new Exception("Enter a valid time!");
+                }
+
+                foreach (Activity activity in activities)
+                {
+                    if (activity.ActivityName == textBoxDescription.Text)
+                    {
+                        throw new Exception("Activity is already in the list!\n\nYou wanted the same activity multiple times?\n\nWell... \n\n\n\nSucks for you!\n\n(But seriously, just change the description slightly.)");
+                    }
+                }
+
+                if (startDate > endDate)
+                {
+                    throw new Exception("Starting date and time can't be later then the end date and time!");
+                }
+
+                activityService.AddActivity(textBoxDescription.Text, startDate, endDate);
+
+                showPanel("Activities");
+            }
+            catch (Exception ex)
+            {
+                errorControl.Print(ex);
+                MessageBox.Show("Oh noes, something went wrong:\n\n" + ex.Message);
+                showPanel("Activities");
+            }
+        }
+
+        //Deletes row from the database.
+        private void buttonActDelete_Click(object sender, EventArgs e)
+        {
+            PrintService errorControl = new PrintService();
+            ActivityService activityService = new ActivityService();
+
+            try
+            {
+                if (listViewActivities.SelectedItems.Count == 0)
+                {
+                    throw new Exception("Select a row to delete!");
+                }
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure that you wish to remove this activity?’", "Delete Activity", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    activityService.DeleteActivity(int.Parse(listViewActivities.SelectedItems[0].SubItems[1].Text));
+                }
+            }
+            catch(Exception ex)
+            {
+                errorControl.Print(ex);
+                MessageBox.Show("Oh noes, something went wrong:\n\n" + ex.Message);
+            }
+
+            showPanel("Activities");
         }
     }
 }

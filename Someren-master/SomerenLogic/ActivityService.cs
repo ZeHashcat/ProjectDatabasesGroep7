@@ -24,5 +24,15 @@ namespace SomerenLogic
             List<Activity> activities = activitydb.GetAllActivities();
             return activities;
         }
+
+        public void AddActivity(string activityName, DateTime startDate, DateTime endDate)
+        {
+            activitydb.AddActivity(activityName, startDate, endDate);
+        }
+
+        public void DeleteActivity(int activityId)
+        {
+            activitydb.DeleteActivity(activityId);
+        }
     }
 }

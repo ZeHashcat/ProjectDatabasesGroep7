@@ -20,7 +20,6 @@ namespace SomerenDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-
         private List<Activity> ReadTables(DataTable dataTable)
         {
             // Create rooms list
@@ -40,6 +39,26 @@ namespace SomerenDAL
                 activities.Add(activity);
             }
             return activities;
+        }
+
+        // Query adds activity to database.
+        public void AddActivity(string activityName, DateTime startDate, DateTime endDate)
+        {  
+            string query = "INSERT INTO Activity (Description, StartDateTime, EndDateTime) VALUES(@ActivityName, @StartTime, @EndTime);";
+            SqlParameter[] sqlParameters = new SqlParameter[3];
+            sqlParameters[0] = new SqlParameter("@ActivityName", activityName);
+            sqlParameters[1] = new SqlParameter("@StartTime", startDate.ToString("yyyy-M-dd HH:mm:ss"));
+            sqlParameters[2] = new SqlParameter("@EndTime", endDate.ToString("yyyy-M-dd HH:mm:ss"));
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        //Query Deletes activity from the database, related tables got their foreign keys set to cascade.
+        public void DeleteActivity(int activityId)
+        {
+            string query = "DELETE FROM Activity WHERE ActivityId = @activityId; ";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@ActivityId", activityId);
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }
