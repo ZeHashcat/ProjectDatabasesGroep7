@@ -52,12 +52,25 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        //Query Deletes activity from the database, related tables got their foreign keys set to cascade.
+        //Query deletes activity from the database, related tables got their foreign keys set to cascade.
         public void DeleteActivity(int activityId)
         {
             string query = "DELETE FROM Activity WHERE ActivityId = @activityId; ";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@ActivityId", activityId);
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        // Query updates all values of a row with with new or the same ones.
+        public void ChangeActivity(int activityId, string activityName, DateTime startDate, DateTime endDate)
+        {
+            
+            string query = "UPDATE Activity SET Description = @Description, StartDateTime = @StartTime, EndDateTime = @EndTime WHERE ActivityID = @ActivityID;";
+            SqlParameter[] sqlParameters = new SqlParameter[4];
+            sqlParameters[0] = new SqlParameter("@ActivityID", activityId);
+            sqlParameters[1] = new SqlParameter("@Description", activityName);
+            sqlParameters[2] = new SqlParameter("@StartTime", startDate.ToString("yyyy-M-dd HH:mm:ss"));
+            sqlParameters[3] = new SqlParameter("@EndTime", endDate.ToString("yyyy-M-dd HH:mm:ss"));
             ExecuteEditQuery(query, sqlParameters);
         }
     }
