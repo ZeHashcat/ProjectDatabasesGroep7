@@ -18,7 +18,7 @@ namespace SomerenDAL
             try
             {
                 // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
-                string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID WHERE TransactionTime >= '{startDate}' AND TransactionTime < '{endDate}'; ");
+                string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM [Order] JOIN Drinks ON [Order].DrinkID = Drinks.DrinkID WHERE [Order].TransactionTime >= '{startDate.ToString("yyyy-M-dd hh:mm:ss")}' AND [Order].TransactionTime < '{endDate.ToString("yyyy-M-dd hh:mm:ss")}'; ");
                 SqlParameter[] sqlParameters = new SqlParameter[0];
                 return ReadTables(ExecuteSelectQuery(query, sqlParameters));
             }
@@ -26,7 +26,7 @@ namespace SomerenDAL
             {
                 PrintDao Print = new PrintDao();
                 Print.ErrorLog(e);
-                throw new Exception("No sales found in this time");
+                throw new Exception($"No sales found at this time");
             }
         }
 
@@ -34,7 +34,7 @@ namespace SomerenDAL
         public Revenue GetRevenue()
         {
             // Query joins 2 tables into 1 and and get the amount of sales the turnover and the amount of customers
-            string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM Drinks JOIN DrinkSupply ON Drinks.DrinkID = DrinkSupply.DrinkID; ");
+            string query = ($"SELECT COUNT(TransactionID) AS Sales, SUM(SalePrice) AS Turnover, COUNT(DISTINCT PersonID) AS Customers FROM [Order] JOIN Drinks ON [Order].DrinkID = Drinks.DrinkID; ");
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
