@@ -42,8 +42,9 @@ namespace SomerenUI
             pnlRevenue.Hide();
             pnlCashRegister.Hide();
             pnlDrinkSupply.Hide();
+            pnlActivities.Hide();
         }
-        
+
         private void showPanel(string panelName)
         {
             if (panelName == "Dashboard")
@@ -274,7 +275,7 @@ namespace SomerenUI
                 catch (Exception ex)
                 {
                     MessageBox.Show("Something went wrong with getting the revenue report!" + ex.Message.ToString());
-                }  
+                }
             }
             else if (panelName == "DrinkSupply")
             {
@@ -319,7 +320,7 @@ namespace SomerenUI
                         li.SubItems.Add(drink.SalesPrice.ToString());
                         li.SubItems.Add(drink.Quantity.ToString());
                         li.SubItems.Add(drink.DrinkId.ToString());
-                        
+
                         // Check stock to show wich image from the image list has to be used
                         if (drink.Quantity < 10)
                             li.ImageKey = "ThumbsDown";
@@ -333,6 +334,43 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the drink supply: " + e.Message);
                 }
 
+            }
+            else if (panelName == "Activities")
+            {
+                // Hide all other panels
+                HideAllPanels();
+
+                // Show Cash Register
+                pnlActivities.Show();
+                try
+                {
+                    // Get drinks data from SQL server
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> activitiesList = activityService.GetAllActivities();
+
+                    // Clear the listview before filling it again
+                    listViewActivities.Clear();
+
+                    // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                    listViewActivities.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+                    listViewActivities.Columns.Add("Description", 100, HorizontalAlignment.Center);
+                    listViewActivities.Columns.Add("Start Time", 150, HorizontalAlignment.Center);
+                    listViewActivities.Columns.Add("End Time", 150, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Activity activity in activitiesList)
+                    {
+                        ListViewItem li = new ListViewItem(activity.ActivityId.ToString());
+                        li.SubItems.Add(activity.ActivityName);
+                        li.SubItems.Add(activity.StartDate.ToString());
+                        li.SubItems.Add(activity.EndDate.ToString());
+                        listViewActivities.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                }
             }
         }
 
@@ -630,6 +668,11 @@ namespace SomerenUI
             textBoxDrinkName.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[0].Text;
             textBoxSalePrice.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[1].Text;
             textBoxQuantity.Text = listViewDrinkSupply2.SelectedItems[0].SubItems[2].Text;
+        }
+
+        private void activitiesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
         }
     }
 }
