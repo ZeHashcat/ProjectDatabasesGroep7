@@ -20,6 +20,24 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
+        public List<Student> GetStudentsFromActivity(int ActivityID)
+        {
+            // Query joins 2 tables into 1 and shows id and full name
+            string query = "SELECT Student.StudentID, firstname, lastname FROM student JOIN Person ON Student.personid=person.personid JOIN ActivityStudent ON Student.StudentID = ActivityStudent.StudentID WHERE ActivityID = @ActivityID;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@ActivityID", ActivityID);
+            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+        }
+
+        public void AddStudentToActivity(int ActivityID, int StudentID)
+        {
+            // Query adds drink to database
+            string query = "INSERT INTO ActivityStudent (StudentID, ActivityID) VALUES(@StudentID, @ActivityID);";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@StudentID", StudentID);
+            sqlParameters[1] = new SqlParameter("@ActivityID", ActivityID);
+            ExecuteEditQuery(query, sqlParameters);
+        }
         private List<Student> ReadTables(DataTable dataTable)
         {
             // Create students list

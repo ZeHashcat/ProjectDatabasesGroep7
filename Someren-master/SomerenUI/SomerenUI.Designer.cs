@@ -98,13 +98,6 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlActivities = new System.Windows.Forms.Panel();
-            this.pnlParticants = new System.Windows.Forms.Panel();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.labelActivity = new System.Windows.Forms.Label();
-            this.btnDeleteStudentFromActivity = new System.Windows.Forms.Button();
-            this.btnAddStudentActivity = new System.Windows.Forms.Button();
-            this.btnShowAllStudents = new System.Windows.Forms.Button();
-            this.listViewActivity = new System.Windows.Forms.ListView();
             this.lblDescriptionFull = new System.Windows.Forms.Label();
             this.labelActHint = new System.Windows.Forms.Label();
             this.lblActId = new System.Windows.Forms.Label();
@@ -124,6 +117,15 @@
             this.lblDescription = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.listViewActivities = new System.Windows.Forms.ListView();
+            this.pnlParticants = new System.Windows.Forms.Panel();
+            this.labelStudent = new System.Windows.Forms.Label();
+            this.listViewParticipant = new System.Windows.Forms.ListView();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.labelActivity = new System.Windows.Forms.Label();
+            this.btnDeleteStudentFromActivity = new System.Windows.Forms.Button();
+            this.btnAddStudentActivity = new System.Windows.Forms.Button();
+            this.btnShowAllStudents = new System.Windows.Forms.Button();
+            this.listViewActivity = new System.Windows.Forms.ListView();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -137,8 +139,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.listViewParticipant = new System.Windows.Forms.ListView();
-            this.labelStudent = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -159,9 +159,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.pnlActivities.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.pnlParticants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.pnlSupervisors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.SuspendLayout();
@@ -189,7 +189,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1688, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1688, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -880,89 +880,6 @@
             this.pnlActivities.Size = new System.Drawing.Size(1020, 466);
             this.pnlActivities.TabIndex = 9;
             // 
-            // pnlParticants
-            // 
-            this.pnlParticants.Controls.Add(this.labelStudent);
-            this.pnlParticants.Controls.Add(this.listViewParticipant);
-            this.pnlParticants.Controls.Add(this.pictureBox14);
-            this.pnlParticants.Controls.Add(this.labelActivity);
-            this.pnlParticants.Controls.Add(this.btnDeleteStudentFromActivity);
-            this.pnlParticants.Controls.Add(this.btnAddStudentActivity);
-            this.pnlParticants.Controls.Add(this.btnShowAllStudents);
-            this.pnlParticants.Controls.Add(this.listViewActivity);
-            this.pnlParticants.Location = new System.Drawing.Point(12, 31);
-            this.pnlParticants.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlParticants.Name = "pnlParticants";
-            this.pnlParticants.Size = new System.Drawing.Size(1020, 466);
-            this.pnlParticants.TabIndex = 11;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = global::SomerenUI.Properties.Resources.someren;
-            this.pictureBox14.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.InitialImage")));
-            this.pictureBox14.Location = new System.Drawing.Point(817, 52);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(172, 144);
-            this.pictureBox14.TabIndex = 9;
-            this.pictureBox14.TabStop = false;
-            // 
-            // labelActivity
-            // 
-            this.labelActivity.AutoSize = true;
-            this.labelActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.labelActivity.Location = new System.Drawing.Point(13, 12);
-            this.labelActivity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelActivity.Name = "labelActivity";
-            this.labelActivity.Size = new System.Drawing.Size(132, 33);
-            this.labelActivity.TabIndex = 13;
-            this.labelActivity.Text = "Activities";
-            // 
-            // btnDeleteStudentFromActivity
-            // 
-            this.btnDeleteStudentFromActivity.Location = new System.Drawing.Point(323, 376);
-            this.btnDeleteStudentFromActivity.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteStudentFromActivity.Name = "btnDeleteStudentFromActivity";
-            this.btnDeleteStudentFromActivity.Size = new System.Drawing.Size(205, 28);
-            this.btnDeleteStudentFromActivity.TabIndex = 12;
-            this.btnDeleteStudentFromActivity.Text = "Delete student from activity";
-            this.btnDeleteStudentFromActivity.UseVisualStyleBackColor = true;
-            // 
-            // btnAddStudentActivity
-            // 
-            this.btnAddStudentActivity.Location = new System.Drawing.Point(153, 374);
-            this.btnAddStudentActivity.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddStudentActivity.Name = "btnAddStudentActivity";
-            this.btnAddStudentActivity.Size = new System.Drawing.Size(162, 28);
-            this.btnAddStudentActivity.TabIndex = 11;
-            this.btnAddStudentActivity.Text = "Add student to activity";
-            this.btnAddStudentActivity.UseVisualStyleBackColor = true;
-            // 
-            // btnShowAllStudents
-            // 
-            this.btnShowAllStudents.Location = new System.Drawing.Point(19, 374);
-            this.btnShowAllStudents.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowAllStudents.Name = "btnShowAllStudents";
-            this.btnShowAllStudents.Size = new System.Drawing.Size(126, 28);
-            this.btnShowAllStudents.TabIndex = 10;
-            this.btnShowAllStudents.Text = "Show all student";
-            this.btnShowAllStudents.UseVisualStyleBackColor = true;
-            this.btnShowAllStudents.Click += new System.EventHandler(this.btnShowAllStudents_Click);
-            // 
-            // listViewActivity
-            // 
-            this.listViewActivity.FullRowSelect = true;
-            this.listViewActivity.GridLines = true;
-            this.listViewActivity.HideSelection = false;
-            this.listViewActivity.Location = new System.Drawing.Point(21, 52);
-            this.listViewActivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listViewActivity.MultiSelect = false;
-            this.listViewActivity.Name = "listViewActivity";
-            this.listViewActivity.Size = new System.Drawing.Size(342, 307);
-            this.listViewActivity.TabIndex = 5;
-            this.listViewActivity.UseCompatibleStateImageBehavior = false;
-            this.listViewActivity.View = System.Windows.Forms.View.Details;
-            // 
             // lblDescriptionFull
             // 
             this.lblDescriptionFull.AutoSize = true;
@@ -1168,6 +1085,116 @@
             this.listViewActivities.View = System.Windows.Forms.View.List;
             this.listViewActivities.SelectedIndexChanged += new System.EventHandler(this.listViewActivities_SelectedIndexChanged);
             // 
+            // pnlParticants
+            // 
+            this.pnlParticants.Controls.Add(this.labelStudent);
+            this.pnlParticants.Controls.Add(this.listViewParticipant);
+            this.pnlParticants.Controls.Add(this.pictureBox14);
+            this.pnlParticants.Controls.Add(this.labelActivity);
+            this.pnlParticants.Controls.Add(this.btnDeleteStudentFromActivity);
+            this.pnlParticants.Controls.Add(this.btnAddStudentActivity);
+            this.pnlParticants.Controls.Add(this.btnShowAllStudents);
+            this.pnlParticants.Controls.Add(this.listViewActivity);
+            this.pnlParticants.Location = new System.Drawing.Point(12, 31);
+            this.pnlParticants.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlParticants.Name = "pnlParticants";
+            this.pnlParticants.Size = new System.Drawing.Size(1020, 466);
+            this.pnlParticants.TabIndex = 11;
+            // 
+            // labelStudent
+            // 
+            this.labelStudent.AutoSize = true;
+            this.labelStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.labelStudent.Location = new System.Drawing.Point(380, 12);
+            this.labelStudent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStudent.Name = "labelStudent";
+            this.labelStudent.Size = new System.Drawing.Size(129, 33);
+            this.labelStudent.TabIndex = 15;
+            this.labelStudent.Text = "Students";
+            // 
+            // listViewParticipant
+            // 
+            this.listViewParticipant.FullRowSelect = true;
+            this.listViewParticipant.GridLines = true;
+            this.listViewParticipant.HideSelection = false;
+            this.listViewParticipant.Location = new System.Drawing.Point(386, 52);
+            this.listViewParticipant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewParticipant.MultiSelect = false;
+            this.listViewParticipant.Name = "listViewParticipant";
+            this.listViewParticipant.Size = new System.Drawing.Size(342, 307);
+            this.listViewParticipant.TabIndex = 14;
+            this.listViewParticipant.UseCompatibleStateImageBehavior = false;
+            this.listViewParticipant.View = System.Windows.Forms.View.Details;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox14.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.InitialImage")));
+            this.pictureBox14.Location = new System.Drawing.Point(817, 52);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(172, 144);
+            this.pictureBox14.TabIndex = 9;
+            this.pictureBox14.TabStop = false;
+            // 
+            // labelActivity
+            // 
+            this.labelActivity.AutoSize = true;
+            this.labelActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.labelActivity.Location = new System.Drawing.Point(13, 12);
+            this.labelActivity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelActivity.Name = "labelActivity";
+            this.labelActivity.Size = new System.Drawing.Size(132, 33);
+            this.labelActivity.TabIndex = 13;
+            this.labelActivity.Text = "Activities";
+            // 
+            // btnDeleteStudentFromActivity
+            // 
+            this.btnDeleteStudentFromActivity.Location = new System.Drawing.Point(323, 376);
+            this.btnDeleteStudentFromActivity.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteStudentFromActivity.Name = "btnDeleteStudentFromActivity";
+            this.btnDeleteStudentFromActivity.Size = new System.Drawing.Size(205, 28);
+            this.btnDeleteStudentFromActivity.TabIndex = 12;
+            this.btnDeleteStudentFromActivity.Text = "Delete student from activity";
+            this.btnDeleteStudentFromActivity.UseVisualStyleBackColor = true;
+            // 
+            // btnAddStudentActivity
+            // 
+            this.btnAddStudentActivity.Location = new System.Drawing.Point(153, 374);
+            this.btnAddStudentActivity.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddStudentActivity.Name = "btnAddStudentActivity";
+            this.btnAddStudentActivity.Size = new System.Drawing.Size(162, 28);
+            this.btnAddStudentActivity.TabIndex = 11;
+            this.btnAddStudentActivity.Text = "Add student to activity";
+            this.btnAddStudentActivity.UseVisualStyleBackColor = true;
+            this.btnAddStudentActivity.Click += new System.EventHandler(this.btnAddStudentActivity_Click);
+            // 
+            // btnShowAllStudents
+            // 
+            this.btnShowAllStudents.Location = new System.Drawing.Point(19, 374);
+            this.btnShowAllStudents.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowAllStudents.Name = "btnShowAllStudents";
+            this.btnShowAllStudents.Size = new System.Drawing.Size(126, 28);
+            this.btnShowAllStudents.TabIndex = 10;
+            this.btnShowAllStudents.Text = "Show all student";
+            this.btnShowAllStudents.UseVisualStyleBackColor = true;
+            this.btnShowAllStudents.Click += new System.EventHandler(this.btnShowAllStudents_Click);
+            // 
+            // listViewActivity
+            // 
+            this.listViewActivity.FullRowSelect = true;
+            this.listViewActivity.GridLines = true;
+            this.listViewActivity.HideSelection = false;
+            this.listViewActivity.Location = new System.Drawing.Point(21, 52);
+            this.listViewActivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewActivity.MultiSelect = false;
+            this.listViewActivity.Name = "listViewActivity";
+            this.listViewActivity.Size = new System.Drawing.Size(342, 307);
+            this.listViewActivity.TabIndex = 5;
+            this.listViewActivity.UseCompatibleStateImageBehavior = false;
+            this.listViewActivity.View = System.Windows.Forms.View.Details;
+            this.listViewActivity.SelectedIndexChanged += new System.EventHandler(this.listViewActivity_SelectedIndexChanged);
+            // 
             // pnlSupervisors
             // 
             this.pnlSupervisors.Controls.Add(this.pictureBox13);
@@ -1311,31 +1338,6 @@
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             // 
-            // listViewParticipant
-            // 
-            this.listViewParticipant.FullRowSelect = true;
-            this.listViewParticipant.GridLines = true;
-            this.listViewParticipant.HideSelection = false;
-            this.listViewParticipant.Location = new System.Drawing.Point(386, 52);
-            this.listViewParticipant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listViewParticipant.MultiSelect = false;
-            this.listViewParticipant.Name = "listViewParticipant";
-            this.listViewParticipant.Size = new System.Drawing.Size(342, 307);
-            this.listViewParticipant.TabIndex = 14;
-            this.listViewParticipant.UseCompatibleStateImageBehavior = false;
-            this.listViewParticipant.View = System.Windows.Forms.View.Details;
-            // 
-            // labelStudent
-            // 
-            this.labelStudent.AutoSize = true;
-            this.labelStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.labelStudent.Location = new System.Drawing.Point(380, 12);
-            this.labelStudent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelStudent.Name = "labelStudent";
-            this.labelStudent.Size = new System.Drawing.Size(129, 33);
-            this.labelStudent.TabIndex = 15;
-            this.labelStudent.Text = "Students";
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1388,10 +1390,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.pnlActivities.ResumeLayout(false);
             this.pnlActivities.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.pnlParticants.ResumeLayout(false);
             this.pnlParticants.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.pnlSupervisors.ResumeLayout(false);
             this.pnlSupervisors.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();

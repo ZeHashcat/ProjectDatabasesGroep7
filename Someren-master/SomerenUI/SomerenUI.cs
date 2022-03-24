@@ -911,5 +911,48 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
             }
         }
+
+        private void listViewActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /**
+            try
+            {
+                // Clear the listview before filling it again
+                listViewParticipant.Clear();
+
+                // Fill the students listview within the students panel with a list of students
+                StudentService studService = new StudentService();
+                List<Student> studentList = studService.GetStudentsFromActivity(int.Parse(listViewActivity.SelectedItems[1].SubItems[1].Text));
+
+                
+
+                // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                listViewParticipant.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                    ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                    ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                    li.SubItems.Add(fName);
+                    li.SubItems.Add(lName);
+                    listViewParticipant.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
+            }
+            **/
+        }
+
+        private void btnAddStudentActivity_Click(object sender, EventArgs e)
+        {
+            StudentService studService = new StudentService();
+            studService.AddStudentToActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text), int.Parse(listViewParticipant.SelectedItems[0].SubItems[0].Text));
+        }
     }
 }
