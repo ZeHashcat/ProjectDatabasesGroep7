@@ -43,6 +43,8 @@ namespace SomerenUI
             pnlCashRegister.Hide();
             pnlDrinkSupply.Hide();
             pnlActivities.Hide();
+            pnlParticants.Hide();
+            pnlSupervisors.Hide();
         }
 
         private void showPanel(string panelName)
@@ -375,6 +377,44 @@ namespace SomerenUI
                 catch (Exception e)
                 {
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                }
+            }
+            else if (panelName == "Participants")
+            {
+                // Hide all other panels
+                HideAllPanels();
+                
+
+                // Show Participants panel
+                pnlParticants.Show();
+                listViewActivity.Items.Add("sadf");
+                try
+                {
+                    // Get activities data from SQL server
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> activitiesList = activityService.GetAllActivities();
+
+                    // Clear the listview before filling it again
+                    listViewParticipant.Clear();
+                    listViewActivity.Clear();
+
+                    // Make columns
+                    listViewActivity.Columns.Add("Activity Name", 150, HorizontalAlignment.Center);
+                    listViewActivity.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Activity activity in activitiesList)
+                    {
+                        ListViewItem li = new ListViewItem(activity.ActivityName);
+                        li.SubItems.Add(activity.ActivityId.ToString());
+                        //li.SubItems.Add(activity.StartDate.ToString());
+                        //li.SubItems.Add(activity.EndDate.ToString());
+                        listViewActivity.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Participants: " + e.Message);
                 }
             }
         }
@@ -831,6 +871,44 @@ namespace SomerenUI
                         throw new Exception("Activity is already in the list!\n\nYou wanted the same activity multiple times?\n\nWell... \n\n\n\nSucks for you!\n\n(But seriously, just change the description slightly.)");
                     }
                 }
+            }
+        }
+
+        private void studentsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Participants");
+        }
+
+        private void btnShowAllStudents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Fill the students listview within the students panel with a list of students
+                StudentService studService = new StudentService(); ;
+                List<Student> studentList = studService.GetStudents(); ;
+
+                // Clear the listview before filling it again
+                listViewParticipant.Clear();
+
+                // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                listViewParticipant.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                    ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                    ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                    li.SubItems.Add(fName);
+                    li.SubItems.Add(lName);
+                    listViewParticipant.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
             }
         }
     }
