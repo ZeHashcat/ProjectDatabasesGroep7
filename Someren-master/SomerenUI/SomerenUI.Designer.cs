@@ -98,6 +98,15 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlActivities = new System.Windows.Forms.Panel();
+            this.lblDescriptionFull = new System.Windows.Forms.Label();
+            this.labelActHint = new System.Windows.Forms.Label();
+            this.lblActId = new System.Windows.Forms.Label();
+            this.lblTime2 = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.textBoxTimeEnd = new System.Windows.Forms.TextBox();
+            this.textBoxTimeStart = new System.Windows.Forms.TextBox();
+            this.dateTimePickerActEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerActStart = new System.Windows.Forms.DateTimePicker();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.lblActivities = new System.Windows.Forms.Label();
             this.buttonActDelete = new System.Windows.Forms.Button();
@@ -134,8 +143,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.dateTimePickerActStart = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerActEnd = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -185,7 +192,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1509, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(774, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -246,7 +253,7 @@
             // activitiesToolStripMenuItem1
             // 
             this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
-            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
             this.activitiesToolStripMenuItem1.Text = "Activities";
             this.activitiesToolStripMenuItem1.Click += new System.EventHandler(this.activitiesToolStripMenuItem1_Click);
             // 
@@ -842,6 +849,13 @@
             // 
             // pnlActivities
             // 
+            this.pnlActivities.Controls.Add(this.lblDescriptionFull);
+            this.pnlActivities.Controls.Add(this.labelActHint);
+            this.pnlActivities.Controls.Add(this.lblActId);
+            this.pnlActivities.Controls.Add(this.lblTime2);
+            this.pnlActivities.Controls.Add(this.lblTime);
+            this.pnlActivities.Controls.Add(this.textBoxTimeEnd);
+            this.pnlActivities.Controls.Add(this.textBoxTimeStart);
             this.pnlActivities.Controls.Add(this.dateTimePickerActEnd);
             this.pnlActivities.Controls.Add(this.dateTimePickerActStart);
             this.pnlActivities.Controls.Add(this.pictureBox12);
@@ -854,11 +868,92 @@
             this.pnlActivities.Controls.Add(this.lblDescription);
             this.pnlActivities.Controls.Add(this.textBoxDescription);
             this.pnlActivities.Controls.Add(this.listViewActivities);
-            this.pnlActivities.Location = new System.Drawing.Point(798, 25);
+            this.pnlActivities.Location = new System.Drawing.Point(9, 25);
             this.pnlActivities.Margin = new System.Windows.Forms.Padding(2);
             this.pnlActivities.Name = "pnlActivities";
             this.pnlActivities.Size = new System.Drawing.Size(765, 379);
             this.pnlActivities.TabIndex = 9;
+            // 
+            // lblDescriptionFull
+            // 
+            this.lblDescriptionFull.AutoSize = true;
+            this.lblDescriptionFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescriptionFull.Location = new System.Drawing.Point(161, 17);
+            this.lblDescriptionFull.Name = "lblDescriptionFull";
+            this.lblDescriptionFull.Size = new System.Drawing.Size(93, 15);
+            this.lblDescriptionFull.TabIndex = 22;
+            this.lblDescriptionFull.Text = "Full description:";
+            // 
+            // labelActHint
+            // 
+            this.labelActHint.AutoSize = true;
+            this.labelActHint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelActHint.Location = new System.Drawing.Point(357, 264);
+            this.labelActHint.Name = "labelActHint";
+            this.labelActHint.Size = new System.Drawing.Size(280, 15);
+            this.labelActHint.TabIndex = 21;
+            this.labelActHint.Text = "(Activity ID number will be automatically assigned!)";
+            // 
+            // lblActId
+            // 
+            this.lblActId.AutoSize = true;
+            this.lblActId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActId.Location = new System.Drawing.Point(273, 47);
+            this.lblActId.Name = "lblActId";
+            this.lblActId.Size = new System.Drawing.Size(148, 15);
+            this.lblActId.TabIndex = 20;
+            this.lblActId.Text = "Activity ID number:           ...";
+            // 
+            // lblTime2
+            // 
+            this.lblTime2.AutoSize = true;
+            this.lblTime2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime2.Location = new System.Drawing.Point(273, 212);
+            this.lblTime2.Name = "lblTime2";
+            this.lblTime2.Size = new System.Drawing.Size(116, 15);
+            this.lblTime2.TabIndex = 19;
+            this.lblTime2.Text = "Start Time (hh/mm):";
+            this.lblTime2.UseMnemonic = false;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(273, 151);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(116, 15);
+            this.lblTime.TabIndex = 18;
+            this.lblTime.Text = "Start Time (hh/mm):";
+            this.lblTime.UseMnemonic = false;
+            // 
+            // textBoxTimeEnd
+            // 
+            this.textBoxTimeEnd.Location = new System.Drawing.Point(392, 212);
+            this.textBoxTimeEnd.Name = "textBoxTimeEnd";
+            this.textBoxTimeEnd.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTimeEnd.TabIndex = 17;
+            // 
+            // textBoxTimeStart
+            // 
+            this.textBoxTimeStart.Location = new System.Drawing.Point(392, 150);
+            this.textBoxTimeStart.Name = "textBoxTimeStart";
+            this.textBoxTimeStart.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTimeStart.TabIndex = 16;
+            // 
+            // dateTimePickerActEnd
+            // 
+            this.dateTimePickerActEnd.Location = new System.Drawing.Point(392, 182);
+            this.dateTimePickerActEnd.Name = "dateTimePickerActEnd";
+            this.dateTimePickerActEnd.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActEnd.TabIndex = 15;
+            // 
+            // dateTimePickerActStart
+            // 
+            this.dateTimePickerActStart.Location = new System.Drawing.Point(392, 124);
+            this.dateTimePickerActStart.Name = "dateTimePickerActStart";
+            this.dateTimePickerActStart.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerActStart.TabIndex = 14;
+            this.dateTimePickerActStart.Value = new System.DateTime(2022, 3, 22, 16, 23, 19, 0);
             // 
             // pictureBox12
             // 
@@ -883,56 +978,61 @@
             // 
             // buttonActDelete
             // 
-            this.buttonActDelete.Location = new System.Drawing.Point(613, 305);
+            this.buttonActDelete.Location = new System.Drawing.Point(276, 319);
             this.buttonActDelete.Name = "buttonActDelete";
             this.buttonActDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonActDelete.TabIndex = 12;
             this.buttonActDelete.Text = "Delete";
             this.buttonActDelete.UseVisualStyleBackColor = true;
+            this.buttonActDelete.Click += new System.EventHandler(this.buttonActDelete_Click);
             // 
             // buttonActChange
             // 
-            this.buttonActChange.Location = new System.Drawing.Point(613, 276);
+            this.buttonActChange.Location = new System.Drawing.Point(276, 290);
             this.buttonActChange.Name = "buttonActChange";
             this.buttonActChange.Size = new System.Drawing.Size(75, 23);
             this.buttonActChange.TabIndex = 11;
             this.buttonActChange.Text = "Change";
             this.buttonActChange.UseVisualStyleBackColor = true;
+            this.buttonActChange.Click += new System.EventHandler(this.buttonActChange_Click);
             // 
             // buttonActAdd
             // 
-            this.buttonActAdd.Location = new System.Drawing.Point(613, 247);
+            this.buttonActAdd.Location = new System.Drawing.Point(276, 261);
             this.buttonActAdd.Name = "buttonActAdd";
             this.buttonActAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonActAdd.TabIndex = 10;
             this.buttonActAdd.Text = "Add";
             this.buttonActAdd.UseVisualStyleBackColor = true;
+            this.buttonActAdd.Click += new System.EventHandler(this.buttonActAdd_Click);
             // 
             // lblEndDate2
             // 
             this.lblEndDate2.AutoSize = true;
             this.lblEndDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndDate2.Location = new System.Drawing.Point(325, 304);
+            this.lblEndDate2.Location = new System.Drawing.Point(273, 182);
             this.lblEndDate2.Name = "lblEndDate2";
-            this.lblEndDate2.Size = new System.Drawing.Size(59, 15);
+            this.lblEndDate2.Size = new System.Drawing.Size(97, 15);
             this.lblEndDate2.TabIndex = 9;
-            this.lblEndDate2.Text = "End date:";
+            this.lblEndDate2.Text = "End date & time:";
+            this.lblEndDate2.UseMnemonic = false;
             // 
             // lblStartDate2
             // 
             this.lblStartDate2.AutoSize = true;
             this.lblStartDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartDate2.Location = new System.Drawing.Point(119, 304);
+            this.lblStartDate2.Location = new System.Drawing.Point(273, 124);
             this.lblStartDate2.Name = "lblStartDate2";
             this.lblStartDate2.Size = new System.Drawing.Size(62, 15);
             this.lblStartDate2.TabIndex = 9;
             this.lblStartDate2.Text = "Start date:";
+            this.lblStartDate2.UseMnemonic = false;
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(13, 304);
+            this.lblDescription.Location = new System.Drawing.Point(273, 94);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(72, 15);
             this.lblDescription.TabIndex = 9;
@@ -940,13 +1040,15 @@
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Location = new System.Drawing.Point(16, 330);
+            this.textBoxDescription.Location = new System.Drawing.Point(392, 93);
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDescription.Size = new System.Drawing.Size(200, 20);
             this.textBoxDescription.TabIndex = 9;
             // 
             // listViewActivities
             // 
+            this.listViewActivities.BackColor = System.Drawing.SystemColors.Window;
+            this.listViewActivities.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewActivities.FullRowSelect = true;
             this.listViewActivities.GridLines = true;
             this.listViewActivities.HideSelection = false;
@@ -954,10 +1056,11 @@
             this.listViewActivities.Margin = new System.Windows.Forms.Padding(2);
             this.listViewActivities.MultiSelect = false;
             this.listViewActivities.Name = "listViewActivities";
-            this.listViewActivities.Size = new System.Drawing.Size(576, 250);
+            this.listViewActivities.Size = new System.Drawing.Size(252, 323);
             this.listViewActivities.TabIndex = 5;
             this.listViewActivities.UseCompatibleStateImageBehavior = false;
-            this.listViewActivities.View = System.Windows.Forms.View.Details;
+            this.listViewActivities.View = System.Windows.Forms.View.List;
+            this.listViewActivities.SelectedIndexChanged += new System.EventHandler(this.listViewActivities_SelectedIndexChanged);
             // 
             // pnlSupervisors
             // 
@@ -1225,25 +1328,11 @@
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // dateTimePickerActStart
-            // 
-            this.dateTimePickerActStart.Location = new System.Drawing.Point(122, 330);
-            this.dateTimePickerActStart.Name = "dateTimePickerActStart";
-            this.dateTimePickerActStart.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerActStart.TabIndex = 14;
-            // 
-            // dateTimePickerActEnd
-            // 
-            this.dateTimePickerActEnd.Location = new System.Drawing.Point(328, 330);
-            this.dateTimePickerActEnd.Name = "dateTimePickerActEnd";
-            this.dateTimePickerActEnd.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerActEnd.TabIndex = 15;
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1509, 693);
+            this.ClientSize = new System.Drawing.Size(774, 404);
             this.Controls.Add(this.pnlParticants);
             this.Controls.Add(this.pnlSupervisors);
             this.Controls.Add(this.pnlActivities);
@@ -1411,6 +1500,13 @@
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem1;
         private System.Windows.Forms.DateTimePicker dateTimePickerActEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerActStart;
+        private System.Windows.Forms.TextBox textBoxTimeEnd;
+        private System.Windows.Forms.TextBox textBoxTimeStart;
+        private System.Windows.Forms.Label lblTime2;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblActId;
+        private System.Windows.Forms.Label labelActHint;
+        private System.Windows.Forms.Label lblDescriptionFull;
     }
 }
 
