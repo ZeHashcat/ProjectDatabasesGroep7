@@ -139,6 +139,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.buttonShowParticipant = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -1087,6 +1088,7 @@
             // 
             // pnlParticants
             // 
+            this.pnlParticants.Controls.Add(this.buttonShowParticipant);
             this.pnlParticants.Controls.Add(this.labelStudent);
             this.pnlParticants.Controls.Add(this.listViewParticipant);
             this.pnlParticants.Controls.Add(this.pictureBox14);
@@ -1150,17 +1152,18 @@
             // 
             // btnDeleteStudentFromActivity
             // 
-            this.btnDeleteStudentFromActivity.Location = new System.Drawing.Point(323, 376);
+            this.btnDeleteStudentFromActivity.Location = new System.Drawing.Point(332, 374);
             this.btnDeleteStudentFromActivity.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteStudentFromActivity.Name = "btnDeleteStudentFromActivity";
             this.btnDeleteStudentFromActivity.Size = new System.Drawing.Size(205, 28);
             this.btnDeleteStudentFromActivity.TabIndex = 12;
             this.btnDeleteStudentFromActivity.Text = "Delete student from activity";
             this.btnDeleteStudentFromActivity.UseVisualStyleBackColor = true;
+            this.btnDeleteStudentFromActivity.Click += new System.EventHandler(this.btnDeleteStudentFromActivity_Click);
             // 
             // btnAddStudentActivity
             // 
-            this.btnAddStudentActivity.Location = new System.Drawing.Point(153, 374);
+            this.btnAddStudentActivity.Location = new System.Drawing.Point(162, 374);
             this.btnAddStudentActivity.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddStudentActivity.Name = "btnAddStudentActivity";
             this.btnAddStudentActivity.Size = new System.Drawing.Size(162, 28);
@@ -1174,7 +1177,7 @@
             this.btnShowAllStudents.Location = new System.Drawing.Point(19, 374);
             this.btnShowAllStudents.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowAllStudents.Name = "btnShowAllStudents";
-            this.btnShowAllStudents.Size = new System.Drawing.Size(126, 28);
+            this.btnShowAllStudents.Size = new System.Drawing.Size(136, 28);
             this.btnShowAllStudents.TabIndex = 10;
             this.btnShowAllStudents.Text = "Show all student";
             this.btnShowAllStudents.UseVisualStyleBackColor = true;
@@ -1337,6 +1340,17 @@
             this.listView2.TabIndex = 5;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // buttonShowParticipant
+            // 
+            this.buttonShowParticipant.Location = new System.Drawing.Point(21, 406);
+            this.buttonShowParticipant.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonShowParticipant.Name = "buttonShowParticipant";
+            this.buttonShowParticipant.Size = new System.Drawing.Size(134, 28);
+            this.buttonShowParticipant.TabIndex = 16;
+            this.buttonShowParticipant.Text = "Show Participants";
+            this.buttonShowParticipant.UseVisualStyleBackColor = true;
+            this.buttonShowParticipant.Click += new System.EventHandler(this.buttonShowParticipant_Click);
             // 
             // SomerenUI
             // 
@@ -1514,6 +1528,7 @@
         private System.Windows.Forms.Label lblDescriptionFull;
         private System.Windows.Forms.ListView listViewParticipant;
         private System.Windows.Forms.Label labelStudent;
+        private System.Windows.Forms.Button buttonShowParticipant;
     }
 }
 

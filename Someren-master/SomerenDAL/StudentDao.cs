@@ -38,6 +38,16 @@ namespace SomerenDAL
             sqlParameters[1] = new SqlParameter("@ActivityID", ActivityID);
             ExecuteEditQuery(query, sqlParameters);
         }
+
+        public void DeleteStudentFrom(int ActivityID, int StudentID)
+        {
+            // Query deletes drink and its past transactions
+            string query = "DELETE FROM ActivityStudent WHERE ActivityID = @ActivityID AND StudentID = @StudentID; ";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@ActivityID", ActivityID);
+            sqlParameters[1] = new SqlParameter("@StudentID", StudentID);
+            ExecuteEditQuery(query, sqlParameters);
+        }
         private List<Student> ReadTables(DataTable dataTable)
         {
             // Create students list
