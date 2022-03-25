@@ -181,7 +181,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1599, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(786, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -707,7 +707,7 @@
             this.pnlCashRegister.Controls.Add(this.listViewStudents2);
             this.pnlCashRegister.Controls.Add(this.listViewDrinkSupply);
             this.pnlCashRegister.Controls.Add(this.lbl_DrinkSupply);
-            this.pnlCashRegister.Location = new System.Drawing.Point(798, 426);
+            this.pnlCashRegister.Location = new System.Drawing.Point(9, 25);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCashRegister.Name = "pnlCashRegister";
             this.pnlCashRegister.Size = new System.Drawing.Size(765, 379);
@@ -851,7 +851,7 @@
             this.pnlActivities.Controls.Add(this.lblDescription);
             this.pnlActivities.Controls.Add(this.textBoxDescription);
             this.pnlActivities.Controls.Add(this.listViewActivities);
-            this.pnlActivities.Location = new System.Drawing.Point(798, 25);
+            this.pnlActivities.Location = new System.Drawing.Point(9, 25);
             this.pnlActivities.Margin = new System.Windows.Forms.Padding(2);
             this.pnlActivities.Name = "pnlActivities";
             this.pnlActivities.Size = new System.Drawing.Size(765, 379);
@@ -980,7 +980,7 @@
             this.pnlSupervisors.Controls.Add(this.buttonDeleteSupervisor);
             this.pnlSupervisors.Controls.Add(this.buttonAddSupervisor);
             this.pnlSupervisors.Controls.Add(this.listViewActivities2);
-            this.pnlSupervisors.Location = new System.Drawing.Point(11, 407);
+            this.pnlSupervisors.Location = new System.Drawing.Point(9, 25);
             this.pnlSupervisors.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSupervisors.Name = "pnlSupervisors";
             this.pnlSupervisors.Size = new System.Drawing.Size(765, 379);
@@ -989,7 +989,7 @@
             // comboBoxLecturers
             // 
             this.comboBoxLecturers.FormattingEnabled = true;
-            this.comboBoxLecturers.Location = new System.Drawing.Point(362, 311);
+            this.comboBoxLecturers.Location = new System.Drawing.Point(372, 338);
             this.comboBoxLecturers.Name = "comboBoxLecturers";
             this.comboBoxLecturers.Size = new System.Drawing.Size(121, 21);
             this.comboBoxLecturers.TabIndex = 16;
@@ -1041,7 +1041,7 @@
             // 
             // buttonDeleteSupervisor
             // 
-            this.buttonDeleteSupervisor.Location = new System.Drawing.Point(543, 211);
+            this.buttonDeleteSupervisor.Location = new System.Drawing.Point(291, 309);
             this.buttonDeleteSupervisor.Name = "buttonDeleteSupervisor";
             this.buttonDeleteSupervisor.Size = new System.Drawing.Size(75, 23);
             this.buttonDeleteSupervisor.TabIndex = 12;
@@ -1051,7 +1051,7 @@
             // 
             // buttonAddSupervisor
             // 
-            this.buttonAddSupervisor.Location = new System.Drawing.Point(281, 309);
+            this.buttonAddSupervisor.Location = new System.Drawing.Point(291, 338);
             this.buttonAddSupervisor.Name = "buttonAddSupervisor";
             this.buttonAddSupervisor.Size = new System.Drawing.Size(75, 23);
             this.buttonAddSupervisor.TabIndex = 10;
@@ -1068,7 +1068,7 @@
             this.listViewActivities2.Margin = new System.Windows.Forms.Padding(2);
             this.listViewActivities2.MultiSelect = false;
             this.listViewActivities2.Name = "listViewActivities2";
-            this.listViewActivities2.Size = new System.Drawing.Size(230, 250);
+            this.listViewActivities2.Size = new System.Drawing.Size(271, 250);
             this.listViewActivities2.TabIndex = 5;
             this.listViewActivities2.UseCompatibleStateImageBehavior = false;
             this.listViewActivities2.View = System.Windows.Forms.View.Details;
@@ -1088,7 +1088,7 @@
             this.pnlParticants.Controls.Add(this.textBox8);
             this.pnlParticants.Controls.Add(this.textBox9);
             this.pnlParticants.Controls.Add(this.listView3);
-            this.pnlParticants.Location = new System.Drawing.Point(481, 823);
+            this.pnlParticants.Location = new System.Drawing.Point(9, 25);
             this.pnlParticants.Margin = new System.Windows.Forms.Padding(2);
             this.pnlParticants.Name = "pnlParticants";
             this.pnlParticants.Size = new System.Drawing.Size(765, 379);
@@ -1211,7 +1211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1599, 951);
+            this.ClientSize = new System.Drawing.Size(786, 414);
             this.Controls.Add(this.pnlParticants);
             this.Controls.Add(this.pnlSupervisors);
             this.Controls.Add(this.pnlActivities);

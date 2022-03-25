@@ -380,6 +380,8 @@ namespace SomerenUI
                 // Show Supervisors
                 pnlSupervisors.Show();
 
+                PrintService printService = new PrintService();
+
                 try
                 {
                     // Get Activities data from SQL server
@@ -389,6 +391,7 @@ namespace SomerenUI
                     // Clear the listview before filling it again
                     listViewActivities2.Clear();
 
+                    //clear supervisors when no activity has yet been selected
                     listViewActivitySupervisors.Clear();
 
                     // Adds columns to the listview
@@ -409,10 +412,9 @@ namespace SomerenUI
                 }
                 catch (Exception e)
                 {
+                    printService.Print(e);
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 } 
-
-
                 try
                 {
                     // Fill the lecturers listview within the lecturers panel with a list of lecturers
@@ -430,9 +432,9 @@ namespace SomerenUI
                 }
                 catch (Exception e)
                 {
+                    printService.Print(e);
                     MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
-                }
-                
+                }                
             }
         }
         // Displays the revenue report whenever a new date is selected
@@ -746,17 +748,22 @@ namespace SomerenUI
             fillListviewSupervisor();
         }
 
+        // If clicked supervisor will be add to the database and listview will be updated
         private void buttonAddSupervisor_Click(object sender, EventArgs e)
         {
+            PrintService printService = new PrintService();
+
             try
             {
                 ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
                 List<Supervisor> supervisors = activitySupervisorService.GetAllActivitySupervisors();
+
                 if (listViewActivities2.SelectedItems.Count <= 0)
                     throw new Exception("select the activity where you want to add a supervisor");
                 int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
                 if (comboBoxLecturers.SelectedIndex == -1)
                     throw new Exception("Select a lecturer to add.");
+
                 string lecturer = comboBoxLecturers.SelectedItem.ToString();
 
                 string[] lecid = lecturer.Split(' ');
@@ -767,17 +774,22 @@ namespace SomerenUI
                     if (lecturerid == supervisor.TeacherId && activityId == supervisor.ActivityId)
                         throw new Exception("You cannot add a lecturer that is already a supervisor for this activity.");
                 }
+
                 activitySupervisorService.AddActivitySupervisor(lecturerid, activityId);
                 fillListviewSupervisor();
             }
             catch(Exception ex)
             {
+                printService.Print(ex);
                 MessageBox.Show("Could not add supervisor: \n" + ex.Message);
             }
         }
 
+        // If clicked supervisor will be deleted from the database and listview will be updated
         private void buttonDeleteSupervisor_Click(object sender, EventArgs e)
         {
+            PrintService printService = new PrintService();
+
             try
             {
                 if (listViewActivities2.SelectedItems.Count <= 0)
@@ -792,11 +804,15 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
+                printService.Print(ex);
                 MessageBox.Show("Could not delete supervisor: \n" + ex.Message);
             }
         }
+        
         public void fillListviewSupervisor()
         {
+            PrintService printService = new PrintService();
+
             try
             {
                 int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
@@ -822,6 +838,7 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
+                printService.Print(ex);
                 MessageBox.Show("Could not load supervisors for selected activity.\n" + ex.Message);
             }
         }
