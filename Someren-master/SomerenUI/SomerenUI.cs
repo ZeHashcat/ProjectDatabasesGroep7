@@ -919,8 +919,16 @@ namespace SomerenUI
 
         private void btnAddStudentActivity_Click(object sender, EventArgs e)
         {
-            StudentService studService = new StudentService();
-            studService.AddStudentToActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text), int.Parse(listViewParticipant.SelectedItems[0].SubItems[0].Text));
+            try
+            {
+                StudentService studService = new StudentService();
+                studService.AddStudentToActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text), int.Parse(listViewParticipant.SelectedItems[0].SubItems[0].Text));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
+            }
+            
         }
 
         private void buttonShowParticipant_Click(object sender, EventArgs e)
