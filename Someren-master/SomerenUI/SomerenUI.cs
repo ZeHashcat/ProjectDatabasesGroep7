@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace SomerenUI
 {
@@ -18,6 +19,7 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+            
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -30,6 +32,10 @@ namespace SomerenUI
                 writer.WriteLine($"╔═══╗───────────╔═══╗\n║╔═╗║───────────║╔═╗║\n║║─╚╬═╦══╦╗╔╦══╗╚╝╔╝║\n║║╔═╣╔╣╔╗║║║║╔╗║──║╔╝\n║╚╩═║║║╚╝║╚╝║╚╝║──║║\n╚═══╩╝╚══╩══╣╔═╝──╚╝\n────────────║║\n────────────╚╝\nSession Start: {DateTime.Now}");
                 writer.Close();
             }
+
+            //Displays login screen.
+            LoginUI loginUI = new LoginUI();
+            loginUI.ShowDialog();
         }
 
         private void HideAllPanels()
@@ -1155,5 +1161,23 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
             }
         }
+
+        private void TestPasswordHasher(byte[] saltBytes)
+        { 
+            
+            PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+            HashWithSaltResult hRSha256 = pwHasher.HashWithSalt("Ultra_Safe_p455w0rD", saltBytes, SHA256.Create());
+            HashWithSaltResult hRSha512 = pwHasher.HashWithSalt("Ultra_Safe_p455w0rD", saltBytes, SHA512.Create());
+
+            //lbl256.Text = $"{hRSha256.Hash}\n {hRSha256.Salt}";
+            //lbl512.Text = $"{hRSha512.Hash}\n {hRSha512.Salt}";
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("login");
+            
+        }
+
     }
 }
