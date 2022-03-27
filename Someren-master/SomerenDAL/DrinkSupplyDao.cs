@@ -26,7 +26,6 @@ namespace SomerenDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-
         public void AddDrink(Drink drink)
         {
             // Query adds drink to database
@@ -41,7 +40,6 @@ namespace SomerenDAL
             sqlParameters[6] = new SqlParameter("@Sold", drink.Sold);
             ExecuteEditQuery(query, sqlParameters);
         }
-        
         public void UpdateDrink(string originalDrinkName, string newDrinkName, double salePrice, int quantity)
         {
             // Query update the drink name, sale price and quantity

@@ -43,6 +43,8 @@ namespace SomerenUI
             pnlCashRegister.Hide();
             pnlDrinkSupply.Hide();
             pnlActivities.Hide();
+            pnlParticants.Hide();
+            pnlSupervisors.Hide();
         }
 
         private void showPanel(string panelName)
@@ -377,8 +379,110 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
             }
-        }
+            else if (panelName == "Participants")
+            {
+                // Hide all other panels
+                HideAllPanels();
+                
 
+                // Show Participants panel
+                pnlParticants.Show();
+                listViewActivity.Items.Add("sadf");
+                try
+                {
+                    // Get activities data from SQL server
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> activitiesList = activityService.GetAllActivities();
+
+                    // Clear the listview before filling it again
+                    listViewParticipant.Clear();
+                    listViewActivity.Clear();
+
+                    // Make columns
+                    listViewActivity.Columns.Add("Activity Name", 150, HorizontalAlignment.Center);
+                    listViewActivity.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Activity activity in activitiesList)
+                    {
+                        ListViewItem li = new ListViewItem(activity.ActivityName);
+                        li.SubItems.Add(activity.ActivityId.ToString());
+                        //li.SubItems.Add(activity.StartDate.ToString());
+                        //li.SubItems.Add(activity.EndDate.ToString());
+                        listViewActivity.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Participants: " + e.Message);
+                }
+            }
+            else if (panelName == "Supervisors")
+            {
+                // Hide all other panels
+                HideAllPanels();
+
+                // Show Supervisors
+                pnlSupervisors.Show();
+
+                PrintService printService = new PrintService();
+
+                try
+                {
+                    // Get Activities data from SQL server
+                    
+                 ActivityService activityService = new ActivityService();
+                    List<Activity> activitiesList = activityService.GetAllActivities();
+
+                    // Clear the listview before filling it again
+                 listViewActivities2.Clear();
+                 
+                    //clear supervisors when no activity has yet been selected
+                    listViewActivitySupervisors.Clear();
+
+                    // Adds columns to the listview
+                    listViewActivities2.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("Description", 100, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("Start Time", 150, HorizontalAlignment.Center);
+                    listViewActivities2.Columns.Add("End Time", 150, HorizontalAlignment.Center);
+
+                    // Adds data to listview columns
+                    foreach (Activity activity in activitiesList)
+                    {
+                        ListViewItem li = new ListViewItem(activity.ActivityId.ToString());
+                        li.SubItems.Add(activity.ActivityName);
+                        li.SubItems.Add(activity.StartDate.ToString());
+                        li.SubItems.Add(activity.EndDate.ToString());
+                        listViewActivities2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    printService.Print(e);
+                    MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                } 
+                try
+                {
+                    // Fill the lecturers listview within the lecturers panel with a list of lecturers
+                    LecturerService lecturerService = new LecturerService();
+                    List<Teacher> lecturerList = lecturerService.GetLecturers();
+
+                    comboBoxLecturers.ResetText();
+                    comboBoxLecturers.Items.Clear();
+
+                    // Adds data to listview columns
+                    foreach (Teacher t in lecturerList)
+                    {
+                        comboBoxLecturers.Items.Add(t.Name + " " + t.Number.ToString());
+                    }
+                }
+                catch (Exception e)
+                {
+                    printService.Print(e);
+                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                }                
+            }
+        }
         // Displays the revenue report whenever a new date is selected
         private void displayRevenue()
         {
@@ -597,6 +701,7 @@ namespace SomerenUI
                 }   
                 catch (Exception ex)
                 {
+                    printService.Print(ex);
                     throw new Exception("Enter valid value");
                 }
                 drinkService.AddDrink(drink);
@@ -680,6 +785,116 @@ namespace SomerenUI
             showPanel("Activities");
         }
 
+        private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Supervisors");
+        }
+
+        private void listViewActivities2_MouseClick(object sender, MouseEventArgs e)
+        {
+            fillListviewSupervisor();
+        }
+
+        // If clicked supervisor will be add to the database and listview will be updated
+        private void buttonAddSupervisor_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+
+            try
+            {
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                List<Supervisor> supervisors = activitySupervisorService.GetAllActivitySupervisors();
+
+                if (listViewActivities2.SelectedItems.Count <= 0)
+                    throw new Exception("select the activity where you want to add a supervisor");
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+                if (comboBoxLecturers.SelectedIndex == -1)
+                    throw new Exception("Select a lecturer to add.");
+
+                string lecturer = comboBoxLecturers.SelectedItem.ToString();
+
+                string[] lecid = lecturer.Split(' ');
+                int lecturerid = int.Parse(lecid[1]);
+
+                foreach (Supervisor supervisor in supervisors)
+                {
+                    if (lecturerid == supervisor.TeacherId && activityId == supervisor.ActivityId)
+                        throw new Exception("You cannot add a lecturer that is already a supervisor for this activity.");
+                }
+
+                activitySupervisorService.AddActivitySupervisor(lecturerid, activityId);
+                fillListviewSupervisor();
+            }
+            catch(Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Could not add supervisor: \n" + ex.Message);
+            }
+        }
+
+        // If clicked supervisor will be deleted from the database and listview will be updated
+        private void buttonDeleteSupervisor_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+
+            try
+            {
+                if (listViewActivities2.SelectedItems.Count <= 0)
+                    throw new Exception("select the activity where you want to delete a supervisor");
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+                if (listViewActivitySupervisors.SelectedItems.Count == 0)
+                    throw new Exception("Select a supervisor to delete.");
+                int lecturerId = int.Parse(listViewActivitySupervisors.SelectedItems[0].SubItems[0].Text);
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                DialogResult dialogAnswer = MessageBox.Show("Are you sure you want to delete a supervisor", "Delete Supervisor", MessageBoxButtons.YesNo);
+                if (dialogAnswer == DialogResult.Yes)
+                {
+                    activitySupervisorService.DeleteActivitySupervisor(lecturerId, activityId);
+                }
+                fillListviewSupervisor();
+
+                
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Could not delete supervisor: \n" + ex.Message);
+            }
+        }
+
+        public void fillListviewSupervisor()
+        {
+            PrintService printService = new PrintService();
+
+            try
+            {
+                int activityId = int.Parse(listViewActivities2.SelectedItems[0].SubItems[0].Text);
+
+                // Get Activities data from SQL server
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                List<Supervisor> activitySupervisorList = activitySupervisorService.GetActivitySupervisors(activityId);
+
+                // Clear the listview before filling it again
+                listViewActivitySupervisors.Clear();
+
+                // Adds columns to the listview
+                listViewActivitySupervisors.Columns.Add("Teacher ID", 100, HorizontalAlignment.Center);
+                listViewActivitySupervisors.Columns.Add("Activity ID", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Supervisor supervisor in activitySupervisorList)
+                {
+                    ListViewItem li = new ListViewItem(supervisor.TeacherId.ToString());
+                    li.SubItems.Add(supervisor.ActivityId.ToString());
+                    listViewActivitySupervisors.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Could not load supervisors for selected activity.\n" + ex.Message);
+            }
+        }    
         //Adds relevant data to textboxes and calander when selecting a row, foreach was used to avoid headaches with index not valid exceptions.
         private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -831,6 +1046,113 @@ namespace SomerenUI
                         throw new Exception("Activity is already in the list!\n\nYou wanted the same activity multiple times?\n\nWell... \n\n\n\nSucks for you!\n\n(But seriously, just change the description slightly.)");
                     }
                 }
+            }
+        }
+
+        private void studentsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Participants");
+        }
+
+        private void btnShowAllStudents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Fill the students listview within the students panel with a list of students
+                StudentService studService = new StudentService(); ;
+                List<Student> studentList = studService.GetStudents(); ;
+
+                // Clear the listview before filling it again
+                listViewParticipant.Clear();
+
+                // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                listViewParticipant.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                    ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                    ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                    li.SubItems.Add(fName);
+                    li.SubItems.Add(lName);
+                    listViewParticipant.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
+            }
+        }
+
+        private void listViewActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnAddStudentActivity_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StudentService studService = new StudentService();
+                studService.AddStudentToActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text), int.Parse(listViewParticipant.SelectedItems[0].SubItems[0].Text));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
+            }
+            
+        }
+
+        private void buttonShowParticipant_Click(object sender, EventArgs e)
+        {
+            showParticipants();
+        }
+
+        private void btnDeleteStudentFromActivity_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this student from the activity?", "Delete Participant", MessageBoxButtons.YesNo);
+            if(confirmResult == DialogResult.Yes)
+            {
+                StudentService studService = new StudentService();
+                studService.DeleteStudentFromActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text), int.Parse(listViewParticipant.SelectedItems[0].SubItems[0].Text));
+            }
+            showParticipants();
+        }
+        private void showParticipants()
+        {
+            try
+            {
+                // Clear the listview before filling it again
+                listViewParticipant.Clear();
+
+                // Fill the students listview within the students panel with a list of students
+                StudentService studService = new StudentService();
+                List<Student> studentList = studService.GetStudentsFromActivity(int.Parse(listViewActivity.SelectedItems[0].SubItems[1].Text));
+
+
+
+                // Adds columns to the listview, took us a while to figure out that we needed this for it to work our way
+                listViewParticipant.Columns.Add("Student ID", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+                listViewParticipant.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
+
+                // Adds data to listview columns
+                foreach (Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(s.Number.ToString()); ;
+                    ListViewItem.ListViewSubItem fName = new ListViewItem.ListViewSubItem(li, s.FirstName);
+                    ListViewItem.ListViewSubItem lName = new ListViewItem.ListViewSubItem(li, s.LastName);
+                    li.SubItems.Add(fName);
+                    li.SubItems.Add(lName);
+                    listViewParticipant.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
             }
         }
     }
