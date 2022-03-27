@@ -417,8 +417,7 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Participants: " + e.Message);
                 }
             }
-        }
-else if (panelName == "Supervisors")
+            else if (panelName == "Supervisors")
             {
                 // Hide all other panels
                 HideAllPanels();
@@ -702,6 +701,7 @@ else if (panelName == "Supervisors")
                 }   
                 catch (Exception ex)
                 {
+                    printService.Print(ex);
                     throw new Exception("Enter valid value");
                 }
                 drinkService.AddDrink(drink);
@@ -846,8 +846,14 @@ else if (panelName == "Supervisors")
                     throw new Exception("Select a supervisor to delete.");
                 int lecturerId = int.Parse(listViewActivitySupervisors.SelectedItems[0].SubItems[0].Text);
                 ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
-                activitySupervisorService.DeleteActivitySupervisor(lecturerId, activityId);
+                DialogResult dialogAnswer = MessageBox.Show("Are you sure you want to delete a supervisor", "Delete Supervisor", MessageBoxButtons.YesNo);
+                if (dialogAnswer == DialogResult.Yes)
+                {
+                    activitySupervisorService.DeleteActivitySupervisor(lecturerId, activityId);
+                }
                 fillListviewSupervisor();
+
+                
             }
             catch (Exception ex)
             {
@@ -855,7 +861,7 @@ else if (panelName == "Supervisors")
                 MessageBox.Show("Could not delete supervisor: \n" + ex.Message);
             }
         }
-        
+
         public void fillListviewSupervisor()
         {
             PrintService printService = new PrintService();
@@ -882,12 +888,13 @@ else if (panelName == "Supervisors")
                     li.SubItems.Add(supervisor.ActivityId.ToString());
                     listViewActivitySupervisors.Items.Add(li);
                 }
-              catch(exception ex)
-              {
-               printService.Print(ex);
-                MessageBox.Show("Could not load supervisors for selected activity.\n" + ex.Message); 
-              }
-                  
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Could not load supervisors for selected activity.\n" + ex.Message);
+            }
+        }    
         //Adds relevant data to textboxes and calander when selecting a row, foreach was used to avoid headaches with index not valid exceptions.
         private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1106,7 +1113,7 @@ else if (panelName == "Supervisors")
 
         private void btnDeleteStudentFromActivity_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to delete this student from the activity?", "Confirm delete", MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this student from the activity?", "Delete Participant", MessageBoxButtons.YesNo);
             if(confirmResult == DialogResult.Yes)
             {
                 StudentService studService = new StudentService();
