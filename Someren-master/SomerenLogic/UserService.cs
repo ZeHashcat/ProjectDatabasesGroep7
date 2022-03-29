@@ -19,20 +19,33 @@ namespace SomerenLogic
             userdb = new UserDao();
         }
 
+        //Returns list with all users. We might not need this anymore.
         public List<User> GetAllUsers()
         {
             List<User> Users = userdb.GetAllUsers();
             return Users;
         }
 
+        //Baton passing method between UI and DAL.
         public string GetUserQuestion(string username)
         {
             return userdb.GetUserQuestion(username);
         }
 
+        //Baton passing method between UI and DAL.
         public HashWithSaltResult GetUserAnswer(string username)
         {
             return userdb.GetUserAnswer(username);
+        }
+        public string GetSalt(string username)
+        {
+            return userdb.GetSalt(username);
+        }
+
+        //Baton passing method between UI and DAL.
+        public void UpdatePassword(string username, string password)
+        {
+            userdb.UpdatePassword(username, password);
         }
     }
 }
