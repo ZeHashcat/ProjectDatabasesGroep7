@@ -351,5 +351,15 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while adding a new user.\n" + ex.Message);
             }
         }
+
+        private void buttonAddNewUser1_Click(object sender, EventArgs e)
+        {
+            showPanel("AddNewUser");
+        }
+
+        private void buttonCancel1_Click(object sender, EventArgs e)
+        {
+            showPanel("Login");
+        }
     }
 }
