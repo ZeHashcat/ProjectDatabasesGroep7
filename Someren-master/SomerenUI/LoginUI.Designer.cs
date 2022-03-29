@@ -55,6 +55,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAddNewUser = new System.Windows.Forms.Label();
             this.pnlForgotPassword1 = new System.Windows.Forms.Panel();
+            this.StepThree1 = new System.Windows.Forms.Label();
+            this.lblStepTwo1 = new System.Windows.Forms.Label();
+            this.lblStepOne1 = new System.Windows.Forms.Label();
+            this.buttonNext1 = new System.Windows.Forms.Button();
             this.buttonCancel2 = new System.Windows.Forms.Button();
             this.buttonRequestQuestion = new System.Windows.Forms.Button();
             this.lblUsername3 = new System.Windows.Forms.Label();
@@ -68,38 +72,35 @@
             this.textBoxSecretAnswer2 = new System.Windows.Forms.TextBox();
             this.lblSecretQuestion2 = new System.Windows.Forms.Label();
             this.pnlForgotPassword2 = new System.Windows.Forms.Panel();
+            this.StepThree2 = new System.Windows.Forms.Label();
+            this.buttonNext2 = new System.Windows.Forms.Button();
+            this.lblStepTwo2 = new System.Windows.Forms.Label();
             this.buttonCancel3 = new System.Windows.Forms.Button();
+            this.lblStepOne2 = new System.Windows.Forms.Label();
             this.buttonBack1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlForgotPassword3 = new System.Windows.Forms.Panel();
+            this.StepThree3 = new System.Windows.Forms.Label();
+            this.lblStepTwo3 = new System.Windows.Forms.Label();
+            this.lblStepOne3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonCancel4 = new System.Windows.Forms.Button();
             this.buttonBack2 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.buttonNext1 = new System.Windows.Forms.Button();
-            this.buttonNext2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblStepOne1 = new System.Windows.Forms.Label();
-            this.lblStepTwo1 = new System.Windows.Forms.Label();
-            this.StepThree1 = new System.Windows.Forms.Label();
-            this.StepThree2 = new System.Windows.Forms.Label();
-            this.lblStepTwo2 = new System.Windows.Forms.Label();
-            this.lblStepOne2 = new System.Windows.Forms.Label();
-            this.StepThree3 = new System.Windows.Forms.Label();
-            this.lblStepTwo3 = new System.Windows.Forms.Label();
-            this.lblStepOne3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxTestHashOutput = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxTestHash = new System.Windows.Forms.TextBox();
             this.lblTestSalt = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxTestSalt = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxTestHash = new System.Windows.Forms.TextBox();
-            this.textBoxTestHashOutput = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblUsernameHidden = new System.Windows.Forms.Label();
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             this.pnlAddNewUser.SuspendLayout();
@@ -379,6 +380,49 @@
             this.pnlForgotPassword1.Size = new System.Drawing.Size(439, 272);
             this.pnlForgotPassword1.TabIndex = 25;
             // 
+            // StepThree1
+            // 
+            this.StepThree1.AutoSize = true;
+            this.StepThree1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StepThree1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepThree1.Location = new System.Drawing.Point(15, 83);
+            this.StepThree1.Name = "StepThree1";
+            this.StepThree1.Size = new System.Drawing.Size(143, 13);
+            this.StepThree1.TabIndex = 28;
+            this.StepThree1.Text = "Step 3. Enter new password.";
+            // 
+            // lblStepTwo1
+            // 
+            this.lblStepTwo1.AutoSize = true;
+            this.lblStepTwo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepTwo1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblStepTwo1.Location = new System.Drawing.Point(15, 63);
+            this.lblStepTwo1.Name = "lblStepTwo1";
+            this.lblStepTwo1.Size = new System.Drawing.Size(157, 13);
+            this.lblStepTwo1.TabIndex = 27;
+            this.lblStepTwo1.Text = "Step 2. Answer secret question.";
+            // 
+            // lblStepOne1
+            // 
+            this.lblStepOne1.AutoSize = true;
+            this.lblStepOne1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepOne1.Location = new System.Drawing.Point(15, 44);
+            this.lblStepOne1.Name = "lblStepOne1";
+            this.lblStepOne1.Size = new System.Drawing.Size(121, 13);
+            this.lblStepOne1.TabIndex = 26;
+            this.lblStepOne1.Text = "Step 1. Enter username.";
+            // 
+            // buttonNext1
+            // 
+            this.buttonNext1.Enabled = false;
+            this.buttonNext1.Location = new System.Drawing.Point(328, 240);
+            this.buttonNext1.Name = "buttonNext1";
+            this.buttonNext1.Size = new System.Drawing.Size(100, 23);
+            this.buttonNext1.TabIndex = 25;
+            this.buttonNext1.Text = "Next";
+            this.buttonNext1.UseVisualStyleBackColor = true;
+            this.buttonNext1.Click += new System.EventHandler(this.buttonNext1_Click);
+            // 
             // buttonCancel2
             // 
             this.buttonCancel2.Location = new System.Drawing.Point(18, 240);
@@ -397,6 +441,7 @@
             this.buttonRequestQuestion.TabIndex = 23;
             this.buttonRequestQuestion.Text = "Request Question";
             this.buttonRequestQuestion.UseVisualStyleBackColor = true;
+            this.buttonRequestQuestion.Click += new System.EventHandler(this.buttonRequestQuestion_Click);
             // 
             // lblUsername3
             // 
@@ -461,6 +506,7 @@
             this.buttonRequestPassword.TabIndex = 22;
             this.buttonRequestPassword.Text = "Request Password";
             this.buttonRequestPassword.UseVisualStyleBackColor = true;
+            this.buttonRequestPassword.Click += new System.EventHandler(this.buttonRequestPassword_Click);
             // 
             // lblSecretAnwer2
             // 
@@ -491,6 +537,7 @@
             // 
             // pnlForgotPassword2
             // 
+            this.pnlForgotPassword2.Controls.Add(this.lblUsernameHidden);
             this.pnlForgotPassword2.Controls.Add(this.StepThree2);
             this.pnlForgotPassword2.Controls.Add(this.buttonNext2);
             this.pnlForgotPassword2.Controls.Add(this.lblStepTwo2);
@@ -509,6 +556,39 @@
             this.pnlForgotPassword2.Size = new System.Drawing.Size(439, 272);
             this.pnlForgotPassword2.TabIndex = 33;
             // 
+            // StepThree2
+            // 
+            this.StepThree2.AutoSize = true;
+            this.StepThree2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StepThree2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepThree2.Location = new System.Drawing.Point(15, 88);
+            this.StepThree2.Name = "StepThree2";
+            this.StepThree2.Size = new System.Drawing.Size(143, 13);
+            this.StepThree2.TabIndex = 31;
+            this.StepThree2.Text = "Step 3. Enter new password.";
+            // 
+            // buttonNext2
+            // 
+            this.buttonNext2.Enabled = false;
+            this.buttonNext2.Location = new System.Drawing.Point(328, 232);
+            this.buttonNext2.Name = "buttonNext2";
+            this.buttonNext2.Size = new System.Drawing.Size(100, 23);
+            this.buttonNext2.TabIndex = 34;
+            this.buttonNext2.Text = "Next";
+            this.buttonNext2.UseVisualStyleBackColor = true;
+            this.buttonNext2.Click += new System.EventHandler(this.buttonNext2_Click);
+            // 
+            // lblStepTwo2
+            // 
+            this.lblStepTwo2.AutoSize = true;
+            this.lblStepTwo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepTwo2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblStepTwo2.Location = new System.Drawing.Point(15, 68);
+            this.lblStepTwo2.Name = "lblStepTwo2";
+            this.lblStepTwo2.Size = new System.Drawing.Size(157, 13);
+            this.lblStepTwo2.TabIndex = 30;
+            this.lblStepTwo2.Text = "Step 2. Answer secret question.";
+            // 
             // buttonCancel3
             // 
             this.buttonCancel3.Location = new System.Drawing.Point(126, 232);
@@ -518,6 +598,17 @@
             this.buttonCancel3.Text = "Cancel";
             this.buttonCancel3.UseVisualStyleBackColor = true;
             this.buttonCancel3.Click += new System.EventHandler(this.buttonCancel3_Click);
+            // 
+            // lblStepOne2
+            // 
+            this.lblStepOne2.AutoSize = true;
+            this.lblStepOne2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepOne2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblStepOne2.Location = new System.Drawing.Point(15, 49);
+            this.lblStepOne2.Name = "lblStepOne2";
+            this.lblStepOne2.Size = new System.Drawing.Size(121, 13);
+            this.lblStepOne2.TabIndex = 29;
+            this.lblStepOne2.Text = "Step 1. Enter username.";
             // 
             // buttonBack1
             // 
@@ -568,6 +659,48 @@
             this.pnlForgotPassword3.Size = new System.Drawing.Size(439, 272);
             this.pnlForgotPassword3.TabIndex = 33;
             // 
+            // StepThree3
+            // 
+            this.StepThree3.AutoSize = true;
+            this.StepThree3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StepThree3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.StepThree3.Location = new System.Drawing.Point(17, 88);
+            this.StepThree3.Name = "StepThree3";
+            this.StepThree3.Size = new System.Drawing.Size(143, 13);
+            this.StepThree3.TabIndex = 38;
+            this.StepThree3.Text = "Step 3. Enter new password.";
+            // 
+            // lblStepTwo3
+            // 
+            this.lblStepTwo3.AutoSize = true;
+            this.lblStepTwo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepTwo3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblStepTwo3.Location = new System.Drawing.Point(17, 68);
+            this.lblStepTwo3.Name = "lblStepTwo3";
+            this.lblStepTwo3.Size = new System.Drawing.Size(157, 13);
+            this.lblStepTwo3.TabIndex = 37;
+            this.lblStepTwo3.Text = "Step 2. Answer secret question.";
+            // 
+            // lblStepOne3
+            // 
+            this.lblStepOne3.AutoSize = true;
+            this.lblStepOne3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepOne3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblStepOne3.Location = new System.Drawing.Point(17, 49);
+            this.lblStepOne3.Name = "lblStepOne3";
+            this.lblStepOne3.Size = new System.Drawing.Size(121, 13);
+            this.lblStepOne3.TabIndex = 36;
+            this.lblStepOne3.Text = "Step 1. Enter username.";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(126, 144);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Reset Password";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // buttonCancel4
             // 
             this.buttonCancel4.Location = new System.Drawing.Point(126, 227);
@@ -609,135 +742,6 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "Forgot Password";
             // 
-            // buttonNext1
-            // 
-            this.buttonNext1.Enabled = false;
-            this.buttonNext1.Location = new System.Drawing.Point(328, 240);
-            this.buttonNext1.Name = "buttonNext1";
-            this.buttonNext1.Size = new System.Drawing.Size(100, 23);
-            this.buttonNext1.TabIndex = 25;
-            this.buttonNext1.Text = "Next";
-            this.buttonNext1.UseVisualStyleBackColor = true;
-            this.buttonNext1.Click += new System.EventHandler(this.buttonNext1_Click);
-            // 
-            // buttonNext2
-            // 
-            this.buttonNext2.Enabled = false;
-            this.buttonNext2.Location = new System.Drawing.Point(328, 232);
-            this.buttonNext2.Name = "buttonNext2";
-            this.buttonNext2.Size = new System.Drawing.Size(100, 23);
-            this.buttonNext2.TabIndex = 34;
-            this.buttonNext2.Text = "Next";
-            this.buttonNext2.UseVisualStyleBackColor = true;
-            this.buttonNext2.Click += new System.EventHandler(this.buttonNext2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(126, 144);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Reset Password";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // lblStepOne1
-            // 
-            this.lblStepOne1.AutoSize = true;
-            this.lblStepOne1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepOne1.Location = new System.Drawing.Point(15, 44);
-            this.lblStepOne1.Name = "lblStepOne1";
-            this.lblStepOne1.Size = new System.Drawing.Size(121, 13);
-            this.lblStepOne1.TabIndex = 26;
-            this.lblStepOne1.Text = "Step 1. Enter username.";
-            // 
-            // lblStepTwo1
-            // 
-            this.lblStepTwo1.AutoSize = true;
-            this.lblStepTwo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepTwo1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblStepTwo1.Location = new System.Drawing.Point(15, 63);
-            this.lblStepTwo1.Name = "lblStepTwo1";
-            this.lblStepTwo1.Size = new System.Drawing.Size(157, 13);
-            this.lblStepTwo1.TabIndex = 27;
-            this.lblStepTwo1.Text = "Step 2. Answer secret question.";
-            // 
-            // StepThree1
-            // 
-            this.StepThree1.AutoSize = true;
-            this.StepThree1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StepThree1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.StepThree1.Location = new System.Drawing.Point(15, 83);
-            this.StepThree1.Name = "StepThree1";
-            this.StepThree1.Size = new System.Drawing.Size(143, 13);
-            this.StepThree1.TabIndex = 28;
-            this.StepThree1.Text = "Step 3. Enter new password.";
-            // 
-            // StepThree2
-            // 
-            this.StepThree2.AutoSize = true;
-            this.StepThree2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StepThree2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.StepThree2.Location = new System.Drawing.Point(15, 88);
-            this.StepThree2.Name = "StepThree2";
-            this.StepThree2.Size = new System.Drawing.Size(143, 13);
-            this.StepThree2.TabIndex = 31;
-            this.StepThree2.Text = "Step 3. Enter new password.";
-            // 
-            // lblStepTwo2
-            // 
-            this.lblStepTwo2.AutoSize = true;
-            this.lblStepTwo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepTwo2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblStepTwo2.Location = new System.Drawing.Point(15, 68);
-            this.lblStepTwo2.Name = "lblStepTwo2";
-            this.lblStepTwo2.Size = new System.Drawing.Size(157, 13);
-            this.lblStepTwo2.TabIndex = 30;
-            this.lblStepTwo2.Text = "Step 2. Answer secret question.";
-            // 
-            // lblStepOne2
-            // 
-            this.lblStepOne2.AutoSize = true;
-            this.lblStepOne2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepOne2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblStepOne2.Location = new System.Drawing.Point(15, 49);
-            this.lblStepOne2.Name = "lblStepOne2";
-            this.lblStepOne2.Size = new System.Drawing.Size(121, 13);
-            this.lblStepOne2.TabIndex = 29;
-            this.lblStepOne2.Text = "Step 1. Enter username.";
-            // 
-            // StepThree3
-            // 
-            this.StepThree3.AutoSize = true;
-            this.StepThree3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StepThree3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.StepThree3.Location = new System.Drawing.Point(17, 88);
-            this.StepThree3.Name = "StepThree3";
-            this.StepThree3.Size = new System.Drawing.Size(143, 13);
-            this.StepThree3.TabIndex = 38;
-            this.StepThree3.Text = "Step 3. Enter new password.";
-            // 
-            // lblStepTwo3
-            // 
-            this.lblStepTwo3.AutoSize = true;
-            this.lblStepTwo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepTwo3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblStepTwo3.Location = new System.Drawing.Point(17, 68);
-            this.lblStepTwo3.Name = "lblStepTwo3";
-            this.lblStepTwo3.Size = new System.Drawing.Size(157, 13);
-            this.lblStepTwo3.TabIndex = 37;
-            this.lblStepTwo3.Text = "Step 2. Answer secret question.";
-            // 
-            // lblStepOne3
-            // 
-            this.lblStepOne3.AutoSize = true;
-            this.lblStepOne3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepOne3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblStepOne3.Location = new System.Drawing.Point(17, 49);
-            this.lblStepOne3.Name = "lblStepOne3";
-            this.lblStepOne3.Size = new System.Drawing.Size(121, 13);
-            this.lblStepOne3.TabIndex = 36;
-            this.lblStepOne3.Text = "Step 1. Enter username.";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
@@ -755,6 +759,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(439, 272);
             this.panel1.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 188);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Hash:";
+            // 
+            // textBoxTestHashOutput
+            // 
+            this.textBoxTestHashOutput.Location = new System.Drawing.Point(11, 204);
+            this.textBoxTestHashOutput.Name = "textBoxTestHashOutput";
+            this.textBoxTestHashOutput.Size = new System.Drawing.Size(417, 20);
+            this.textBoxTestHashOutput.TabIndex = 31;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(10, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Hash";
+            // 
+            // textBoxTestHash
+            // 
+            this.textBoxTestHash.Location = new System.Drawing.Point(13, 88);
+            this.textBoxTestHash.Name = "textBoxTestHash";
+            this.textBoxTestHash.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTestHash.TabIndex = 29;
             // 
             // lblTestSalt
             // 
@@ -814,39 +852,17 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Debug";
             // 
-            // label7
+            // lblUsernameHidden
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(10, 72);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Hash";
-            // 
-            // textBoxTestHash
-            // 
-            this.textBoxTestHash.Location = new System.Drawing.Point(13, 88);
-            this.textBoxTestHash.Name = "textBoxTestHash";
-            this.textBoxTestHash.Size = new System.Drawing.Size(100, 20);
-            this.textBoxTestHash.TabIndex = 29;
-            // 
-            // textBoxTestHashOutput
-            // 
-            this.textBoxTestHashOutput.Location = new System.Drawing.Point(11, 204);
-            this.textBoxTestHashOutput.Name = "textBoxTestHashOutput";
-            this.textBoxTestHashOutput.Size = new System.Drawing.Size(417, 20);
-            this.textBoxTestHashOutput.TabIndex = 31;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 188);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Hash:";
+            this.lblUsernameHidden.AutoSize = true;
+            this.lblUsernameHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsernameHidden.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblUsernameHidden.Location = new System.Drawing.Point(220, 56);
+            this.lblUsernameHidden.Name = "lblUsernameHidden";
+            this.lblUsernameHidden.Size = new System.Drawing.Size(16, 13);
+            this.lblUsernameHidden.TabIndex = 35;
+            this.lblUsernameHidden.Text = "...";
+            this.lblUsernameHidden.UseMnemonic = false;
             // 
             // LoginUI
             // 
@@ -958,5 +974,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxTestHashOutput;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUsernameHidden;
     }
 }

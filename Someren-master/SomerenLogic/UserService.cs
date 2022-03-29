@@ -24,5 +24,15 @@ namespace SomerenLogic
             List<User> Users = userdb.GetAllUsers();
             return Users;
         }
+
+        public string GetUserQuestion(string username)
+        {
+            return userdb.GetUserQuestion(username);
+        }
+
+        public HashWithSaltResult GetUserAnswer(string username)
+        {
+            return userdb.GetUserAnswer(username);
+        }
     }
 }
