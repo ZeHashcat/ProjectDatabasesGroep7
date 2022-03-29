@@ -18,6 +18,15 @@ namespace SomerenUI
             
         }
 
+        private void HideAllPanels()
+        {
+            pnlLogin.Hide();
+            pnlAddNewUser.Hide();
+            pnlForgotPassword1.Hide();
+            pnlForgotPassword2.Hide();
+            pnlForgotPassword3.Hide();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
