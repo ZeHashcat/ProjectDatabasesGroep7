@@ -33,6 +33,8 @@ namespace SomerenUI
 
         private void showPanel(string panelName)
         {
+            UserService userService = new UserService();
+
             if (panelName == "Login")
             {
                 // Hide all other panels
@@ -77,7 +79,7 @@ namespace SomerenUI
 
                 try
                 {
-
+                    
                 }
                 catch (Exception e)
                 {
@@ -179,6 +181,80 @@ namespace SomerenUI
 
             lblTestSalt.Text = hRSha512.Salt.ToString();
             textBoxTestHashOutput.Text = hRSha512.Hash.ToString();
+        }
+
+        //String hasher.
+        private HashWithSaltResult StringHasher(string hash, string salt)
+        {
+            PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+            byte[] saltBytes = Encoding.ASCII.GetBytes(salt);
+            int timesToHash = 99999;
+            HashWithSaltResult hashWithSalt = pwHasher.HashWithSalt(hash, saltBytes, SHA512.Create());
+
+            for (int i = 0; i < timesToHash; i++)
+            {
+                hashWithSalt = pwHasher.HashWithSalt(hashWithSalt.Hash, saltBytes, SHA512.Create());
+            }
+            return hashWithSalt;
+        }
+
+        //Requests and displays secret question, then moves on to next screen.
+        private void buttonRequestQuestion_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+            UserService userService = new UserService();
+
+            try
+            {
+                //Checks if textBox is empty or not.
+                if (textBoxUsername3.Text == string.Empty)
+                {
+                    throw new Exception("Username may not be empty!");
+                }
+                //Returns secret question, updates text, moves to next panel and enables next button on current page.
+                string SecretQuestion = userService.GetUserQuestion(textBoxUsername3.Text);
+                lblUsernameHidden.Text = textBoxUsername3.Text;
+                lblSecretQuestion2.Text = ($"Secret Question: {SecretQuestion}");
+                showPanel("ForgotPassword2");
+                buttonNext1.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong!\n\n" + ex.Message);
+            }           
+        }
+
+        private void buttonRequestPassword_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+            UserService userService = new UserService();
+
+            try
+            {
+                if (textBoxSecretAnswer2.Text == string.Empty)
+                {
+                    throw new Exception("Answer may not be empty!");
+                }
+
+                HashWithSaltResult retrievedHashWithSalt = userService.GetUserAnswer(lblUsernameHidden.Text);
+                HashWithSaltResult inputHashWithSalt = StringHasher(textBoxSecretAnswer2.Text.ToLower(), retrievedHashWithSalt.Salt);
+
+                if (inputHashWithSalt.Hash == retrievedHashWithSalt.Hash)
+                {
+                    showPanel("ForgotPassword3");
+                    buttonNext2.Enabled = true;
+                }
+                else
+                {
+                    throw new Exception("Wrong answer!");
+                }
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong!\n\n" + ex.Message);
+            }
         }
     }
 }

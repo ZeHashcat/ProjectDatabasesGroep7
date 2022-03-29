@@ -20,6 +20,47 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
+        // Query gets secret question for username
+        public string GetUserQuestion(string username)
+        {
+            PrintDao printDao = new PrintDao();
+            string query = "SELECT [SecretQuestion] FROM [User] WHERE [Username] = @Username;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("Username", username);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            try
+            {
+                return dataTable.Rows[0].Field<string>("SecretQuestion").ToString();
+            } 
+            catch (Exception ex)
+            {
+                printDao.ErrorLog(ex);
+                throw new Exception("No user found by that name!");
+            }
+        }
+
+        // Query gets hashed secret answer and salt.
+        public HashWithSaltResult GetUserAnswer(string username)
+        {
+            PrintDao printDao = new PrintDao();
+            HashWithSaltResult hashWithSalt = new HashWithSaltResult("", "");
+            string query = "SELECT [SecretAnswer], [SALT] FROM [User] WHERE [Username] = @Username;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("Username", username);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            try
+            {
+                hashWithSalt.Hash = dataTable.Rows[0].Field<string>("SecretAnswer").ToString();
+                hashWithSalt.Salt = dataTable.Rows[0].Field<string>("SALT").ToString();
+                return hashWithSalt;
+            }
+            catch (Exception ex)
+            {
+                printDao.ErrorLog(ex);
+                throw new Exception("No user found by that name!");
+            }
+        }
+
         private List<User> ReadTables(DataTable dataTable)
         {
             // Create users list
