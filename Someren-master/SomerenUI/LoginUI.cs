@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
+using System.Windows;
 
 namespace SomerenUI
 {
@@ -135,16 +136,19 @@ namespace SomerenUI
         private void buttonCancel2_Click(object sender, EventArgs e)
         {
             showPanel("Login");
+            ForgetPasswordSweeper();
         }
 
         private void buttonCancel3_Click(object sender, EventArgs e)
         {
             showPanel("Login");
+            ForgetPasswordSweeper();
         }
 
         private void buttonCancel4_Click(object sender, EventArgs e)
         {
             showPanel("Login");
+            ForgetPasswordSweeper();
         }
 
         private void buttonBack2_Click(object sender, EventArgs e)
@@ -198,6 +202,19 @@ namespace SomerenUI
             return hashWithSalt;
         }
 
+        //Empty all relevant fields for forget password
+        private void ForgetPasswordSweeper()
+        {
+            buttonNext1.Enabled = false;
+            buttonNext2.Enabled = false;
+            lblSecretQuestion2.Text = ($"Secret Question: ");
+            textBoxUsername3.Text = string.Empty;
+            lblUsernameHidden.Text = string.Empty;
+            textBoxSecretAnswer2.Text = string.Empty;
+            textBoxNewPassword1.Text = string.Empty;
+            textBoxNewPassword2.Text = string.Empty;
+        }
+
         //Requests and displays secret question, then moves on to next screen.
         private void buttonRequestQuestion_Click(object sender, EventArgs e)
         {
@@ -206,11 +223,12 @@ namespace SomerenUI
 
             try
             {
-                //Checks if textBox is empty or not.
+                //Checks if textBox is empty.
                 if (textBoxUsername3.Text == string.Empty)
                 {
                     throw new Exception("Username may not be empty!");
                 }
+
                 //Returns secret question, updates text, moves to next panel and enables next button on current page.
                 string SecretQuestion = userService.GetUserQuestion(textBoxUsername3.Text);
                 lblUsernameHidden.Text = textBoxUsername3.Text;
@@ -220,6 +238,7 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
+                buttonNext1.Enabled = false;
                 printService.Print(ex);
                 MessageBox.Show("Something went wrong!\n\n" + ex.Message);
             }           
@@ -232,29 +251,72 @@ namespace SomerenUI
 
             try
             {
+                //Checks if textBox is empty.
                 if (textBoxSecretAnswer2.Text == string.Empty)
                 {
                     throw new Exception("Answer may not be empty!");
                 }
 
+                //Gets hashed secret answer and plain text salt and stores them in a single object.
                 HashWithSaltResult retrievedHashWithSalt = userService.GetUserAnswer(lblUsernameHidden.Text);
+
+                //Gets secret answer from textbox input, hashes it and stores it along with the retrieved salt from the database in a single object.
                 HashWithSaltResult inputHashWithSalt = StringHasher(textBoxSecretAnswer2.Text.ToLower(), retrievedHashWithSalt.Salt);
 
-                if (inputHashWithSalt.Hash == retrievedHashWithSalt.Hash)
-                {
-                    showPanel("ForgotPassword3");
-                    buttonNext2.Enabled = true;
-                }
-                else
+                //Compares the input and retrieved hashed secret answer.
+                if (inputHashWithSalt.Hash != retrievedHashWithSalt.Hash)
                 {
                     throw new Exception("Wrong answer!");
                 }
+
+                //Go to next panel and enable next button.
+                showPanel("ForgotPassword3");
+                buttonNext2.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                buttonNext2.Enabled = false;
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong!\n\n" + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+            UserService userService = new UserService();
+
+            try
+            {
+                //Checks if textBoxes are empty.
+                if (textBoxNewPassword1.Text == string.Empty || textBoxNewPassword2.Text == string.Empty)
+                {
+                    throw new Exception("Please enter your new password twice!");
+                }
+
+                //Checks if the two password inputs are different.
+                if (textBoxNewPassword1.Text != textBoxNewPassword2.Text)
+                {
+                    throw new Exception("Entered passwords are not the same!");
+                }
+
+                //Creates a object that stores hashed version of the new password, salt is retrieved from database.
+                HashWithSaltResult passwordHashWithSalt = StringHasher(textBoxNewPassword1.Text, userService.GetSalt(lblUsernameHidden.Text));
+                userService.UpdatePassword(lblUsernameHidden.Text, passwordHashWithSalt.Hash);
+                MessageBox.Show("Password has been updated!");
+                ForgetPasswordSweeper();
+                showPanel("Login");
             }
             catch (Exception ex)
             {
                 printService.Print(ex);
                 MessageBox.Show("Something went wrong!\n\n" + ex.Message);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
