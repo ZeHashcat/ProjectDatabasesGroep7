@@ -22,7 +22,7 @@ namespace SomerenLogic
 
             byte[] hashBytes = hashAlgorithm.ComputeHash(passwordWithSaltBytes.ToArray());
 
-            return new HashWithSaltResult(Convert.ToBase64String(saltBytes), Convert.ToBase64String(hashBytes));
+            return new HashWithSaltResult(Convert.ToBase64String(hashBytes), Convert.ToBase64String(saltBytes));
         }
     }
 }
