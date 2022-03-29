@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserService.cs" />
     <Compile Include="PasswordWithSaltHasher.cs" />
     <Compile Include="RandomNumberGeneratorHashSalt.cs" />
     <Compile Include="LecturerService.cs" />
