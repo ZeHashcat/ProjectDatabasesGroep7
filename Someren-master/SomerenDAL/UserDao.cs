@@ -12,6 +12,7 @@ namespace SomerenDAL
 {
     public class UserDao : BaseDao
     {
+        //Might Not need this anymore.
         public List<User> GetAllUsers()
         {
             // Query gets the full user table
@@ -26,7 +27,7 @@ namespace SomerenDAL
             PrintDao printDao = new PrintDao();
             string query = "SELECT [SecretQuestion] FROM [User] WHERE [Username] = @Username;";
             SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("Username", username);
+            sqlParameters[0] = new SqlParameter("@Username", username);
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
             try
             {
@@ -46,7 +47,7 @@ namespace SomerenDAL
             HashWithSaltResult hashWithSalt = new HashWithSaltResult("", "");
             string query = "SELECT [SecretAnswer], [SALT] FROM [User] WHERE [Username] = @Username;";
             SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("Username", username);
+            sqlParameters[0] = new SqlParameter("@Username", username);
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
             try
             {
@@ -61,6 +62,36 @@ namespace SomerenDAL
             }
         }
 
+        // Query gets salt.
+        public string GetSalt(string username)
+        {
+            PrintDao printDao = new PrintDao();
+            string query = "SELECT [SALT] FROM [User] WHERE [Username] = @Username;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@Username", username);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            try
+            {
+                return dataTable.Rows[0].Field<string>("SALT").ToString();
+            }
+            catch (Exception ex)
+            {
+                printDao.ErrorLog(ex);
+                throw new Exception("No user found by that name!");
+            }
+        }
+
+        // Query updates hashed password.
+        public void UpdatePassword(string username, string password)
+        {
+            string query = "UPDATE [User] SET [Password] = @Password WHERE [username] = @username;";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@Password", password);
+            sqlParameters[1] = new SqlParameter("@Username", username);
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        //Might not need this anymore.
         private List<User> ReadTables(DataTable dataTable)
         {
             // Create users list
