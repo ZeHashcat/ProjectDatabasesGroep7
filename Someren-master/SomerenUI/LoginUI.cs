@@ -318,5 +318,38 @@ namespace SomerenUI
         {
             Application.Exit();
         }
+
+        private void buttonAddNewUser2_Click(object sender, EventArgs e)
+        {
+            PrintService printService = new PrintService();
+            UserService usrService = new UserService();
+            PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+            string registrationKey = "XsZAb - tgz3PsD - qYh69un - WQCEx";
+
+            try
+            {
+                // Check for input
+                string userInputRegistrationKey = textBoxRegistrationKey.Text;
+                if (string.IsNullOrEmpty(userInputRegistrationKey) || string.IsNullOrEmpty(textBoxUsername2.Text) || string.IsNullOrEmpty(textBoxSecretQuestion1.Text) || string.IsNullOrEmpty(textBoxPassword2.Text) || string.IsNullOrEmpty(textBoxSecretAnswer1.Text))
+                    throw new Exception("Please fill all fields.");  
+                // Check if user registration key is correct
+                if (userInputRegistrationKey != registrationKey)
+                    throw new Exception("License key is wrong.");
+
+                string Username = textBoxUsername2.Text;
+                string question = textBoxSecretQuestion1.Text;
+
+                // Hash and Salt password and answer
+                HashWithSaltResult password = pwHasher.HashWithSalt(textBoxPassword2.Text, 64, SHA512.Create());
+                HashWithSaltResult secretAnswer = pwHasher.HashWithSalt(textBoxSecretAnswer1.Text, 64, SHA512.Create());
+
+                usrService.AddUser(Username, password, question, secretAnswer);
+            }
+            catch (Exception ex)
+            {
+                printService.Print(ex);
+                MessageBox.Show("Something went wrong while adding a new user.\n" + ex.Message);
+            }
+        }
     }
 }

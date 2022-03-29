@@ -47,5 +47,11 @@ namespace SomerenLogic
         {
             userdb.UpdatePassword(username, password);
         }
+
+        //Baton passing method between UI and DAL.
+        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer)
+        {
+            userdb.AddUser(username, password, secretQuestion, secretAnswer);
+        }
     }
 }

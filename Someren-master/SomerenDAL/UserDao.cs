@@ -21,6 +21,19 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
+        // Adds a new user to the database
+        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer)
+        {
+            string query = "INSERT INTO [User] VALUES (@username, @password, @secretQuestion, @secretAnswer, @SALT);";
+            SqlParameter[] sqlParameters = new SqlParameter[5];
+            sqlParameters[0] = new SqlParameter("@username", username);
+            sqlParameters[1] = new SqlParameter("@password", password.Hash);
+            sqlParameters[2] = new SqlParameter("@secretQuestion", secretQuestion);
+            sqlParameters[3] = new SqlParameter("@secretAnswer", secretAnswer.Hash);
+            sqlParameters[4] = new SqlParameter("@SALT", password.Salt);
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
         // Query gets secret question for username
         public string GetUserQuestion(string username)
         {
