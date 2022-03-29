@@ -320,6 +320,7 @@
             this.buttonAddNewUser2.TabIndex = 22;
             this.buttonAddNewUser2.Text = "Add User";
             this.buttonAddNewUser2.UseVisualStyleBackColor = true;
+            this.buttonAddNewUser2.Click += new System.EventHandler(this.buttonAddNewUser2_Click);
             // 
             // lblPassword2
             // 
