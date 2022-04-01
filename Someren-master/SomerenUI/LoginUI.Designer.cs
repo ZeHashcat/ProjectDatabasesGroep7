@@ -35,9 +35,9 @@
             this.buttonAddNewUser1 = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.lblPassword1 = new System.Windows.Forms.Label();
-            this.textBoxPassword1 = new System.Windows.Forms.TextBox();
+            this.textBoxPasswordLogin = new System.Windows.Forms.TextBox();
             this.lblUsername1 = new System.Windows.Forms.Label();
-            this.textBoxUsername1 = new System.Windows.Forms.TextBox();
+            this.textBoxUsernameLogin = new System.Windows.Forms.TextBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.pnlAddNewUser = new System.Windows.Forms.Panel();
@@ -125,13 +125,13 @@
             this.pnlLogin.Controls.Add(this.buttonAddNewUser1);
             this.pnlLogin.Controls.Add(this.buttonLogin);
             this.pnlLogin.Controls.Add(this.lblPassword1);
-            this.pnlLogin.Controls.Add(this.textBoxPassword1);
+            this.pnlLogin.Controls.Add(this.textBoxPasswordLogin);
             this.pnlLogin.Controls.Add(this.lblUsername1);
-            this.pnlLogin.Controls.Add(this.textBoxUsername1);
+            this.pnlLogin.Controls.Add(this.textBoxUsernameLogin);
             this.pnlLogin.Controls.Add(this.pictureBox15);
             this.pnlLogin.Controls.Add(this.lblLogin);
             this.pnlLogin.Location = new System.Drawing.Point(0, 2);
-            this.pnlLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(439, 272);
             this.pnlLogin.TabIndex = 13;
@@ -164,6 +164,7 @@
             this.buttonAddNewUser1.TabIndex = 23;
             this.buttonAddNewUser1.Text = "Add New User";
             this.buttonAddNewUser1.UseVisualStyleBackColor = true;
+            this.buttonAddNewUser1.Click += new System.EventHandler(this.buttonAddNewUser1_Click);
             // 
             // buttonLogin
             // 
@@ -185,12 +186,13 @@
             this.lblPassword1.TabIndex = 21;
             this.lblPassword1.Text = "Password:";
             // 
-            // textBoxPassword1
+            // textBoxPasswordLogin
             // 
-            this.textBoxPassword1.Location = new System.Drawing.Point(18, 127);
-            this.textBoxPassword1.Name = "textBoxPassword1";
-            this.textBoxPassword1.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPassword1.TabIndex = 20;
+            this.textBoxPasswordLogin.Location = new System.Drawing.Point(18, 127);
+            this.textBoxPasswordLogin.Name = "textBoxPasswordLogin";
+            this.textBoxPasswordLogin.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPasswordLogin.TabIndex = 20;
+            this.textBoxPasswordLogin.UseSystemPasswordChar = true;
             // 
             // lblUsername1
             // 
@@ -202,19 +204,19 @@
             this.lblUsername1.TabIndex = 19;
             this.lblUsername1.Text = "Username:";
             // 
-            // textBoxUsername1
+            // textBoxUsernameLogin
             // 
-            this.textBoxUsername1.Location = new System.Drawing.Point(18, 83);
-            this.textBoxUsername1.Name = "textBoxUsername1";
-            this.textBoxUsername1.Size = new System.Drawing.Size(100, 20);
-            this.textBoxUsername1.TabIndex = 18;
+            this.textBoxUsernameLogin.Location = new System.Drawing.Point(18, 83);
+            this.textBoxUsernameLogin.Name = "textBoxUsernameLogin";
+            this.textBoxUsernameLogin.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUsernameLogin.TabIndex = 18;
             // 
             // pictureBox15
             // 
             this.pictureBox15.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox15.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox15.InitialImage")));
             this.pictureBox15.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox15.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(129, 117);
             this.pictureBox15.TabIndex = 17;
@@ -246,7 +248,7 @@
             this.pnlAddNewUser.Controls.Add(this.textBoxUsername2);
             this.pnlAddNewUser.Controls.Add(this.pictureBox1);
             this.pnlAddNewUser.Controls.Add(this.lblAddNewUser);
-            this.pnlAddNewUser.Location = new System.Drawing.Point(450, 2);
+            this.pnlAddNewUser.Location = new System.Drawing.Point(0, 2);
             this.pnlAddNewUser.Margin = new System.Windows.Forms.Padding(2);
             this.pnlAddNewUser.Name = "pnlAddNewUser";
             this.pnlAddNewUser.Size = new System.Drawing.Size(439, 272);
@@ -311,6 +313,7 @@
             this.buttonCancel1.TabIndex = 23;
             this.buttonCancel1.Text = "Cancel";
             this.buttonCancel1.UseVisualStyleBackColor = true;
+            this.buttonCancel1.Click += new System.EventHandler(this.buttonCancel1_Click);
             // 
             // buttonAddNewUser2
             // 
@@ -338,6 +341,7 @@
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword2.TabIndex = 20;
+            this.textBoxPassword2.UseSystemPasswordChar = true;
             // 
             // lblUsername2
             // 
@@ -361,7 +365,7 @@
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(129, 117);
             this.pictureBox1.TabIndex = 17;
@@ -389,7 +393,7 @@
             this.pnlForgotPassword1.Controls.Add(this.textBoxUsername3);
             this.pnlForgotPassword1.Controls.Add(this.pictureBox2);
             this.pnlForgotPassword1.Controls.Add(this.lblForgotPassword);
-            this.pnlForgotPassword1.Location = new System.Drawing.Point(912, 2);
+            this.pnlForgotPassword1.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword1.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword1.Name = "pnlForgotPassword1";
             this.pnlForgotPassword1.Size = new System.Drawing.Size(439, 272);
@@ -480,7 +484,7 @@
             this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
             this.pictureBox2.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(129, 117);
             this.pictureBox2.TabIndex = 17;
@@ -512,6 +516,7 @@
             this.textBoxNewPassword1.Name = "textBoxNewPassword1";
             this.textBoxNewPassword1.Size = new System.Drawing.Size(207, 20);
             this.textBoxNewPassword1.TabIndex = 31;
+            this.textBoxNewPassword1.UseSystemPasswordChar = true;
             // 
             // buttonRequestPassword
             // 
@@ -565,7 +570,7 @@
             this.pnlForgotPassword2.Controls.Add(this.textBoxSecretAnswer2);
             this.pnlForgotPassword2.Controls.Add(this.buttonRequestPassword);
             this.pnlForgotPassword2.Controls.Add(this.lblSecretAnwer2);
-            this.pnlForgotPassword2.Location = new System.Drawing.Point(0, 293);
+            this.pnlForgotPassword2.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword2.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword2.Name = "pnlForgotPassword2";
             this.pnlForgotPassword2.Size = new System.Drawing.Size(439, 272);
@@ -653,7 +658,7 @@
             this.pictureBox3.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
             this.pictureBox3.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(129, 117);
             this.pictureBox3.TabIndex = 17;
@@ -683,7 +688,7 @@
             this.pnlForgotPassword3.Controls.Add(this.buttonBack2);
             this.pnlForgotPassword3.Controls.Add(this.pictureBox4);
             this.pnlForgotPassword3.Controls.Add(this.label11);
-            this.pnlForgotPassword3.Location = new System.Drawing.Point(450, 293);
+            this.pnlForgotPassword3.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword3.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword3.Name = "pnlForgotPassword3";
             this.pnlForgotPassword3.Size = new System.Drawing.Size(439, 272);
@@ -705,6 +710,7 @@
             this.textBoxNewPassword2.Name = "textBoxNewPassword2";
             this.textBoxNewPassword2.Size = new System.Drawing.Size(207, 20);
             this.textBoxNewPassword2.TabIndex = 39;
+            this.textBoxNewPassword2.UseSystemPasswordChar = true;
             // 
             // StepThree3
             // 
@@ -774,7 +780,7 @@
             this.pictureBox4.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
             this.pictureBox4.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(129, 117);
             this.pictureBox4.TabIndex = 17;
@@ -802,11 +808,12 @@
             this.panel1.Controls.Add(this.textBoxTestSalt);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(912, 293);
+            this.panel1.Location = new System.Drawing.Point(0, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(439, 272);
             this.panel1.TabIndex = 29;
+            this.panel1.Visible = false;
             // 
             // label1
             // 
@@ -884,7 +891,7 @@
             this.pictureBox5.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
             this.pictureBox5.Location = new System.Drawing.Point(299, 9);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(129, 117);
             this.pictureBox5.TabIndex = 17;
@@ -904,7 +911,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1399, 585);
+            this.ClientSize = new System.Drawing.Size(440, 275);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlForgotPassword3);
@@ -944,9 +951,9 @@
         private System.Windows.Forms.Button buttonAddNewUser1;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label lblPassword1;
-        private System.Windows.Forms.TextBox textBoxPassword1;
+        private System.Windows.Forms.TextBox textBoxPasswordLogin;
         private System.Windows.Forms.Label lblUsername1;
-        private System.Windows.Forms.TextBox textBoxUsername1;
+        private System.Windows.Forms.TextBox textBoxUsernameLogin;
         private System.Windows.Forms.PictureBox pictureBox15;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Panel pnlAddNewUser;

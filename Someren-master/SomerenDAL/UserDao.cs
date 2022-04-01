@@ -22,7 +22,7 @@ namespace SomerenDAL
         }
 
         // Adds a new user to the database
-        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer)
+        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer, string salt)
         {
             string query = "INSERT INTO [User] VALUES (@username, @password, @secretQuestion, @secretAnswer, @SALT);";
             SqlParameter[] sqlParameters = new SqlParameter[5];
@@ -30,7 +30,7 @@ namespace SomerenDAL
             sqlParameters[1] = new SqlParameter("@password", password.Hash);
             sqlParameters[2] = new SqlParameter("@secretQuestion", secretQuestion);
             sqlParameters[3] = new SqlParameter("@secretAnswer", secretAnswer.Hash);
-            sqlParameters[4] = new SqlParameter("@SALT", password.Salt);
+            sqlParameters[4] = new SqlParameter("@SALT", salt);
             ExecuteEditQuery(query, sqlParameters);
         }
 
@@ -102,6 +102,24 @@ namespace SomerenDAL
             sqlParameters[0] = new SqlParameter("@Password", password);
             sqlParameters[1] = new SqlParameter("@Username", username);
             ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public string GetHashedPassword(string username)
+        {
+            PrintDao printDao = new PrintDao();
+            string query = "SELECT [Password] FROM [User] WHERE [Username] = @Username;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@Username", username);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            try
+            {
+                return dataTable.Rows[0].Field<string>("Password").ToString();
+            }
+            catch (Exception ex)
+            {
+                printDao.ErrorLog(ex);
+                throw new Exception("No user found by that name!");
+            }
         }
 
         //Might not need this anymore.

@@ -20,7 +20,7 @@ namespace SomerenUI
         public LoginUI()
         {
             InitializeComponent();
-            
+            showPanel("Login");
         }
 
         private void HideAllPanels()
@@ -125,7 +125,27 @@ namespace SomerenUI
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                string password = textBoxPasswordLogin.Text;
+                UserService userService = new UserService();
+                PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+                string salt = userService.GetSalt(textBoxUsernameLogin.Text);
+                string hashedPassword = StringHasher(password, salt).Hash.ToString();
+
+                if (hashedPassword == userService.GetHashedPassword(textBoxUsernameLogin.Text))
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("The username and password combination is invalid.");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonForgotPassword_Click(object sender, EventArgs e)
@@ -324,6 +344,7 @@ namespace SomerenUI
             PrintService printService = new PrintService();
             UserService usrService = new UserService();
             PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+            Random random = new Random();
             string registrationKey = "XsZAb - tgz3PsD - qYh69un - WQCEx";
 
             try
@@ -339,17 +360,35 @@ namespace SomerenUI
                 string Username = textBoxUsername2.Text;
                 string question = textBoxSecretQuestion1.Text;
 
-                // Hash and Salt password and answer
-                HashWithSaltResult password = pwHasher.HashWithSalt(textBoxPassword2.Text, 64, SHA512.Create());
-                HashWithSaltResult secretAnswer = pwHasher.HashWithSalt(textBoxSecretAnswer1.Text, 64, SHA512.Create());
+                int salt = random.Next(1, 1000);
 
-                usrService.AddUser(Username, password, question, secretAnswer);
+                // Hash and Salt password and answer
+                HashWithSaltResult password = StringHasher(textBoxPassword2.Text, salt.ToString());
+                HashWithSaltResult secretAnswer = StringHasher(textBoxSecretAnswer1.Text.ToLower(), salt.ToString());
+                usrService.AddUser(Username, password, question, secretAnswer, salt.ToString());
+                MessageBox.Show("User added.");
+                showPanel("Login");
             }
             catch (Exception ex)
             {
                 printService.Print(ex);
                 MessageBox.Show("Something went wrong while adding a new user.\n" + ex.Message);
             }
+        }
+
+        private void buttonAddNewUser1_Click(object sender, EventArgs e)
+        {
+            showPanel("AddNewUser");
+        }
+
+        private void buttonCancel1_Click(object sender, EventArgs e)
+        {
+            showPanel("Login");
+            textBoxUsername2.Text = string.Empty;
+            textBoxPassword2.Text = string.Empty;
+            textBoxSecretQuestion1.Text = string.Empty;
+            textBoxSecretAnswer1.Text = string.Empty;
+            textBoxRegistrationKey.Text = string.Empty;
         }
     }
 }
