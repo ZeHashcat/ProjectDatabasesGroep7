@@ -53,5 +53,12 @@ namespace SomerenLogic
         {
             userdb.AddUser(username, password, secretQuestion, secretAnswer);
         }
+
+        //Baton passing method between UI and DAL.
+        public string GetHashedPassword(string username)
+        {
+            return userdb.GetHashedPassword(username);
+        }
+
     }
 }
