@@ -104,6 +104,24 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
+        public string GetHashedPassword(string username)
+        {
+            PrintDao printDao = new PrintDao();
+            string query = "SELECT [Password] FROM [User] WHERE [Username] = @Username;";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@Username", username);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            try
+            {
+                return dataTable.Rows[0].Field<string>("Password").ToString();
+            }
+            catch (Exception ex)
+            {
+                printDao.ErrorLog(ex);
+                throw new Exception("No user found by that name!");
+            }
+        }
+
         //Might not need this anymore.
         private List<User> ReadTables(DataTable dataTable)
         {
