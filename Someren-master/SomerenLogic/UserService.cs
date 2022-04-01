@@ -49,9 +49,9 @@ namespace SomerenLogic
         }
 
         //Baton passing method between UI and DAL.
-        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer)
+        public void AddUser(string username, HashWithSaltResult password, string secretQuestion, HashWithSaltResult secretAnswer, string salt)
         {
-            userdb.AddUser(username, password, secretQuestion, secretAnswer);
+            userdb.AddUser(username, password, secretQuestion, secretAnswer, salt);
         }
     }
 }

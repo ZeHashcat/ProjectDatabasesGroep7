@@ -164,6 +164,7 @@
             this.buttonAddNewUser1.TabIndex = 23;
             this.buttonAddNewUser1.Text = "Add New User";
             this.buttonAddNewUser1.UseVisualStyleBackColor = true;
+            this.buttonAddNewUser1.Click += new System.EventHandler(this.buttonAddNewUser1_Click);
             // 
             // buttonLogin
             // 
@@ -191,6 +192,7 @@
             this.textBoxPassword1.Name = "textBoxPassword1";
             this.textBoxPassword1.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword1.TabIndex = 20;
+            this.textBoxPassword1.UseSystemPasswordChar = true;
             // 
             // lblUsername1
             // 
@@ -246,7 +248,7 @@
             this.pnlAddNewUser.Controls.Add(this.textBoxUsername2);
             this.pnlAddNewUser.Controls.Add(this.pictureBox1);
             this.pnlAddNewUser.Controls.Add(this.lblAddNewUser);
-            this.pnlAddNewUser.Location = new System.Drawing.Point(450, 2);
+            this.pnlAddNewUser.Location = new System.Drawing.Point(0, 2);
             this.pnlAddNewUser.Margin = new System.Windows.Forms.Padding(2);
             this.pnlAddNewUser.Name = "pnlAddNewUser";
             this.pnlAddNewUser.Size = new System.Drawing.Size(439, 272);
@@ -311,6 +313,7 @@
             this.buttonCancel1.TabIndex = 23;
             this.buttonCancel1.Text = "Cancel";
             this.buttonCancel1.UseVisualStyleBackColor = true;
+            this.buttonCancel1.Click += new System.EventHandler(this.buttonCancel1_Click);
             // 
             // buttonAddNewUser2
             // 
@@ -338,6 +341,7 @@
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword2.TabIndex = 20;
+            this.textBoxPassword2.UseSystemPasswordChar = true;
             // 
             // lblUsername2
             // 
@@ -389,7 +393,7 @@
             this.pnlForgotPassword1.Controls.Add(this.textBoxUsername3);
             this.pnlForgotPassword1.Controls.Add(this.pictureBox2);
             this.pnlForgotPassword1.Controls.Add(this.lblForgotPassword);
-            this.pnlForgotPassword1.Location = new System.Drawing.Point(912, 2);
+            this.pnlForgotPassword1.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword1.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword1.Name = "pnlForgotPassword1";
             this.pnlForgotPassword1.Size = new System.Drawing.Size(439, 272);
@@ -512,6 +516,7 @@
             this.textBoxNewPassword1.Name = "textBoxNewPassword1";
             this.textBoxNewPassword1.Size = new System.Drawing.Size(207, 20);
             this.textBoxNewPassword1.TabIndex = 31;
+            this.textBoxNewPassword1.UseSystemPasswordChar = true;
             // 
             // buttonRequestPassword
             // 
@@ -565,7 +570,7 @@
             this.pnlForgotPassword2.Controls.Add(this.textBoxSecretAnswer2);
             this.pnlForgotPassword2.Controls.Add(this.buttonRequestPassword);
             this.pnlForgotPassword2.Controls.Add(this.lblSecretAnwer2);
-            this.pnlForgotPassword2.Location = new System.Drawing.Point(0, 293);
+            this.pnlForgotPassword2.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword2.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword2.Name = "pnlForgotPassword2";
             this.pnlForgotPassword2.Size = new System.Drawing.Size(439, 272);
@@ -683,7 +688,7 @@
             this.pnlForgotPassword3.Controls.Add(this.buttonBack2);
             this.pnlForgotPassword3.Controls.Add(this.pictureBox4);
             this.pnlForgotPassword3.Controls.Add(this.label11);
-            this.pnlForgotPassword3.Location = new System.Drawing.Point(450, 293);
+            this.pnlForgotPassword3.Location = new System.Drawing.Point(0, 2);
             this.pnlForgotPassword3.Margin = new System.Windows.Forms.Padding(2);
             this.pnlForgotPassword3.Name = "pnlForgotPassword3";
             this.pnlForgotPassword3.Size = new System.Drawing.Size(439, 272);
@@ -705,6 +710,7 @@
             this.textBoxNewPassword2.Name = "textBoxNewPassword2";
             this.textBoxNewPassword2.Size = new System.Drawing.Size(207, 20);
             this.textBoxNewPassword2.TabIndex = 39;
+            this.textBoxNewPassword2.UseSystemPasswordChar = true;
             // 
             // StepThree3
             // 
@@ -802,11 +808,12 @@
             this.panel1.Controls.Add(this.textBoxTestSalt);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(912, 293);
+            this.panel1.Location = new System.Drawing.Point(0, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(439, 272);
             this.panel1.TabIndex = 29;
+            this.panel1.Visible = false;
             // 
             // label1
             // 
@@ -904,7 +911,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1399, 585);
+            this.ClientSize = new System.Drawing.Size(438, 274);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlForgotPassword3);
