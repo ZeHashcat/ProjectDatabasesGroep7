@@ -125,7 +125,27 @@ namespace SomerenUI
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                string password = textBoxPasswordLogin.Text;
+                UserService userService = new UserService();
+                PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
+                string salt = userService.GetSalt(textBoxUsernameLogin.Text);
+                string hashedPassword = StringHasher(password, salt).Hash.ToString();
+
+                if (hashedPassword == userService.GetHashedPassword(textBoxUsernameLogin.Text))
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("The username and password combination is invalid.");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonForgotPassword_Click(object sender, EventArgs e)
